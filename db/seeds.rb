@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+# Assets/Models/Scrapper/...
+scrapper = ConcoursAgricoleScrapper.new(year: 2016)
+scrapper.scrap
