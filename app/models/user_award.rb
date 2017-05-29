@@ -1,2 +1,0 @@
-class UserAward < ApplicationRecord
-end

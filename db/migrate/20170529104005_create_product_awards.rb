@@ -4,7 +4,7 @@ class CreateProductAwards < ActiveRecord::Migration[5.0]
 
       t.string :name
       t.string :year
-      t.references :product, foreign_key: :true
+      t.references :product, foreign_key: true
     end
   end
 end
