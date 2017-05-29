@@ -1,4 +1,4 @@
-class Producer > ApplicationRecord
+class Producer < ApplicationRecord
 belongs_to :user
 has_many :products, dependent: :destroy
 has_many :producer_awards, dependent: :destroy

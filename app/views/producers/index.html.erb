@@ -1,0 +1,7 @@
+<h1>Producers</h1>
+
+<ul>
+  <% @producers.each do |producer| %>
+    <li><%= link_to producer.name, producer_path(producer) %></li>
+  <% end %>
+</ul>
