@@ -36,14 +36,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       ##for cesta
       t.string :first_name
       t.string :last_name
-      t.string :address
-      t.string :zipcode
-      t.string :city
-      t.string :phone
-      t.string :mobile_phone
-      t.string :category
-      t.text :description
-      t.boolean :isproducer
     end
 
     add_index :users, :email,                unique: true
