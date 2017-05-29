@@ -1,0 +1,18 @@
+.guidelines-instructions {
+  h1 {
+    font-weight: bold;
+  }
+}
+
+.instructions {
+  background-color: #F1F1F1;
+  padding: 10px;
+  border-radius: $border-radius-base;
+  border: 1px solid #D1D1D1;
+  margin-bottom: 10px;
+
+  h4.instructions-title {
+    text-transform: uppercase;
+    color: #A1A1A1;
+  }
+}

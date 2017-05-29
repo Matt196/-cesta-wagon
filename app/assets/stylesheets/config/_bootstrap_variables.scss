@@ -19,6 +19,9 @@ $brand-info:      $yellow;
 $brand-danger:    $red;
 $brand-warning:   $orange;
 
+// Fonts
+$gray-dark: lighten($gray-base, 20%);
+
 // Buttons / inputs radius
 $border-radius-base:  2px;
 $border-radius-large: 2px;
