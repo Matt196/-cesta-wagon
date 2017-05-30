@@ -1,5 +1,6 @@
 class ProducersController < ApplicationController
-before_action :set_producer, only: [:show]
+  before_action :set_producer, only: [:show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     # 1 récupérer la localisation de l'utilisateur
