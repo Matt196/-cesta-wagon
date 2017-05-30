@@ -48,13 +48,9 @@ ActiveRecord::Schema.define(version: 20170530105128) do
     t.string  "mobile_phone"
     t.string  "company_email"
     t.string  "category"
-<<<<<<< HEAD
-    t.integer "user_id"
-=======
-    t.integer "user_id",       null: false
     t.float   "latitude"
     t.float   "longitude"
->>>>>>> master
+    t.integer "user_id"
     t.index ["user_id"], name: "index_producers_on_user_id", using: :btree
   end
 

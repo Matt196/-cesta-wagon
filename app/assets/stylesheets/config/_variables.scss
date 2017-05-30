@@ -19,6 +19,7 @@ $header-font: "Montserrat", "sans-serif";
 // Font-size and line-height
 $base-size: 16px;
 $base-height: 1.4;
+$base-height-computed: floor($base-height * $base-size);
 
 /* -------------------------------------
  * Colors

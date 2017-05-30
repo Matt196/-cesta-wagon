@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-<<<<<<< HEAD
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
