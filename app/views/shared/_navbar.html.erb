@@ -1,7 +1,9 @@
 <div class="cesta-navbar">
   <div class="navbar-content">
     <div class="cesta-brand">
-      <logo>Cesta logo</logo>
+      <%= link_to root_path do %>
+        <logo>Cesta logo</logo>
+      <% end %>
     </div>
     <div class="nabvar-icons">
       <% if user_signed_in? %>
