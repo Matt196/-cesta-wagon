@@ -31,8 +31,10 @@ before_action :set_producer, only: [:show]
     @producer = Producer.new(producer_params)
     authorize (@producer)
 
-    @producer.user = User.find(1)
+    @producer.user = current_user
+
     if @producer.save
+      UserMailer.welcome_email( current_user.email).deliver_now
       redirect_to producers_path
     else
       render :new
@@ -56,6 +58,7 @@ before_action :set_producer, only: [:show]
       :phone,
       :mobile_phone,
       :company_email,
-      :category)
+      :category,
+      photos: [])
   end
 end

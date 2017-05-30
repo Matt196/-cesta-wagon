@@ -12,7 +12,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'redis'
 gem 'omniauth-facebook'
 
-#Geolocalisation
+# Geolocalisation
 gem 'geocoder'
 gem "coffee-rails"
 gem "gmaps4rails"
@@ -20,7 +20,13 @@ source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
 
-#look and feel
+# pictures
+gem 'cloudinary', '1.1.7'
+gem 'attachinary', github: 'assembler/attachinary'
+gem 'jquery-fileupload-rails'
+gem 'coffee-rails'
+
+# look and feel
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
@@ -38,6 +44,10 @@ group :development, :test do
   gem 'spring'
   gem 'listen', '~> 3.0.5'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Email
+  gem 'letter_opener', '~> 1.4', '>= 1.4.1'
+
 end
 
 

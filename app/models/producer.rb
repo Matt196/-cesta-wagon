@@ -3,6 +3,8 @@ belongs_to :user
 has_many :products, dependent: :destroy
 has_many :producer_awards
 
+has_attachments :photos, maximum: 2
+
 # Geocoder
 geocoded_by :address
 after_validation :geocode
