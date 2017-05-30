@@ -18,13 +18,14 @@
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Log in" %>
+            <%= f.button :submit, "Log in" class: "btn btn-primary btn-main-login" %>
           </div>
+          <%= render 'devise/shared/missing_password' %>
         <% end %>
 
         <div class="text-stripped">
           <hr>
-          <p>Pas de compte ? C'est par là !</p>
+          <p>Pas de compte ? </p>
         </div>
 
         <%= render "devise/shared/links" %>
