@@ -1,7 +1,5 @@
 class ProducerPolicy < ApplicationPolicy
 
-  def initialize(user, record)
-  end
 
   def index?
   end
@@ -10,8 +8,7 @@ class ProducerPolicy < ApplicationPolicy
   end
 
   def new?
-    true
-    # user == record.user || user.admin?
+    user == record.user || user.admin?
   end
 
   def create?
@@ -19,8 +16,7 @@ class ProducerPolicy < ApplicationPolicy
   end
 
   def edit?
-    true
-    # user == record.user || user.admin?
+    user == record.user || user.admin?
   end
 
   def update?
@@ -28,8 +24,7 @@ class ProducerPolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
-    # user == record.user || user.admin?
+    user == record.user || user.admin?
   end
 
   class Scope < Scope
