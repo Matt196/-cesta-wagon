@@ -3,11 +3,13 @@ class ProducersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    # 1 récupérer la localisation de l'utilisateur
-
-    # 2 afficher la liste des producteurs du coin
-    @producers = Producer.where.not(latitude: nil, longitude: nil)
-    # A remplacer par Producer.near("{#current_user.latitude} {#current_user.longitude}")
+    #rajouter si besoin centrage de la carte sur une position initiale avant les requetes via javascript. defaut = monde
+    if params[:latitude].blank? & params[:longitude].blank?
+      @producers = Producer.near(params[:location], 1000).limit(10)
+    else
+      @producers = Producer.near("#{params[:latitude]}, #{params[:longitude]}", 1000).limit(10)
+      # Geocoder : by default, objects are ordered by distance.
+    end
 
     @hash = Gmaps4rails.build_markers(@producers) do |producer, marker|
       marker.lat producer.latitude
@@ -16,17 +18,23 @@ class ProducersController < ApplicationController
   end
 
   def show
+    @producer = Producer.find(params[:id])
+    authorize (@producer)
   end
 
   #-- METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
   def new
     @producer = Producer.new
+    authorize (@producer)
   end
 
   def create
     @producer = Producer.new(producer_params)
-    @producer.user = User.first
+    authorize (@producer)
+    @producer.user = current_user
+
     if @producer.save
+      UserMailer.welcome_email( current_user.email).deliver_now
       redirect_to producers_path
     else
       render :new
@@ -50,6 +58,7 @@ class ProducersController < ApplicationController
       :phone,
       :mobile_phone,
       :company_email,
-      :category)
+      :category,
+      photos: [])
   end
 end

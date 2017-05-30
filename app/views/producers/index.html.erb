@@ -26,13 +26,16 @@
       });
 
       // CURRENT USER NAVIGATOR GEOLOCATION
-      <% if params[:latitude].blank? %>
+      <% if params[:latitude].blank? & params[:location].blank? %>
+
+      //Options for geolocation : accuracy = position calculation precision, request timeout delay, maximumAge : maximum age of cache position
         var options = {
           enableHighAccuracy: true,
-          timeout: 10000,
+          timeout: 1,
           maximumAge: 0
         };
 
+        // success function for geolocation
         function success(pos) {
           var latitude = pos.coords.latitude
           var longitude = pos.coords.longitude
@@ -48,14 +51,28 @@
           //     // response
           //   }
           // });
-
         };
 
-        function error(err) {
-          console.warn(`ERROR(${err.code}): ${err.message}`);
+        // ERROR MANAGEMENT
+        function error(error) {
+          console.warn(`ERROR(${error.code}): ${error.message}`);
+          if (error.code ==  error.PERMISSION_DENIED) {
+            var alternative_location = prompt("Location access denied, may you indicate your current location (eg. city) ?");
+          }
+          if (error.code == error.POSITION_UNAVAILABLE) {
+            var alternative_location = prompt("Your position in unavailable, may you indicate it (eg. city)?");
+          }
+          if (error.code == error.TIMEOUT) {
+            var alternative_location = prompt("Geolocation process timed out, may you indicate your current location (eg. city) ?");
+          }
+          if (error.code == error.UNKNOWN_ERROR) {
+            var alternative_location = prompt("An unknown error occurred, may you indicate your current location (eg. city) ?");
+          }
+          window.location.href = 'http://localhost:3000/producers?location='+alternative_location;
         };
 
         navigator.geolocation.getCurrentPosition(success, error, options);
+
       <% end %>
     });
   </script>
