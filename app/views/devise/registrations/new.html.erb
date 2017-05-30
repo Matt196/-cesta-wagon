@@ -2,34 +2,36 @@
   <div class="row">
     <div class= "col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
       <div class="cesta-form">
-        <%= render "devise/shared/social_links" %>
-        <div class="text-stripped">
-          <hr>
-          <p>Or create a new account with your email</p>
+        <div class="cesta-form-body-no-header">
+          <%= render "devise/shared/social_links" %>
+          <div class="text-stripped">
+            <hr>
+            <p>Or create a new account using your email</p>
+          </div>
+
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+
+            <div class="form-inputs">
+              <%= f.label :first_name, class: "sr-only" %>
+              <%= f.input_field :first_name, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "First Name" %>
+              <%= f.label :last_name, class: "sr-only" %>
+              <%= f.input_field :last_name, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Last Name" %>
+              <%= f.label :email, class: "sr-only" %>
+              <%= f.input_field :email, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Email" %>
+              <%= f.label :password, class: "sr-only" %>
+              <%= f.input_field :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), class: "form-control cesta-input", placeholder: "Password" %>
+              <%= f.label :password_confirmation, class: "sr-only" %>
+              <%= f.input_field :password_confirmation, required: true, class: "form-control cesta-input", placeholder: "Confirm your password" %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "Sign up", class: "btn btn-secondary btn-main-login" %>
+            </div>
+          <% end %>
+          <br>
+          <%= render "devise/shared/links" %>
         </div>
-
-        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <%= f.error_notification %>
-
-          <div class="form-inputs">
-            <%= f.label :first_name, class: "sr-only" %>
-            <%= f.input_field :first_name, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "First Name" %>
-            <%= f.label :last_name, class: "sr-only" %>
-            <%= f.input_field :last_name, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Last Name" %>
-            <%= f.label :email, class: "sr-only" %>
-            <%= f.input_field :email, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Email" %>
-            <%= f.label :password, class: "sr-only" %>
-            <%= f.input_field :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), class: "form-control cesta-input", placeholder: "Password" %>
-            <%= f.label :password_confirmation, class: "sr-only" %>
-            <%= f.input_field :password_confirmation, required: true, class: "form-control cesta-input", placeholder: "Confirm your password" %>
-          </div>
-
-          <div class="form-actions">
-            <%= f.button :submit, "Sign up", class: "btn btn-secondary btn-main-login" %>
-          </div>
-        <% end %>
-        <br>
-        <%= render "devise/shared/links" %>
       </div>
     </div>
   </div>

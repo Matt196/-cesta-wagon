@@ -25,7 +25,7 @@ class ProducersController < ApplicationController
 
   def create
     @producer = Producer.new(producer_params)
-    @producer.user = User.find(1)
+    @producer.user = User.first
     if @producer.save
       redirect_to producers_path
     else

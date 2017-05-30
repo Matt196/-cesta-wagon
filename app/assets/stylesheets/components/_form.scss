@@ -1,10 +1,32 @@
 .cesta-form {
-  background-color: white;
   border-radius: $border-radius-base;
   border: 1px solid $gray-lighter;
-  padding: 50px;
   margin: 50px auto;
+  min-height: 600px;
 }
+
+.cesta-form-header {
+  background-color: $ch-dark;
+  border-radius: $border-radius-base $border-radius-base 0 0;
+  padding: 20px 50px;
+  h3 {
+    margin: 0;
+    color: white;
+  }
+}
+
+.cesta-form-body-headed {
+  background-color: white;
+  padding: 10px 50px 50px 50px;
+}
+
+.cesta-form-body-no-header {
+  background-color: white;
+  padding: 50px;
+}
+// label.boolean.optional {
+//   color: $gray-light;
+// }
 
 .text-stripped {
   display: flex;
@@ -26,6 +48,7 @@
     z-index: 1;
     padding: 10px;
     color: $gray-light;
+    text-align: center;
   }
 }
 
@@ -37,7 +60,7 @@
   padding: 20px 0;
   background-color: #3B5998;
   border-radius: $border-radius-base;
-  &:hover {
+  &:hover, &:active, &:focus {
     text-decoration: none;
     background-color: darken(#3B5998, 5%);
     color: white;
@@ -49,13 +72,18 @@
   color: white;
   width: 100%;
   padding: 20px 0;
-  &:hover {
+  &:hover, &:active, &:focus {
     text-decoration: none;
     color: white;
   }
 }
 
-.form-control.cesta-input {
+input.cesta-input {
   height: $base-height-computed + (22px * 2);
   margin-bottom: 10px;
+}
+
+textarea.cesta-textarea {
+  margin-bottom: 10px;
+  resize: none;
 }
