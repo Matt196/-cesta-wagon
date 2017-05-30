@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.3'
 
+#features
 gem 'devise'
 gem 'rails', '5.0.3'
 gem 'puma'
@@ -8,6 +9,7 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
+gem 'omniauth-facebook'
 
 #Geolocalisation
 gem 'geocoder'
@@ -17,6 +19,7 @@ source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
 
+#look and feel
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
