@@ -1,0 +1,27 @@
+<div class="col-xs-12 col-sm-6 col-md-4" >
+  <div class="producer-card">
+    <a href="#">
+      <div class="producer-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url('<%= producer_image(@producer) %>')">
+        <ul class="producer-awards list-unstyled list-inline">
+          <li><%= image_tag('gold_medal.png', class: "award-lg") %></li>
+          <li><%= image_tag('silver_medal.png', class: "award-lg") %></li>
+          <li><%= image_tag('bronze_medal.png', class: "award-lg") %></li>
+        </ul>
+        <div class="producer-avatar">
+
+        </div>
+      </div>
+      <div class="producer-card-body">
+        <div class="producer-card-infos">
+          <h4><%= @producer ? @producer.category : 'Category' %></h4>
+          <p><%= @producer ? @producer.name : 'Nom du producteur' %></p>
+        </div>
+        <div class="producer-card-location">
+          <%= icon('car') %>
+          12 min
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
