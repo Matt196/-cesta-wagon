@@ -1,5 +1,4 @@
-class ProducerPolicy < ApplicationPolicy
-
+class ProductPolicy < ApplicationPolicy
   def index?
   end
 
@@ -7,7 +6,7 @@ class ProducerPolicy < ApplicationPolicy
   end
 
   def new?
-    user == record.user || user.admin?
+    user || user.admin?
   end
 
   def create?
@@ -31,5 +30,4 @@ class ProducerPolicy < ApplicationPolicy
       scope.all
     end
   end
-
 end

@@ -4,36 +4,45 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.where(producer_id:@producer)
+    authorize (@product)
+
   end
 
   def show
     @product = Product.where(id:@product)
+    authorize (@product)
+
   end
 
   def new
     @product = Product.new()
+    authorize (@product)
   end
 
   def create
     @product = Product.new(params_product)
     @product.producer = @producer
+    authorize (@product)
 
     if @product.save
-      redirect_to producer_path(@producer), thanks to your new product
+      redirect_to producer_path(@producer), notice: "thanks to your new product"
     else
       render :new
     end
   end
 
   def edit
+    authorize (@product)
   end
 
   def update
+    authorize (@product)
     @product.update(params_product)
     redirect_to product_path(@product)
   end
 
   def destroy
+    authorize (@product)
     @product.destroy
     redirect_to producer_path(@producer)
   end
