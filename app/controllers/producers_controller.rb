@@ -15,15 +15,20 @@ before_action :set_producer, only: [:show]
   end
 
   def show
+    @producer = Producer.find(params[:id])
+    authorize (@producer)
   end
 
   #-- METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
   def new
     @producer = Producer.new
+    authorize (@producer)
   end
 
   def create
     @producer = Producer.new(producer_params)
+    authorize (@producer)
+
     @producer.user = User.find(1)
     if @producer.save
       redirect_to producers_path

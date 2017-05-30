@@ -1,12 +1,13 @@
 source 'https://rubygems.org'
 ruby '2.3.3'
 
+gem 'figaro'
 gem 'devise'
 gem 'rails', '5.0.3'
 gem 'rest-client'
-gem 'puma'
 gem 'pg'
-gem 'figaro'
+gem 'puma'
+gem "pundit"
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
 
