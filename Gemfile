@@ -10,6 +10,7 @@ gem 'puma'
 gem "pundit"
 gem 'jbuilder', '~> 2.0'
 gem 'redis'
+gem 'omniauth-facebook'
 
 #Geolocalisation
 gem 'geocoder'
@@ -19,6 +20,7 @@ source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
 
+#look and feel
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'

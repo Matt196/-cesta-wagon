@@ -23,6 +23,13 @@
   font-family: 'Montserrat', Open sans;
   font-size: 24px;
   font-weight: bold;
+  a {
+    color:white;
+    &:hover {
+      color:white;
+      text-decoration: none;
+    }
+  }
 }
 
 .nabvar-icons {
