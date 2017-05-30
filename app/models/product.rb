@@ -6,5 +6,5 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal: 0 }
   validates :name, presence: true
   validates :description, presence: true
-  validates :producer, presence: true
+  # validates :producer, presence: true => empeche le seed version du 30/05 de fonctionner.
 end
