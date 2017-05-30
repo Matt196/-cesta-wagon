@@ -58,6 +58,7 @@ before_action :set_producer, only: [:show]
       :phone,
       :mobile_phone,
       :company_email,
-      :category)
+      :category,
+      photos: [])
   end
 end
