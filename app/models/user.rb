@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one :producer, dependent: :destroy
+  # has_one :producer
   has_many :producer_reviews
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
