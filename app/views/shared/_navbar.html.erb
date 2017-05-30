@@ -1,0 +1,15 @@
+<div class="cesta-navbar">
+  <div class="navbar-content">
+    <div class="cesta-brand">
+      <logo>Cesta logo</logo>
+    </div>
+    <div class="nabvar-icons">
+      <% if user_signed_in? %>
+        <%= link_to icon('user-secret'), destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to icon('user'), new_user_session_path %>
+      <% end %>
+      <%= link_to icon('shopping-cart'), '#' %>
+    </div>
+  </div>
+</div>

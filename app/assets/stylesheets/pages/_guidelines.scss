@@ -1,0 +1,48 @@
+.guidelines-instructions {
+  h1 {
+    font-weight: bold;
+  }
+  li {
+    margin-bottom: 4px;
+  }
+}
+
+li.li-flex {
+  display: flex;
+  align-items: center;
+  button, .ch {
+    margin-right: 4px;
+  }
+}
+
+.instructions {
+  background-color: #F1F1F1;
+  padding: 10px;
+  border-radius: $border-radius-base;
+  border: 1px solid #D1D1D1;
+  margin-bottom: 10px;
+
+  h4.instructions-title {
+    text-transform: uppercase;
+    color: #A1A1A1;
+  }
+}
+
+.ch {
+  width: 80px;
+  height: 30px;
+  border-radius: 2px;
+}
+
+.ch-dark {
+  background-color: $ch-dark;
+}
+.ch-medium-dark {
+  background-color: $ch-medium-dark;
+}
+.ch-medium-pale {
+  background-color: $ch-medium-pale;
+}
+.ch-pale {
+  background-color: $ch-pale;
+}

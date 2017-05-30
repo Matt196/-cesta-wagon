@@ -1,8 +1,14 @@
 class Producer < ApplicationRecord
+<<<<<<< HEAD
 belongs_to :user
 has_many :products, dependent: :destroy
 has_many :producer_awards
 
+# Geocoder
+geocoded_by :address
+after_validation :geocode
+
+# Rows validations
 validates :name, presence: true
 validates :address, presence: true
 validates :zipcode, presence: true

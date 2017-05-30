@@ -1,0 +1,207 @@
+<div class="container guidelines-instructions">
+  <h1>Cesta application - Guidelines Front</h1>
+  <div class="row">
+
+    <div class="col-xs-12">
+      <div class="instructions">
+        <h4 class="instructions-title">Color Scheme</h4>
+        <ul class="list-unstyled">
+          <li class="li-flex"><div class="ch ch-dark"></div><p>$ch-dark</p></li>
+          <li class="li-flex"><div class="ch ch-medium-dark"></div><p>$ch-medium-dark</p></li>
+          <li class="li-flex"><div class="ch ch-medium-pale"></div><p>$ch-medium-pale</p></li>
+          <li class="li-flex"><div class="ch ch-pale"></div><p>$ch-pale</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-xs-12">
+      <div class="instructions">
+        <h4 class="instructions-title">Headings</h4>
+        <ul class="list-unstyled">
+          <li><h1>Titre 1</h1></li>
+          <li><h2>Titre 2</h2></li>
+          <li><h3>Titre 3</h3></li>
+          <li><h4>Titre 4</h4></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-xs-12">
+      <div class="instructions">
+        <h4 class="instructions-title">Buttons</h4>
+        <ul class="list-unstyled">
+          <li class="li-flex"><button class="btn btn-primary">Bouton</button><p>Action principale</p></li>
+          <li class="li-flex"><button class="btn btn-secondary">Bouton</button>Action secondaire</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-xs-12">
+      <div class="instructions">
+        <h4 class="instructions-title">Awards</h4>
+        <ul class="list-unstyled list-inline">
+          <li><%= image_tag('gold_medal.png', class: "award-lg") %></li>
+          <li><%= image_tag('silver_medal.png', class: "award") %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-xs-12">
+      <div class="instructions">
+        <h4 class="instructions-title">Producer Card</h4>
+        <!-- producer-card code starts here -->
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4" >
+            <div class="producer-card">
+              <a href="#">
+                <div class="producer-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url('<%= image_path('producer-card-image.jpg') %>')">
+                  <ul class="producer-awards list-unstyled list-inline">
+                    <li><%= image_tag('gold_medal.png', class: "award-lg") %></li>
+                    <li><%= image_tag('silver_medal.png', class: "award-lg") %></li>
+                    <li><%= image_tag('bronze_medal.png', class: "award-lg") %></li>
+                  </ul>
+                  <div class="producer-avatar">
+
+                  </div>
+                </div>
+                <div class="producer-card-body">
+                  <div class="producer-card-infos">
+                    <h4>Category</h4>
+                    <p>Nom du producteur</p>
+                  </div>
+                  <div class="producer-card-location">
+                    <%= icon('car') %>
+                    12 min
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- producer-card code ends here -->
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="instructions">
+        <h4 class="instructions-title">List of Producer Cards</h4>
+
+        <!-- producer-cards code starts here -->
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4" >
+            <div class="producer-card">
+              <a href="#">
+                <div class="producer-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url('<%= image_path('producer-card-image.jpg') %>')">
+                  <ul class="producer-awards list-unstyled list-inline">
+                    <li><%= image_tag('gold_medal.png', class: "award-lg") %></li>
+                  </ul>
+                  <div class="producer-avatar">
+
+                  </div>
+                </div>
+                <div class="producer-card-body">
+                  <div class="producer-card-infos">
+                    <h4>Category 1</h4>
+                    <p>Nom du producteur 1</p>
+                  </div>
+                  <div class="producer-card-location">
+                    <%= icon('car') %>
+                    12 min
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4" >
+            <div class="producer-card">
+              <a href="#">
+                <div class="producer-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url('<%= image_path('producer-card-image.jpg') %>')">
+                  <ul class="producer-awards list-unstyled list-inline">
+                    <li><%= image_tag('silver_medal.png', class: "award-lg") %></li>
+                  </ul>
+                  <div class="producer-avatar">
+
+                  </div>
+                </div>
+                <div class="producer-card-body">
+                  <div class="producer-card-infos">
+                    <h4>Category 2</h4>
+                    <p>Nom du producteur 2</p>
+                  </div>
+                  <div class="producer-card-location">
+                    <%= icon('car') %>
+                    12 min
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-4" >
+            <div class="producer-card">
+              <a href="#">
+                <div class="producer-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url('<%= image_path('producer-card-image.jpg') %>')">
+                  <ul class="producer-awards list-unstyled list-inline">
+                    <li><%= image_tag('bronze_medal.png', class: "award-lg") %></li>
+                  </ul>
+                  <div class="producer-avatar">
+
+                  </div>
+                </div>
+                <div class="producer-card-body">
+                  <div class="producer-card-infos">
+                    <h4>Category 3</h4>
+                    <p>Nom du producteur 3</p>
+                  </div>
+                  <div class="producer-card-location">
+                    <%= icon('car') %>
+                    12 min
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- producer-cards code ends here -->
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="instructions">
+        <h4 class="instructions-title">Navbar</h4>
+        <div class="row">
+          <div class="col-xs-12">
+          <!-- navbar code starts here -->
+            <div class="cesta-navbar">
+              <div class="navbar-content">
+                <div class="cesta-brand">
+                  <logo>Cesta logo</logo>
+                </div>
+                <div class="nabvar-icons">
+                  <%= link_to icon('user'), '#' %>
+                  <%= link_to icon('shopping-cart'), '#' %>
+                </div>
+              </div>
+            </div>
+          <!-- navbar code ends here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="instructions">
+        <h4 class="instructions-title">Empty states</h4>
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1">
+            <div class="empty-state-area">
+              <%= image_tag('empty_basket.png', class: "empty-state-img") %>
+              <h4>Votre panier est vide</h4>
+              <a class="btn btn-lg btn-primary" href="#">Remplissez-le <%= icon('smile-o') %></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
