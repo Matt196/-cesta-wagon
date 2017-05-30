@@ -44,6 +44,17 @@
   }
 }
 
+.btn-main-login {
+  display: block;
+  color: white;
+  width: 100%;
+  padding: 20px 0;
+  &:hover {
+    text-decoration: none;
+    color: white;
+  }
+}
+
 .form-control.cesta-input {
   height: $base-height-computed + (22px * 2);
   margin-bottom: 10px;
