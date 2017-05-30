@@ -5,3 +5,58 @@
     <li><%= link_to producer.name, producer_path(producer) %></li>
   <% end %>
 </ul>
+
+<div id="map" style="width: 100%; height: 300px;"></div>
+
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+
+      // MAP DISPLAY
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+
+      // CURRENT USER NAVIGATOR GEOLOCATION
+      <% if params[:latitude].blank? %>
+        var options = {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
+        };
+
+        function success(pos) {
+          var latitude = pos.coords.latitude
+          var longitude = pos.coords.longitude
+
+          window.location.href = 'http://localhost:3000/producers?latitude='+latitude+'&longitude='+longitude;
+          // Latitude @ Longitude sent to URL via line above. These can be hidden from URL via AJAX request below (uncomment applicable option) :
+          // $.ajax({
+          //   type: 'GET',
+          //   url: 'http://localhost:3000/producers?latitude='+latitude+'&longitude='+longitude,
+          //   success: function(response) {
+          //     // $('body').html(response);
+          //     // console.log('<%= producers_path %>?latitude='+latitude+'&longitude='+longitude)
+          //     // response
+          //   }
+          // });
+
+        };
+
+        function error(err) {
+          console.warn(`ERROR(${err.code}): ${err.message}`);
+        };
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
+      <% end %>
+    });
+  </script>
+<% end %>
