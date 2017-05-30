@@ -1,0 +1,12 @@
+<%= simple_form_for @producer do |f| %>
+  <%= f.input :address %>
+  <%= f.input :name %>
+  <%= f.input :zipcode %>
+  <%= f.input :city %>
+  <%= f.input :description %>
+  <%= f.input :phone %>
+  <%= f.input :mobile_phone %>
+  <%= f.input :company_email %>
+  <%= f.input :category %>
+  <%= f.submit "Create producer", class: "btn btn-primary" %>
+<% end %>
