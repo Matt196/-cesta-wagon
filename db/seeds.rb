@@ -11,12 +11,21 @@
 
 ProducerAward.destroy_all
 Producer.destroy_all
+User.destroy_all
 
 year = 2016
 scrapper = Scrapper::ConcoursAgricoleScrapper.new(year: year.to_s)
 scrapper.scrap.each do |data|
 
-  producer = Producer.create!(
+  user = User.create(
+    email: data[:company_email],
+    first_name: data[:name],
+    last_name: data[:zipcode],
+    password: "password"
+  )
+
+
+  producer = Producer.create(
     name: data[:name],
     address: data[:address],
     zipcode: data[:zipcode],
@@ -24,14 +33,14 @@ scrapper.scrap.each do |data|
     description: data[:description],
     phone: data[:phone],
     company_email: data[:company_email],
-    category: data[:category]
+    category: data[:category],
+    user: user
   )
 
-  ProducerAward.create!(
+  ProducerAward.create(
     producer: producer,
     name: data[:medaille],
     year: year
   )
-
 end
 
