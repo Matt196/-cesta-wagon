@@ -1,3 +1,6 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700');
+
 // Graphical variables
 @import "config/variables";
 @import "config/bootstrap_variables";
@@ -13,3 +16,27 @@
 @import "layout/index";
 @import "components/index";
 @import "pages/index";
+
+
+// Font-size
+h1 {
+  font-size: 2 * $base-size;
+}
+h2 {
+  font-size: 1.8 * $base-size;
+}
+h3 {
+  font-size: 1.5 * $base-size;
+}
+h4 {
+  font-size: 1.2 * $base-size;
+}
+
+// Font-color
+h1, h2, h3, h4, p, i {
+ color: $gray-dark;
+}
+
+body {
+  background-color: #FDFDFD;
+}
