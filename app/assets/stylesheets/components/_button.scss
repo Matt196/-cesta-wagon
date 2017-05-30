@@ -1,0 +1,16 @@
+.btn-primary i {
+  color: white;
+}
+
+.btn-secondary {
+  background-color: $ch-dark;
+  color: white;
+  &:hover {
+    background-color: lighten($ch-dark, 5%);
+    border: 1px solid $ch-dark;
+    color: white;
+  }
+  i {
+    color: white;
+  }
+}
