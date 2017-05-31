@@ -1,6 +1,7 @@
 class ProducerPolicy < ApplicationPolicy
 
   def index?
+    true
   end
 
   def show?
