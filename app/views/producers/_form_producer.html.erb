@@ -31,6 +31,14 @@
                 <%= f.input_field :mobile_phone, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Mobile Phone" %>
                 <%= f.input_field :company_email, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Company Email" %>
                 <div class="form-actions">
+                <%= f.input(
+                :photos,
+                as: :attachinary,
+                display: false ,
+                type:"file",
+                label:"Upload photos",
+                multiple: true
+                ) %>
                   <%= f.button :submit, "Register as producer", class: "btn btn-secondary btn-main-login" %>
                 </div>
               </div>

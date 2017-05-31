@@ -10,6 +10,15 @@
         <%= f.input :name, required: true, autofocus: true, placeholder: "Name" %>
         <%= f.input :description, required: true, autofocus: true, placeholder: "Description" %>
         <%= f.input :price, required: true, autofocus: true, placeholder: "Price" %>
+        <%= f.input(
+        :photos,
+        as: :attachinary,
+        display: false ,
+        type:"file",
+        label:"Upload photos",
+        multiple: true
+        ) %>
+
         <%= f.button :submit %>
       </div>
     </div>

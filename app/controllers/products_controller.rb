@@ -2,6 +2,9 @@ class ProductsController < ApplicationController
   before_action :producer_id, only: [:new, :create]
   before_action :product_id, only: [:show, :edit, :update, :destroy]
 
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
+
   def index
     @products = Product.where(producer_id:@producer)
     authorize (@product)

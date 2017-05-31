@@ -1,17 +1,10 @@
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-# Assets/Models/Scrapper/...
-
 ProducerAward.destroy_all
 Producer.destroy_all
 User.destroy_all
+Product.destroy_all
+
+# --------------SCRAPER PRODUCER without PHOTOS--------------------
 
 year = 2016
 scrapper = Scrapper::ConcoursAgricoleScrapper.new(year: year.to_s)
@@ -44,3 +37,17 @@ scrapper.scrap.each do |data|
   )
 end
 
+# --------------ADD 3 products to PRODUCER without PHOTOS--------------------
+# url = "http://lorempixel.com/800/600/city/"
+
+
+  Producer.all.each do |elem|
+    3.times do
+      product = Product.create(
+        name: Faker::Commerce.product_name,
+        description: Faker::Lorem.paragraph,
+        price: Faker::Commerce.price,
+        producer: elem
+        )
+    end
+  end
