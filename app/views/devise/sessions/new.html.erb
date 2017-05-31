@@ -11,6 +11,7 @@
 
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-inputs">
+              <%= f.error_notification %>
               <%= f.label :email, class: "sr-only" %>
               <%= f.input_field :email, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Email" %>
               <%= f.label :password, class: "sr-only" %>
