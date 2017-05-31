@@ -1,7 +1,5 @@
 require "csv"
 require "nokogiri"
-require "pry"
-require 'rubygems'
 require 'rest-client'
 
 class Scrapper::ConcoursAgricoleScrapper
