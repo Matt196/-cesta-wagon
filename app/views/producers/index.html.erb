@@ -1,9 +1,8 @@
-<h1>Producers</h1>
 
 <%= link_to "create producer", new_producer_path %>
-<ul>
-  <% @producers.each do |producer| %>
-    <div class="row">
+<div class="container">
+  <div class="row">
+    <% @producers.each do |producer| %>
       <div class="col-xs-12 col-sm-6 col-md-4" >
         <div class="producer-card">
           <a href="#">
@@ -19,11 +18,14 @@
             </div>
             <div class="producer-card-body">
               <div class="producer-card-infos">
-                <h4>Category</h4>
+                <h4><%= link_to producer.name, producer_path(producer) %></h4>
                 <p><%= producer.address%></p>
-                <li><%= link_to producer.name, producer_path(producer) %>
+                <p>
+                <% if policy(producer).edit? %>
                   <%= link_to "edit", edit_producer_path(producer) %>
-                  <%= link_to "destroy", producer_path(producer), method: :delete %></li>
+                  <%= link_to "destroy", producer_path(producer), method: :delete %></p>
+                <% end %>
+
               </div>
               <div class="producer-card-location">
                 <span><%= icon('car') %></span>
@@ -32,9 +34,9 @@
           </a>
         </div>
       </div>
-    </div>
-  <% end %>
-</ul>
+    <% end %>
+  </div>
+</div>
 
 <div id="map" style="width: 100%; height: 300px;"></div>
 

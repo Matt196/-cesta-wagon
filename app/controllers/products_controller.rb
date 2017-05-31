@@ -13,7 +13,6 @@ class ProductsController < ApplicationController
 
   def show
     authorize (@product)
-
   end
 
   def new
@@ -44,13 +43,18 @@ class ProductsController < ApplicationController
     redirect_to producer_path(@producer)
   end
 
+  # def destroy
+  #   @producer = @product.producer
+  #   authorize (@product)
+  #   @product.destroy
+  #   redirect_to producer_path(@producer)
+  # end
+
   def destroy
     @producer = @product.producer
     authorize (@product)
     @product.destroy
-    redirect_to producer_path(@producer)
   end
-
 
   private
     def product_id
