@@ -12,7 +12,9 @@
         <p><%= @producer.phone %></p>
         <p><%= @producer.mobile_phone %></p>
         <p><%= @producer.company_email %></p>
-        <%= link_to "create product", new_producer_product_path(@producer) %>
+        <% if policy(@producer).edit? %>
+          <%= link_to "create product", new_producer_product_path(@producer) %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -24,18 +26,18 @@
   <div class="row">
     <di class="col-xs-12">
       <div class="instructions">
-        <h1>LIST PRODUCT of this producer</h1>
+        <h1>Our products</h1>
         <% @product.each do |elem| %>
-        <ul>
-          <li id="<%= elem.id %>">
+          <p id="<%= elem.id %>">
             <%= link_to product_path(elem) do %>
             <%= elem.name %>
             | <%= elem.price %>
             <% end %>
+            <% if policy(@producer).edit? %>
             | <%= link_to "edit", edit_product_path(elem) %>
             | <%= link_to "destroy", product_path(elem), method: :delete, remote: true %>
-          </li>
-        </ul>
+            <% end %>
+          </p>
         <% end %>
       </div>
     </div>

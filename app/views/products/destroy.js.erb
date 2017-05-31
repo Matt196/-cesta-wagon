@@ -1,1 +1,2 @@
-$('#<%= @product.id %>').remove();
+$('#<%= @product.id %>').hide( 200, function(){ $('#<%= @product.id %>').remove(); });
+

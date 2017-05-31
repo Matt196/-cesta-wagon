@@ -13,7 +13,6 @@ class ProductsController < ApplicationController
 
   def show
     authorize (@product)
-
   end
 
   def new
