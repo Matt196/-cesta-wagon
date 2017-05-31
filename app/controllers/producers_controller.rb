@@ -1,5 +1,6 @@
 class ProducersController < ApplicationController
-  before_action :set_producer, only: [:show]
+  before_action :set_producer, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     #rajouter si besoin centrage de la carte sur une position initiale avant les requetes via javascript. defaut = monde
@@ -20,23 +21,50 @@ class ProducersController < ApplicationController
   end
 
   def show
+    authorize (@producer)
+    @product = Product.where(producer_id:@producer)
   end
 
   #-- METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
   def new
     @producer = Producer.new
+    authorize (@producer)
   end
 
   def create
     @producer = Producer.new(producer_params)
-    @producer.user = User.find(1)
+    authorize (@producer)
+    @producer.user = current_user
+
     if @producer.save
+      UserMailer.welcome_email( current_user.email).deliver_now
       redirect_to producers_path
     else
       render :new
     end
   end
   #-- FIN : METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
+  def edit
+    authorize(@producer)
+  end
+
+  def update
+    authorize(@producer)
+    @producer.update(producer_params)
+    @producer.user = current_user
+    redirect_to producers_path
+  end
+
+
+
+  def destroy
+    authorize (@producer)
+    @producer.destroy
+    flash[:alert] = "Producteur supprimer de la bdd"
+    redirect_to producers_path
+  end
+
+
 
   private
 
@@ -54,6 +82,7 @@ class ProducersController < ApplicationController
       :phone,
       :mobile_phone,
       :company_email,
-      :category)
+      :category,
+      photos: [])
   end
 end

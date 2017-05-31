@@ -1,5 +1,6 @@
 <h1>Producers</h1>
 
+<%= link_to "create producer", new_producer_path %>
 <ul>
   <% @producers.each do |producer| %>
     <div class="row">
@@ -20,6 +21,9 @@
               <div class="producer-card-infos">
                 <h4>Category</h4>
                 <p><%= producer.address%></p>
+                <li><%= link_to producer.name, producer_path(producer) %>
+                  <%= link_to "edit", edit_producer_path(producer) %>
+                  <%= link_to "destroy", producer_path(producer), method: :delete %></li>
               </div>
               <div class="producer-card-location">
                 <span><%= icon('car') %></span>

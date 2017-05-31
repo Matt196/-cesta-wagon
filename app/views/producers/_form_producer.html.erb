@@ -1,0 +1,47 @@
+        <div class="cesta-form-body-headed">
+          <%= simple_form_for @producer do |f| %>
+
+            <div class="form-inputs">
+              <div id="form-producer-step-1" class="form-producer-step">
+                <div class="text-stripped">
+                  <hr>
+                  <p>Tell us who you are (1/3)</p>
+                </div>
+                <%= f.input_field :name, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Producer Name" %>
+                <%= f.input_field :category, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Category" %>
+                <%= f.input_field :description, required: true, autofocus: true, class: "form-control cesta-textarea", placeholder: "Description", rows: 8 %>
+                <button class="btn btn-secondary btn-main-login" id="to-step-2">Next Step</button>
+              </div>
+              <div id="form-producer-step-2" class="form-producer-step hidden">
+                <div class="text-stripped">
+                  <hr>
+                  <p>Tell our users where to find you (2/3)</p>
+                </div>
+                <%= f.input_field :address, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Your address" %>
+                <%= f.input_field :zipcode, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Zipcode" %>
+                <%= f.input_field :city, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "City" %>
+                <button class="btn btn-secondary btn-main-login" id="to-step-3">Go to last step</button>
+              </div>
+              <div id="form-producer-step-3" class="form-producer-step hidden">
+                <div class="text-stripped">
+                  <hr>
+                  <p>Tell our users how to contact you (3/3)</p>
+                </div>
+                <%= f.input_field :phone, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Phone" %>
+                <%= f.input_field :mobile_phone, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Mobile Phone" %>
+                <%= f.input_field :company_email, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Company Email" %>
+                <div class="form-actions">
+                <%= f.input(
+                :photos,
+                as: :attachinary,
+                display: false ,
+                type:"file",
+                label:"Upload photos",
+                multiple: true
+                ) %>
+                  <%= f.button :submit, "Register as producer", class: "btn btn-secondary btn-main-login" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>

@@ -1,3 +1,7 @@
+<% content_for (:meta_title) do %>
+  Guidelines
+<% end %>
+
 <div class="container guidelines-instructions">
   <h1>Cesta application - Guidelines Front</h1>
   <div class="row">
@@ -49,6 +53,10 @@
     <div class="col-xs-12">
       <div class="instructions">
         <h4 class="instructions-title">Producer Card</h4>
+        <div class="instructions-content">
+          <span class="label label-danger">Tips</span>
+          <p>Use the helper <code>display_producer_card(@producer)</code> to call the following component</p>
+        </div>
         <!-- producer-card code starts here -->
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-4" >
@@ -78,6 +86,7 @@
               </a>
             </div>
           </div>
+          <%= display_producer_card %>
         </div>
         <!-- producer-card code ends here -->
       </div>

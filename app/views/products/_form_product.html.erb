@@ -1,0 +1,27 @@
+<div class="cesta-form-body-headed">
+  <%= simple_form_for ([@producer,@product]) do |f| %>
+
+    <div class="form-inputs">
+      <div id="form-producer-step-1" class="form-producer-step">
+        <div class="text-stripped">
+          <hr>
+          <p>Ajouter un produit</p>
+        </div>
+        <%= f.input :name, required: true, autofocus: true, placeholder: "Name" %>
+        <%= f.input :description, required: true, autofocus: true, placeholder: "Description" %>
+        <%= f.input :price, required: true, autofocus: true, placeholder: "Price" %>
+        <%= f.input(
+        :photos,
+        as: :attachinary,
+        display: false ,
+        type:"file",
+        label:"Upload photos",
+        multiple: true
+        ) %>
+
+        <%= f.button :submit %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
