@@ -1,3 +1,7 @@
+<% content_for (:meta_title) do %>
+  Guidelines
+<% end %>
+
 <div class="container guidelines-instructions">
   <h1>Cesta application - Guidelines Front</h1>
   <div class="row">
@@ -49,35 +53,13 @@
     <div class="col-xs-12">
       <div class="instructions">
         <h4 class="instructions-title">Producer Card</h4>
+        <div class="instructions-content">
+          <span class="label label-danger">Tips</span>
+          <p>Use the helper <code>display_producer_card(@producer)</code> to call the following component</p>
+        </div>
         <!-- producer-card code starts here -->
         <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-4" >
-            <div class="producer-card">
-              <a href="#">
-                <div class="producer-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-                  url('<%= image_path('producer-card-image.jpg') %>')">
-                  <ul class="producer-awards list-unstyled list-inline">
-                    <li><%= image_tag('gold_medal.png', class: "award-lg") %></li>
-                    <li><%= image_tag('silver_medal.png', class: "award-lg") %></li>
-                    <li><%= image_tag('bronze_medal.png', class: "award-lg") %></li>
-                  </ul>
-                  <div class="producer-avatar">
-
-                  </div>
-                </div>
-                <div class="producer-card-body">
-                  <div class="producer-card-infos">
-                    <h4>Category</h4>
-                    <p>Nom du producteur</p>
-                  </div>
-                  <div class="producer-card-location">
-                    <%= icon('car') %>
-                    12 min
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
+          <%= display_producer_card %>
         </div>
         <!-- producer-card code ends here -->
       </div>

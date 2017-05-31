@@ -38,5 +38,21 @@ h1, h2, h3, h4, p, i {
 }
 
 body {
-  background-color: #FDFDFD;
+  background-color: #FCFCFC;
+}
+
+a.discret-link {
+  color: $gray-light;
+  i {
+    color: $gray-light;
+    margin-left: 5px;
+  }
+  &:hover {
+    color: $gray;
+    text-decoration: none;
+  }
+  &:hover i {
+    color: $gray;
+    text-decoration: none;
+  }
 }

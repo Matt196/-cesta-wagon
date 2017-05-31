@@ -3,11 +3,11 @@
 }
 
 .btn-secondary {
-  background-color: $ch-dark;
+  background-color: $ch-medium-pale;
   color: white;
   &:hover {
-    background-color: lighten($ch-dark, 5%);
-    border: 1px solid $ch-dark;
+    background-color: lighten($ch-medium-pale, 5%);
+    border: 1px solid $ch-medium-pale;
     color: white;
   }
   i {

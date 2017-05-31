@@ -1,5 +1,6 @@
 class ProducersController < ApplicationController
-before_action :set_producer, only: [:show]
+  before_action :set_producer, only: [:show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     #rajouter si besoin centrage de la carte sur une position initiale avant les requetes via javascript. defaut = monde
@@ -30,7 +31,6 @@ before_action :set_producer, only: [:show]
   def create
     @producer = Producer.new(producer_params)
     authorize (@producer)
-
     @producer.user = current_user
 
     if @producer.save

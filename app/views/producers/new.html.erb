@@ -1,12 +1,59 @@
-<%= simple_form_for @producer do |f| %>
-  <%= f.input :address %>
-  <%= f.input :name %>
-  <%= f.input :zipcode %>
-  <%= f.input :city %>
-  <%= f.input :description %>
-  <%= f.input :phone %>
-  <%= f.input :mobile_phone %>
-  <%= f.input :company_email %>
-  <%= f.input :category %>
-  <%= f.submit "Create producer", class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class= "col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+      <div class="cesta-form">
+        <div class="cesta-form-header">
+          <h3>Become a producer</h3>
+        </div>
+        <div class="cesta-form-body-headed">
+          <%= simple_form_for @producer do |f| %>
+
+            <div class="form-inputs">
+              <div id="form-producer-step-1" class="form-producer-step">
+                <div class="text-stripped">
+                  <hr>
+                  <p>Tell us who you are (1/3)</p>
+                </div>
+                <%= f.label :name, class: "sr-only" %>
+                <%= f.input_field :name, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Producer Name" %>
+                <%= f.label :category, class: "sr-only" %>
+                <%= f.input_field :category, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Category" %>
+                <%= f.label :description, class: "sr-only" %>
+                <%= f.input_field :description, required: true, autofocus: true, class: "form-control cesta-textarea", placeholder: "Description", rows: 8 %>
+                <button class="btn btn-secondary btn-main-login" id="to-step-2">Next Step</button>
+              </div>
+              <div id="form-producer-step-2" class="form-producer-step hidden">
+                <div class="text-stripped">
+                  <hr>
+                  <p>Tell our users where to find you (2/3)</p>
+                </div>
+                <%= f.label :address, class: "sr-only" %>
+                <%= f.input_field :address, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Your address" %>
+                <%= f.label :zipcode, class: "sr-only" %>
+                <%= f.input_field :zipcode, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Zipcode" %>
+                <%= f.label :city, class: "sr-only" %>
+                <%= f.input_field :city, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "City" %>
+                <button class="btn btn-secondary btn-main-login" id="to-step-3">Go to last step</button>
+              </div>
+              <div id="form-producer-step-3" class="form-producer-step hidden">
+                <div class="text-stripped">
+                  <hr>
+                  <p>Tell our users how to contact you (3/3)</p>
+                </div>
+                <%= f.label :phone, class: "sr-only" %>
+                <%= f.input_field :phone, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Phone" %>
+                <%= f.label :mobile_phone, class: "sr-only" %>
+                <%= f.input_field :mobile_phone, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Mobile Phone" %>
+                <%= f.label :company_email, class: "sr-only" %>
+                <%= f.input_field :company_email, required: true, autofocus: true, class: "form-control cesta-input", placeholder: "Company Email" %>
+                <div class="form-actions">
+                  <%= f.button :submit, "Register as producer", class: "btn btn-secondary btn-main-login" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
