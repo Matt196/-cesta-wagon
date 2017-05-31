@@ -8,14 +8,6 @@ class ProducerPolicy < ApplicationPolicy
     true
   end
 
-  def new?
-    user == record.user || user.admin?
-  end
-
-  def create?
-    new?
-  end
-
   def edit?
     user == record.user || user.admin?
   end

@@ -1,0 +1,48 @@
+<% producer = current_user.producer %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div id="producer-user-infos">
+      <div class="cesta-form">
+        <div class="cesta-form-header">
+          <h3>Vos informations</h3>
+        </div>
+        <div class="cesta-body-headed">
+          First name: <%= current_user.first_name %>
+          Last name: <%= current_user.last_name %>
+          Email: <%= current_user.email %>
+          Password: *********
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-8">
+    <div id="producer-company-infos">
+      <div class="cesta-form">
+        <div class="cesta-form-header">
+          <h3>Votre entreprise</h3>
+        </div>
+        <div class="cesta-body-headed">
+          Company name: <%= producer.name %>
+          Category: <%= producer.category%>
+          Address: <%= producer.address %>
+          Zipcode: <%= producer.zipcode %>
+          City: <%= producer.city %>
+          Company email <%= producer.company_email %>
+          Phone: <%= producer.phone %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12">
+    <div id="producer-products-list">
+      <div class="cesta-form">
+        <div class="cesta-form-header">
+          <h3>Vos produits</h3>
+        </div>
+      </div>
+      <div class="cesta-body-headed">
+      </div>
+    </div>
+  </div>
+</div>

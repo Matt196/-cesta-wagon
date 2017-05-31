@@ -1,7 +1,12 @@
 @import "entrances";
 @import "exits";
 
-.animated {
-  animation-duration: 0.5s;
+.animated-short {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+}
+
+.animated-long {
+  animation-duration: 0.8s;
   animation-fill-mode: both;
 }

@@ -1,1 +1,7 @@
-<h1>test</h1>
+<div class="container">
+  <% if current_user.producer.present? %>
+    <%= render 'producer_profile' %>
+  <% else %>
+    <%= render 'user_profile' %>
+  <% end %>
+</div>
