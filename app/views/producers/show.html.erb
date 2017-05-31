@@ -1,27 +1,46 @@
-<h1>DATA Producer</h1>
 
-<h3> <%= @producer.name %></h3>
-<p><%= @producer.address %></p>
-<p><%= @producer.zipcode %></p>
-<p><%= @producer.city %></p>
-<p><%= @producer.description %></p>
-<p><%= @producer.phone %></p>
-<p><%= @producer.mobile_phone %></p>
-<p><%= @producer.company_email %></p>
+<div class="container guidelines-instructions">
+  <div class="row">
+    <di class="col-xs-12">
+      <div class="instructions">
+        <h1>DATA Producer</h1>
+        <h3> <%= @producer.name %></h3>
+        <p><%= @producer.address %></p>
+        <p><%= @producer.zipcode %></p>
+        <p><%= @producer.city %></p>
+        <p><%= @producer.description %></p>
+        <p><%= @producer.phone %></p>
+        <p><%= @producer.mobile_phone %></p>
+        <p><%= @producer.company_email %></p>
+        <%= link_to "create product", new_producer_product_path(@producer) %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to "create product", new_producer_product_path(@producer) %>
 
-<h1>LIST PRODUCT of this producer</h1>
 
-<% @product.each do |elem| %>
-  <%= link_to product_path(elem) do %>
-  <%= elem.name %>
-  | <%= elem.description %>
-  | <%= elem.price %>
-  <% end %>
-  | <%= link_to "edit", edit_product_path(elem) %>
-  | <%= link_to "destroy", product_path(elem), method: :delete %>
+<div class="container guidelines-instructions">
+  <div class="row">
+    <di class="col-xs-12">
+      <div class="instructions">
+        <h1>LIST PRODUCT of this producer</h1>
+        <% @product.each do |elem| %>
+        <ul>
+          <li id="<%= elem.id %>">
+            <%= link_to product_path(elem) do %>
+            <%= elem.name %>
+            | <%= elem.price %>
+            <% end %>
+            | <%= link_to "edit", edit_product_path(elem) %>
+            | <%= link_to "destroy", product_path(elem), method: :delete, remote: true %>
+          </li>
+        </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<% end %>
 
 

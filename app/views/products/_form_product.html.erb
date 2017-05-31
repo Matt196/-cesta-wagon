@@ -1,5 +1,5 @@
 <div class="cesta-form-body-headed">
-  <%= simple_form_for ([@producer,@product]) do |f| %>
+  <%= simple_form_for ([@producer,@product], remote: true) do |f| %>
 
     <div class="form-inputs">
       <div id="form-producer-step-1" class="form-producer-step">
