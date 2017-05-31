@@ -1,8 +1,11 @@
 <h1>Producers</h1>
 
+<%= link_to "create producer", new_producer_path %>
 <ul>
   <% @producers.each do |producer| %>
-    <li><%= link_to producer.name, producer_path(producer) %></li>
+    <li><%= link_to producer.name, producer_path(producer) %>
+    | <%= link_to "edit", edit_producer_path(producer) %>
+    | <%= link_to "destroy", producer_path(producer), method: :delete %></li>
   <% end %>
 </ul>
 

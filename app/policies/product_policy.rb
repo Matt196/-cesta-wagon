@@ -1,12 +1,14 @@
 class ProductPolicy < ApplicationPolicy
+
   def index?
   end
 
   def show?
+    user == record.user || user.admin?
   end
 
   def new?
-    user || user.admin?
+    user == record.user || user.admin?
   end
 
   def create?
@@ -14,7 +16,7 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def edit?
-    user == record.user || user.admin?
+    user == record.producer.user || user.admin?
   end
 
   def update?
@@ -22,7 +24,7 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user == record.user || user.admin?
+    user == record.producer.user || user.admin?
   end
 
   class Scope < Scope

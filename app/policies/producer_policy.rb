@@ -4,6 +4,8 @@ class ProducerPolicy < ApplicationPolicy
   end
 
   def show?
+    user == record.user || user.admin?
+
   end
 
   def new?

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :producer_id, only: [:index, :new, :create, :destroy]
-  before_action :set_product, only: [:edit, :update, :destroy]
+  before_action :producer_id, only: [:new, :create]
+  before_action :product_id, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.where(producer_id:@producer)
@@ -16,13 +16,13 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new()
-    authorize (@product)
+    authorize (@producer)
   end
 
   def create
     @product = Product.new(params_product)
     @product.producer = @producer
-    authorize (@product)
+    authorize (@producer)
 
     if @product.save
       redirect_to producer_path(@producer), notice: "thanks to your new product"
@@ -36,12 +36,14 @@ class ProductsController < ApplicationController
   end
 
   def update
+    @producer = @product.producer
     authorize (@product)
     @product.update(params_product)
-    redirect_to product_path(@product)
+    redirect_to producer_path(@producer)
   end
 
   def destroy
+    @producer = @product.producer
     authorize (@product)
     @product.destroy
     redirect_to producer_path(@producer)
@@ -49,12 +51,15 @@ class ProductsController < ApplicationController
 
 
   private
-    def set_product
+    def product_id
       @product = Product.find(params[:id])
     end
 
     def params_product
       params.require(:product).permit(
+        :name,
+        :description,
+        :price,
         photos: []
       )
     end

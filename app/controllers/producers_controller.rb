@@ -1,5 +1,5 @@
 class ProducersController < ApplicationController
-  before_action :set_producer, only: [:show]
+  before_action :set_producer, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
@@ -18,8 +18,8 @@ class ProducersController < ApplicationController
   end
 
   def show
-    @producer = Producer.find(params[:id])
     authorize (@producer)
+    @product = Product.where(producer_id:@producer)
   end
 
   #-- METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
@@ -41,6 +41,27 @@ class ProducersController < ApplicationController
     end
   end
   #-- FIN : METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
+  def edit
+    authorize(@producer)
+  end
+
+  def update
+    authorize(@producer)
+    @producer.update(producer_params)
+    @producer.user = current_user
+    redirect_to producers_path
+  end
+
+
+
+  def destroy
+    authorize (@producer)
+    @producer.destroy
+    flash[:alert] = "Producteur supprimer de la bdd"
+    redirect_to producers_path
+  end
+
+
 
   private
 
