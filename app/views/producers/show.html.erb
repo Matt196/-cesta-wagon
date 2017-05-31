@@ -14,13 +14,14 @@
 <h1>LIST PRODUCT of this producer</h1>
 
 <% @product.each do |elem| %>
+  <%= link_to product_path(elem) do %>
   <%= elem.name %>
   | <%= elem.description %>
   | <%= elem.price %>
+  <% end %>
   | <%= link_to "edit", edit_product_path(elem) %>
   | <%= link_to "destroy", product_path(elem), method: :delete %>
 
 <% end %>
-
 
 

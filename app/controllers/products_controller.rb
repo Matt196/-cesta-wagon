@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :producer_id, only: [:new, :create]
-  before_action :product_id, only: [:edit, :update, :destroy]
+  before_action :product_id, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = Product.where(producer_id:@producer)
@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.where(id:@product)
     authorize (@product)
 
   end
