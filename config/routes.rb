@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :products, only:[:index, :show, :edit, :update, :destroy]
 
+  resource :profile, only: :show
+
   get '/guidelines', to: 'pages#guidelines'
   root to: 'pages#home'
 

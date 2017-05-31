@@ -6,7 +6,7 @@ $(document).ready(function() {
 function goToProducerFormStep2(event) {
   console.log('try to go to step 2');
   event.preventDefault();
-  $('#form-producer-step-1').addClass('hidden');
+  $('#form-producer-step-1').addClass('animated zoomOut');
   $('#form-producer-step-2').removeClass('hidden');
 }
 
@@ -15,3 +15,9 @@ function goToProducerFormStep3(event) {
   $('#form-producer-step-2').addClass('hidden');
   $('#form-producer-step-3').removeClass('hidden');
 }
+
+
+// TO ADD for transition to follow each other
+// $(".yourClass").on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',
+//     function() {
+//     });

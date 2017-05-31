@@ -1,40 +1,14 @@
 <h1>Producers</h1>
 
 <%= link_to "create producer", new_producer_path %>
-<ul>
-  <% @producers.each do |producer| %>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-4" >
-        <div class="producer-card">
-          <a href="#">
-            <div class="producer-card-img" style="">
-              <ul class="producer-awards list-unstyled list-inline">
-                <li><%= image_tag('gold_medal.png', class: "award-lg") %></li>
-                <li><%= image_tag('silver_medal.png', class: "award-lg") %></li>
-                <li><%= image_tag('bronze_medal.png', class: "award-lg") %></li>
-              </ul>
-              <div class="producer-avatar">
 
-              </div>
-            </div>
-            <div class="producer-card-body">
-              <div class="producer-card-infos">
-                <h4>Category</h4>
-                <p><%= producer.address%></p>
-                <li><%= link_to producer.name, producer_path(producer) %>
-                  <%= link_to "edit", edit_producer_path(producer) %>
-                  <%= link_to "destroy", producer_path(producer), method: :delete %></li>
-              </div>
-              <div class="producer-card-location">
-                <span><%= icon('car') %></span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+    <% @producers.each do |producer| %>
+      <%= display_producer_card(producer) %>
+    <% end %>
+  </div>
+</div>
 
 <div id="map" style="width: 100%; height: 300px;"></div>
 

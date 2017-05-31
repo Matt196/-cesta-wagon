@@ -1,6 +1,6 @@
 <div class="col-xs-12 col-sm-6 col-md-4" >
   <div class="producer-card">
-    <a href="#">
+    <%= link_to producer_path(@producer) do %>
       <div class="producer-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
         url('<%= producer_image(@producer) %>')">
         <ul class="producer-awards list-unstyled list-inline">
@@ -22,6 +22,6 @@
           12 min
         </div>
       </div>
-    </a>
+    <% end %>
   </div>
 </div>
