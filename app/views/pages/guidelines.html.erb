@@ -59,6 +59,33 @@
         </div>
         <!-- producer-card code starts here -->
         <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4" >
+            <div class="producer-card">
+              <a href="#">
+                <div class="producer-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url('<%= image_path('producer-card-image.jpg') %>')">
+                  <ul class="producer-awards list-unstyled list-inline">
+                    <li><%= image_tag('gold_medal.png', class: "award-lg") %></li>
+                    <li><%= image_tag('silver_medal.png', class: "award-lg") %></li>
+                    <li><%= image_tag('bronze_medal.png', class: "award-lg") %></li>
+                  </ul>
+                  <div class="producer-avatar">
+
+                  </div>
+                </div>
+                <div class="producer-card-body">
+                  <div class="producer-card-infos">
+                    <h4>Category</h4>
+                    <p>Nom du producteur</p>
+                  </div>
+                  <div class="producer-card-location">
+                    <span><%= icon('car') %></span>
+                    <span class="driving_time">12 min</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
           <%= display_producer_card %>
         </div>
         <!-- producer-card code ends here -->

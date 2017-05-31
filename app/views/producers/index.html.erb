@@ -3,9 +3,36 @@
 <%= link_to "create producer", new_producer_path %>
 <ul>
   <% @producers.each do |producer| %>
-    <li><%= link_to producer.name, producer_path(producer) %>
-    | <%= link_to "edit", edit_producer_path(producer) %>
-    | <%= link_to "destroy", producer_path(producer), method: :delete %></li>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4" >
+        <div class="producer-card">
+          <a href="#">
+            <div class="producer-card-img" style="">
+              <ul class="producer-awards list-unstyled list-inline">
+                <li><%= image_tag('gold_medal.png', class: "award-lg") %></li>
+                <li><%= image_tag('silver_medal.png', class: "award-lg") %></li>
+                <li><%= image_tag('bronze_medal.png', class: "award-lg") %></li>
+              </ul>
+              <div class="producer-avatar">
+
+              </div>
+            </div>
+            <div class="producer-card-body">
+              <div class="producer-card-infos">
+                <h4>Category</h4>
+                <p><%= producer.address%></p>
+                <li><%= link_to producer.name, producer_path(producer) %>
+                  <%= link_to "edit", edit_producer_path(producer) %>
+                  <%= link_to "destroy", producer_path(producer), method: :delete %></li>
+              </div>
+              <div class="producer-card-location">
+                <span><%= icon('car') %></span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
   <% end %>
 </ul>
 
@@ -29,12 +56,12 @@
       });
 
       // CURRENT USER NAVIGATOR GEOLOCATION
-      <% if params[:latitude].blank? & params[:location].blank? %>
+      <% if params[:latitude].blank? && params[:location].blank? %>
 
-      //Options for geolocation : accuracy = position calculation precision, request timeout delay, maximumAge : maximum age of cache position
+      //Options for geolocation : accuracy = position calculation accuracy, request timeout delay, maximumAge : maximum age of cache position
         var options = {
           enableHighAccuracy: true,
-          timeout: 1,
+          timeout: 5000,
           maximumAge: 0
         };
 
@@ -42,16 +69,14 @@
         function success(pos) {
           var latitude = pos.coords.latitude
           var longitude = pos.coords.longitude
-
+          console.log('<%= producers_path %>?latitude='+latitude+'&longitude='+longitude)
           window.location.href = 'http://localhost:3000/producers?latitude='+latitude+'&longitude='+longitude;
           // Latitude @ Longitude sent to URL via line above. These can be hidden from URL via AJAX request below (uncomment applicable option) :
           // $.ajax({
           //   type: 'GET',
           //   url: 'http://localhost:3000/producers?latitude='+latitude+'&longitude='+longitude,
           //   success: function(response) {
-          //     // $('body').html(response);
           //     // console.log('<%= producers_path %>?latitude='+latitude+'&longitude='+longitude)
-          //     // response
           //   }
           // });
         };
@@ -73,10 +98,53 @@
           }
           window.location.href = 'http://localhost:3000/producers?location='+alternative_location;
         };
-
         navigator.geolocation.getCurrentPosition(success, error, options);
 
       <% end %>
+
+      //CALCULATE DRIVING TIME TO PRODUCERS
+       <% unless params[:latitude].blank? && params[:location].blank? %>
+
+        <% destinations_producers = @producers.map do |producer| %>
+         <% "#{producer.latitude}, #{producer.longitude}" %>
+        <% end %>
+
+        <% if params[:latitude].blank? %>
+          <% origin_ruby = ["#{params[:location]}"] %>
+        <% else %>
+          <% origin_ruby = ["#{params[:latitude]}, #{params[:longitude]}"] %>
+        <% end %>
+
+        var service = new google.maps.DistanceMatrixService();
+        // REQUEST TO GOOGLE API with origin, destinations and options, DOM modified in callback function
+        service.getDistanceMatrix(
+          {
+            origins: <%= raw origin_ruby %>,
+            destinations: <%= raw destinations_producers %>,
+            travelMode: 'DRIVING',
+            avoidHighways: false,
+            avoidTolls: false,
+          }, callback);
+
+        function callback(response, status) {
+          if (status == 'OK') {
+            var origin = response.originAddresses[0];
+            var destinations = response.destinationAddresses;
+            var results = response.rows[0].elements;
+
+            for (var i = 0; i < results.length; i++) {
+              var element = results[i];
+              var distance = element.distance.text;
+              var duration = element.duration.text;
+              console.log(duration);
+              $('.producer-card-location').eq(i).append($('<span>').text(duration));
+              var from = origin[0];
+              var to = destinations[i];
+            }
+          }
+        }
+       <% end %>
+
     });
   </script>
 <% end %>
