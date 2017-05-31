@@ -14,6 +14,11 @@ gem 'omniauth-facebook'
 gem "coffee-rails"
 gem 'faker'
 
+# AMIN
+gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+
+
 # Geolocalisation
 gem 'geocoder'
 gem "gmaps4rails"
