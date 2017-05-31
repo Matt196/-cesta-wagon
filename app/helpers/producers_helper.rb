@@ -4,7 +4,7 @@ module ProducersHelper
     render partial: "shared/producer_card"
   end
 
-  def producer_image(producer = nil)
+  def producer_img_path(producer = nil)
     if producer &&  producer.photos?
       cl_image_path producer.photos.first.path
     else

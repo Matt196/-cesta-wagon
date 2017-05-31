@@ -2,7 +2,7 @@
   <div class="producer-card">
     <%= link_to producer_path(@producer) do %>
       <div class="producer-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-        url('<%= producer_image(@producer) %>')">
+        url('<%= producer_img_path(@producer) %>')">
         <ul class="producer-awards list-unstyled list-inline">
           <li><%= image_tag('gold_medal.png', class: "award-lg") %></li>
           <li><%= image_tag('silver_medal.png', class: "award-lg") %></li>

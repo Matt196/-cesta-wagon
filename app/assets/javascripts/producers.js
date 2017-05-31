@@ -1,3 +1,6 @@
+
+// à factoriser avec l'ajout de data-id dans le markup
+
 $(document).ready(function() {
   $("#to-step-2").on('click', goToProducerFormStep2);
   $("#to-step-3").on('click', goToProducerFormStep3);

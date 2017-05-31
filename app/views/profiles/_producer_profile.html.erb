@@ -41,6 +41,7 @@
           Phone: <%= producer.phone %>
           <hr>
           <%= link_to 'Edit company infos', edit_producer_path(producer), class: "btn btn-primary" %>
+          <%= link_to 'See my producer page', producer_path(producer), class: "btn btn-secondary" %>
         </div>
       </div>
     </div>
@@ -51,8 +52,9 @@
         <div class="info-box-header">
           <h4>Vos produits</h4>
         </div>
-      </div>
-      <div class="info-box-content">
+        <div class="info-box-content">
+          <%= render 'producer_products' %>
+        </div>
       </div>
     </div>
   </div>

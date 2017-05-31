@@ -1,0 +1,13 @@
+<div class="product">
+  <img src="<%= product_img_path(@product) %>" class="product-image hidden-xs">
+  <div class='product-body'>
+    <h3><%= @product.name %></h3>
+    <p><%= @product.description %></p>
+    <p>Price: <%= @product.price %>€</p>
+    <p>Ajout au panier: 10</p>
+  </div>
+  <ul class="list-inline product-controls hidden-sm hidden-xs">
+    <%= link_to icon('pencil'), edit_product_path(@product) %>
+    <%= link_to icon('trash'), product_path(@product), method: :delete, remote: true %>
+  </ul>
+</div>

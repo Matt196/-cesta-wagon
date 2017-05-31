@@ -3,6 +3,7 @@
   border: 1px solid $gray-lighter;
   margin: 50px auto;
   min-height: 600px;
+  background-color: white;
 }
 
 .cesta-form-header {
@@ -16,12 +17,10 @@
 }
 
 .cesta-form-body-headed {
-  background-color: white;
   padding: 10px 50px 50px 50px;
 }
 
 .cesta-form-body-no-header {
-  background-color: white;
   padding: 50px;
 }
 
