@@ -1,11 +1,14 @@
 class ProducersController < ApplicationController
-before_action :set_producer, only: [:show]
+  before_action :set_producer, only: [:show]
 
   def index
     #rajouter si besoin centrage de la carte sur une position initiale avant les requetes via javascript. defaut = monde
     if params[:latitude].blank? & params[:longitude].blank?
+      # session[:location] = params[:location]
       @producers = Producer.near(params[:location], 1000).limit(10)
     else
+      # session[:latitude] = params[:latitude]
+      # session[:longitude] = params[:longitude]
       @producers = Producer.near("#{params[:latitude]}, #{params[:longitude]}", 1000).limit(10)
       # Geocoder : by default, objects are ordered by distance.
     end
