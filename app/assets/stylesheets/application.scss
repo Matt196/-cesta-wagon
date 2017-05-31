@@ -39,7 +39,7 @@ h1, h2, h3, h4, p, i {
 }
 
 body {
-  background-color: #FCFCFC;
+  background-color: #FBFBFB;
 }
 
 a.discret-link {
@@ -56,4 +56,37 @@ a.discret-link {
     color: $gray;
     text-decoration: none;
   }
+}
+
+.light-text {
+  color: $gray-light;
+}
+
+.text-stripped {
+  display: flex;
+  margin: 10px 0;
+  justify-content: left;
+  align-items: center;
+  position: relative;
+  hr {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: 0;
+  }
+  p {
+    display: inline-block;
+    margin: 0;
+    background-color: white;
+    z-index: 1;
+    padding: 10px;
+    padding-left: 0px;
+    color: $gray-light;
+    text-align: center;
+  }
+}
+
+.push-footer-to-bottom {
+  min-height: 80vh;
 }

@@ -27,18 +27,27 @@ $base-height-computed: floor($base-height * $base-size);
 // Scheme
 $brand-color: #D23333;
 
-$red: #EE5F5B;
+// Color-hunt-scheme
+$ch-red-dark: #F56262;
+$ch-red-medium-dark: #FCA180;
+$ch-red-medium-pale: #FFD480;
+
+$ch-green-dark: #83B271;
+$ch-green-medium-dark: #ABCB89;
+$ch-green-medium-pale: #D2EA9B;
+
+
+$ch-yellow: #FFEDB2;
+
+
+$red: $ch-red-dark;
 $blue: #469AE0;
-$yellow: #FDB631;
-$orange: #E67E22;
-$green: #32B796;
+$yellow: $ch-yellow;
+$orange: #FF9867;
+$green: $ch-green-medium-dark;
 $gray: #000000;
 
-// Color-hunt-scheme
-$ch-dark: #20655F;
-$ch-medium-dark: #F8AA27 ;
-$ch-medium-pale: #FAC55B;
-$ch-pale: #FFF8B6;
+
 
 
 // Other variables

@@ -1,29 +1,29 @@
 class ProductsController < ApplicationController
-  before_action :producer_id, only: [:new, :create]
-  before_action :product_id, only: [:show, :edit, :update, :destroy]
+  before_action :set_producer_id, only: [:new, :create]
+  before_action :set_product_id, only: [:show, :edit, :update, :destroy]
 
   skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_after_action :verify_authorized, only: [:index, :show]
 
 
   def index
     @products = Product.where(producer_id:@producer)
-    authorize (@product)
 
   end
 
   def show
-    authorize (@product)
+
   end
 
   def new
     @product = Product.new()
-    authorize (@producer)
+    authorize (@product)
   end
 
   def create
     @product = Product.new(params_product)
     @product.producer = @producer
-    authorize (@producer)
+    authorize (@product)
 
     if @product.save
       redirect_to producer_path(@producer), notice: "thanks to your new product"
@@ -57,7 +57,7 @@ class ProductsController < ApplicationController
   end
 
   private
-    def product_id
+    def set_product_id
       @product = Product.find(params[:id])
     end
 
@@ -70,7 +70,7 @@ class ProductsController < ApplicationController
       )
     end
 
-    def producer_id
+    def set_producer_id
       @producer = Producer.find(params[:producer_id])
     end
 end

@@ -1,12 +1,11 @@
 .cesta-navbar {
   height: $navbar-height;
-  background-color: $ch-dark;
-  color: white;
+  background-color: white;
+  border-bottom: 1px solid $gray-lighter;
   ul, li.li-unmarged {
     margin: 0;
   }
   i {
-    color: white;
     font-size: 30px;
   }
 }
@@ -24,9 +23,9 @@
   font-size: 24px;
   font-weight: bold;
   a {
-    color:white;
+    color:$gray-dark;
     &:hover {
-      color:white;
+      color:$gray-dark;
       text-decoration: none;
     }
   }
@@ -41,6 +40,23 @@
   }
 }
 
-
+.navbar-links {
+  display: flex;
+  align-items: center;
+  a, i {
+    color: $gray-dark;
+    padding: 0 20px;
+    &:hover, &:focus {
+      color: $gray-light;
+      text-decoration: none;
+    }
+  }
+  a {
+    border-right: 1px solid $gray-light;
+  }
+  a:last-child {
+    border-right: none;
+  }
+}
 
 
