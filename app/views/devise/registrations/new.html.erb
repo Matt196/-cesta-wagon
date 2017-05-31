@@ -8,8 +8,7 @@
             <hr>
             <p>Or create a new account using your email</p>
           </div>
-
-          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= simple_form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
             <%= f.error_notification %>
 
             <div class="form-inputs">
