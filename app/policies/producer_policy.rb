@@ -1,7 +1,7 @@
 class ProducerPolicy < ApplicationPolicy
 
   def edit?
-    user == record.user || user.admin? if user.present?
+    user == record.user || user.admin?
   end
 
   def update?
@@ -9,7 +9,7 @@ class ProducerPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user == record.user || user.admin? if user.present?
+    user == record.user || user.admin?
   end
 
   class Scope < Scope
