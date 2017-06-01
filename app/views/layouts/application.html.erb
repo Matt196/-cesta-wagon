@@ -11,32 +11,21 @@
   </head>
   <body>
 
+    <% if flash[:notice] %>
+      <div class="alert alert-info fade in">
+        <button class="close" data-dismiss="alert">×</button>
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
 
+    <% if flash[:alert] %>
+      <div class="alert alert-warning fade in">
+        <button class="close" data-dismiss="alert">×</button>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
 
     <%= render 'shared/navbar' %>
-
-<!-- Pour les tests de Clément -->
-
-<% if flash[:notice] %>
-    <div class="alert alert-info fade in">
-      <button class="close" data-dismiss="alert">×</button>
-      <%= flash[:notice] %>
-    </div>
-  <% end %>
-
-  <% if flash[:alert] %>
-    <div class="alert alert-warning fade in">
-      <button class="close" data-dismiss="alert">×</button>
-      <%= flash[:alert] %>
-    </div>
-  <% end %>
-
-
-
-
-
-
-
 
     <%= yield %>
     <%= render 'shared/footer' %>

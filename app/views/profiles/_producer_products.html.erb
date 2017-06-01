@@ -1,0 +1,14 @@
+<% producer = current_user.producer %>
+<%= link_to 'Add product', new_producer_product_path(producer), class: 'btn btn-primary' %>
+<hr>
+<div class="products-list">
+  <% if producer.products.present? %>
+    <% producer.products.each do |product| %>
+      <%= display_products_list_item(product) %>
+    <% end %>
+  <% else %>
+    <p>Vous n'avez pas encore publié de produits</p>
+    <p>Les producteurs qui mettent en avant leurs produits sur Cesta sont 2 fois plus souvent visités par les utilisateurs de l'application</p>
+  <% end %>
+</div>
+

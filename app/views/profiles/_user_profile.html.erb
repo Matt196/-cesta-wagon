@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div id="user-infos">
+      <div class="info-box">
+        <div class="info-box-header">
+          <h4>Vos informations</h4>
+        </div>
+        <div class="info-box-content">
+          <div class="info-box-group">
+            <h5>Vos identifiants</h5>
+            <p><span class="light-text">Email:</span> <%= current_user.email %></p>
+            <p><span class="light-text">Password:</span> *********</p>
+          </div>
+          <hr>
+          <div class="info-box-group">
+            <h5>Vous</h5>
+            <p><span class="light-text">First name:</span> <%= current_user.first_name %></p>
+            <p><span class="light-text">Last name:</span> <%= current_user.last_name %></p>
+          </div>
+          <hr>
+          <%= link_to 'Edit infos', edit_user_registration_path, class: "btn btn-primary" %>
+          <%= link_to 'Sell your products', new_producer_path, class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-8">
+    <div id="user-reviews">
+      <div class="info-box">
+        <div class="info-box-header">
+          <h4>Vos avis</h4>
+        </div>
+        <div class="info-box-content">
+          <% if current_user.producer_reviews.present? %>
+            <!-- To complete after review implementation  -->
+          <% else %>
+            <p>Vous n'avez pas encore écrit d'avis</p>
+            <%= link_to producers_path, class: "discret-link" do %>
+              Retrouvez tous nos producteurs ici <%= icon('arrow-circle-right') %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

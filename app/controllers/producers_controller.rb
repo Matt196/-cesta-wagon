@@ -1,6 +1,7 @@
 class ProducersController < ApplicationController
   before_action :set_producer, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_after_action :verify_authorized, only: [:create, :new]
 
   def index
     #rajouter si besoin centrage de la carte sur une position initiale avant les requetes via javascript. defaut = monde
@@ -35,12 +36,10 @@ class ProducersController < ApplicationController
   #-- METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
   def new
     @producer = Producer.new
-    authorize (@producer)
   end
 
   def create
     @producer = Producer.new(producer_params)
-    authorize (@producer)
     @producer.user = current_user
 
     if @producer.save

@@ -18,7 +18,7 @@
               <%= f.input_field :password, required: true, class: "form-control cesta-input", placeholder: "Password" %>
             </div>
             <div class="form-actions">
-              <%= f.button :submit, "Log in", class: "btn btn-secondary btn-main-login" %>
+              <%= f.button :submit, "Log in" %>
             </div>
             <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
             <%= render 'devise/shared/missing_password' %>

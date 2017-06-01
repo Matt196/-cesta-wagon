@@ -1,0 +1,61 @@
+<% producer = current_user.producer %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div id="producer-user-infos">
+      <div class="info-box">
+        <div class="info-box-header">
+          <h4>Vos informations</h4>
+        </div>
+        <div class="info-box-content">
+          <div class="info-box-group">
+            <h5>Vos identifiants</h5>
+            <p><span class="light-text">Email:</span> <%= current_user.email %></p>
+            <p><span class="light-text">Password:</span> *********</p>
+          </div>
+          <hr>
+          <div class="info-box-group">
+            <h5>Vous</h5>
+            <p><span class="light-text">First name:</span> <%= current_user.first_name %></p>
+            <p><span class="light-text">Last name:</span> <%= current_user.last_name %></p>
+          </div>
+          <hr>
+          <%= link_to 'Edit infos', edit_user_registration_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-8">
+    <div id="producer-company-infos">
+      <div class="info-box">
+        <div class="info-box-header">
+          <h4>Votre entreprise</h4>
+        </div>
+        <div class="info-box-content">
+          Company name: <%= producer.name %>
+          Category: <%= producer.category%>
+          Address: <%= producer.address %>
+          Zipcode: <%= producer.zipcode %>
+          City: <%= producer.city %>
+          Company email <%= producer.company_email %>
+          Phone: <%= producer.phone %>
+          <hr>
+          <%= link_to 'Edit company infos', edit_producer_path(producer), class: "btn btn-primary" %>
+          <%= link_to 'See my producer page', producer_path(producer), class: "btn btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12">
+    <div id="producer-products-list">
+      <div class="info-box">
+        <div class="info-box-header">
+          <h4>Vos produits</h4>
+        </div>
+        <div class="info-box-content">
+          <%= render 'producer_products' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
