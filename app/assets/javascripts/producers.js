@@ -4,7 +4,7 @@
 $(document).ready(function() {
   $("#to-step-2").on('click', goToProducerFormStep2);
   $("#to-step-3").on('click', goToProducerFormStep3);
-  $("#to-step-4").on('click', goToProducerFormStep3);
+  $("#to-step-4").on('click', goToProducerFormStep4);
 });
 
 function goToProducerFormStep2(event) {
