@@ -5,13 +5,20 @@ class ProducersController < ApplicationController
 
   def index
     #rajouter si besoin centrage de la carte sur une position initiale avant les requetes via javascript. defaut = monde
-    if params[:latitude].blank? & params[:longitude].blank?
-      # session[:location] = params[:location]
+
+    store_session
+
+    if params[:latitude].blank? & (params[:location].blank? || params[:location] == "null")
+      request.ip == "127.0.0.1" ? ip = "80.214.144.229" : ip = request.ip
+      @producers = Producer.near(ip, 1000).limit(10)
+      session[:location] = Geocoder.search(ip)[0].data["city"]
+    elsif params[:latitude].blank?
       @producers = Producer.near(params[:location], 1000).limit(10)
+      session[:location] = params[:location]
     else
-      # session[:latitude] = params[:latitude]
-      # session[:longitude] = params[:longitude]
       @producers = Producer.near("#{params[:latitude]}, #{params[:longitude]}", 1000).limit(10)
+      session[:latitude] = params[:latitude]
+      session[:longitude] = params[:longitude]
       # Geocoder : by default, objects are ordered by distance.
     end
 
@@ -54,16 +61,12 @@ class ProducersController < ApplicationController
     redirect_to producers_path
   end
 
-
-
   def destroy
     authorize (@producer)
     @producer.destroy
-    flash[:alert] = "Producteur supprimer de la bdd"
+    flash[:alert] = "Producteur supprimé de la bdd"
     redirect_to producers_path
   end
-
-
 
   private
 
@@ -83,5 +86,13 @@ class ProducersController < ApplicationController
       :company_email,
       :category,
       photos: [])
+  end
+
+  def store_session
+    if session[:location].present?
+      @location = session[:location]
+    elsif params[:location].present?
+      @location = params[:location]
+    end
   end
 end
