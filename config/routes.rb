@@ -6,9 +6,13 @@ Rails.application.routes.draw do
 
   resources :producers, only: [:index, :show, :new, :create, :edit, :update, :create, :destroy] do
     resources :products, only:[:new, :create]
+    resources :producer_reviews, only:[:new, :create]
+
   end
 
   resources :products, only:[:index, :show, :edit, :update, :destroy]
+
+  resources :producer_reviews, only:[:index, :show, :edit, :update, :destroy]
 
   resource :profile, only: :show
 

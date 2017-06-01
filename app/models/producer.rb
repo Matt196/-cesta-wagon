@@ -2,6 +2,7 @@ class Producer < ApplicationRecord
 belongs_to :user
 has_many :products, dependent: :destroy
 has_many :producer_awards
+has_many :producer_reviews
 
 has_attachments :photos, maximum: 2
 

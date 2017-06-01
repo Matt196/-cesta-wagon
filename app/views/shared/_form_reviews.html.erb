@@ -1,0 +1,5 @@
+<%= simple_form_for([@producer, @producer_review], remote:true) do |f| %>
+  <%= f.input :content, required: true, autofocus: true, placeholder: "Content" %>
+  <%= f.input :mark, required: true, autofocus: true, placeholder: "Mark" %>
+  <%= f.button :submit %>
+<% end %>
