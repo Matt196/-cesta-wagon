@@ -1,4 +1,4 @@
-class ProducerReviewsPolicy < ApplicationPolicy
+class ProducerReviewPolicy < ApplicationPolicy
 
   def new?
     record.producer == user.producer || user.admin?

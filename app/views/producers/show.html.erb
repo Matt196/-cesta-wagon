@@ -55,13 +55,7 @@
     <di class="col-xs-12">
      <div id='ajaxid' class="instructions">
       <% @producer_reviews.each do |elem| %>
-      <p> <%= elem.content %>
-        <i class="fa <%= elem.mark >= 1 ? "fa-star" : "fa-star-o" %> aria-hidden="true"></i>
-        <i class="fa <%= elem.mark >= 2 ? "fa-star" : "fa-star-o" %> aria-hidden="true"></i>
-        <i class="fa <%= elem.mark >= 3 ? "fa-star" : "fa-star-o" %> aria-hidden="true"></i>
-        <i class="fa <%= elem.mark >= 4 ? "fa-star" : "fa-star-o" %> aria-hidden="true"></i>
-        <i class="fa <%= elem.mark >= 5 ? "fa-star" : "fa-star-o" %> aria-hidden="true"></i>
-      </p>
+      <%=  render "shared/producer_review", elem: elem %>
 
 <!-- <i class="fa fa-star-o" aria-hidden="true"></i>
  -->
