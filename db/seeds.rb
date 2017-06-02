@@ -36,7 +36,7 @@ scrapper.scrap.each do |data|
     year: year
   )
 
-  sleep(2)
+  sleep(3)
 end
 
 # --------------ADD 3 products to PRODUCER without PHOTOS--------------------

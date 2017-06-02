@@ -104,8 +104,8 @@ class Scrapper::ConcoursAgricoleScrapper
 
   def to_authorized_category(scrapped_category)
     clean_category = "Spécialités locales"
-    AUTHORIZED_CATEGORIES.each do |category, keywords|
-      keywords.each do |keyword|
+    AUTHORIZED_CATEGORIES.each do |category, content|
+      content[:keywords].each do |keyword|
         clean_category = category if scrapped_category.downcase.include? keyword
       end
     end
