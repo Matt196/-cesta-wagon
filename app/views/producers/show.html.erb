@@ -105,23 +105,18 @@
   </div>
 </div>
 
-
-
-
-<!-- XXXXXXXXXXXXXXXXXXXXXXTRAVAIL CLEMENTXXXXXXXXXXXXXXXXXXXXXX
- -->
-
-<!-- Attention, l'id=ajaxid sert à appeler ajax in rail pour l'affichage des reviews dans la page show. cela passe pas producer#show puis producer_reviews/create.js.erb -->
-
  <div class="container guidelines-instructions">
   <div class="row">
     <di class="col-xs-12">
       <div id='ajaxid' class="instructions">
+
+      <% if @producer_reviews.present? %>
         <% @producer_reviews.each do |elem| %>
         <p> <%=  render "shared/producer_review", elem: elem %> </p>
-
-
        <% end %>
+      <% else %>
+        <p> vous n'avez pas de reviews </p>
+      <% end %>
      </div>
       <% if policy(@producer).edit? %>
       <div class="instructions">
