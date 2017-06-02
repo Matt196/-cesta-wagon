@@ -4,9 +4,19 @@ module ProducersHelper
     render partial: "shared/producer_card"
   end
 
-# TO DO : nettoyer le test "producer" ci-dessous après nettoyage des guidelines ainsi que le else final
+# TO DO : NETTOYER APRES DISCUSSION POUR IDENTIFIER LES IMPACTS
 
   def producer_img_path(producer = nil)
+    if producer &&  producer.photos?
+      cl_image_path producer.photos.first.path, height: 150, crop: :fill
+    elsif producer && AUTHORIZED_CATEGORIES[producer.category]
+      image_path("category/#{AUTHORIZED_CATEGORIES[producer.category][:cat_pic]}")
+    else
+      image_path('producer-card-image.jpg')
+    end
+  end
+
+  def producer_lg_img_path(producer = nil)
     if producer &&  producer.photos?
       cl_image_path producer.photos.first.path
     elsif producer && AUTHORIZED_CATEGORIES[producer.category]
