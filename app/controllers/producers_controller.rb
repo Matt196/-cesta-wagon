@@ -4,8 +4,6 @@ class ProducersController < ApplicationController
   skip_after_action :verify_authorized, only: [:create, :new]
 
   def index
-    #rajouter si besoin centrage de la carte sur une position initiale avant les requetes via javascript. defaut = monde
-
     store_session
 
     if params[:latitude].blank? & (params[:location].blank? || params[:location] == "null")
@@ -31,6 +29,10 @@ class ProducersController < ApplicationController
   def show
     authorize (@producer)
     @product = Product.where(producer_id:@producer)
+
+# Initialization reviews
+    @producer_review = ProducerReview.new
+    @producer_reviews = @producer.producer_reviews.sort_by {|elem| elem.create_user}[0..3]
   end
 
   #-- METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
@@ -86,6 +88,13 @@ class ProducersController < ApplicationController
       :company_email,
       :category,
       photos: [])
+  end
+
+  def params_producer_review
+    params.require(:producer_review).permit(
+      :content,
+      :mark
+    )
   end
 
   def store_session
