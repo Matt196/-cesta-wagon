@@ -60,7 +60,7 @@
                 <option value="2">4</option>
               </select>
               <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
-              <%= link_to basket_lines_path(product.id), class: "add-basket" do %>
+              <%= link_to new_basket_lines_path(product.id), class: "add-basket" do %>
                 <%= icon('plus')%>
                 <%= icon('shopping-cart')%>
               <% end %>
@@ -87,7 +87,7 @@
                 <option value="2">4</option>
               </select>
               <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
-              <%= link_to "#", class: "add-basket" do %>
+              <%= link_to new_basket_lines_path(product.id), class: "add-basket" do %>
                 <%= icon('plus')%>
                 <%= icon('shopping-cart')%>
               <% end %>
