@@ -35,19 +35,29 @@ scrapper.scrap.each do |data|
     name: data[:medaille],
     year: year
   )
+
+  sleep(3)
 end
 
 # --------------ADD 3 products to PRODUCER without PHOTOS--------------------
 # url = "http://lorempixel.com/800/600/city/"
 
 
-  Producer.all.each do |elem|
-    3.times do
-      product = Product.create(
-        name: Faker::Commerce.product_name,
-        description: Faker::Lorem.paragraph,
-        price: Faker::Commerce.price,
-        producer: elem
-        )
-    end
+Producer.all.each do |elem|
+  3.times do
+    product = Product.create(
+      name: Faker::Commerce.product_name,
+      description: Faker::Lorem.paragraph,
+      price: Faker::Commerce.price,
+      producer: elem
+      )
   end
+end
+
+# --------------ADD main photo to PRODUCER --------------------
+Producer.all.each do |producer|
+  if AUTHORIZED_CATEGORIES.key?(producer.category) # useful for partial seeds
+    urls = [AUTHORIZED_CATEGORIES[producer.category][:cat_pic_url]]
+    producer.photo_urls = urls
+  end
+end

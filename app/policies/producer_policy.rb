@@ -2,8 +2,6 @@ class ProducerPolicy < ApplicationPolicy
 
   def edit?
     user.is_a?(User)
-    # true
-    # user == record.user || user.admin? || user.class == Gest
   end
 
   def update?

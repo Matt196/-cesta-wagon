@@ -40,7 +40,7 @@ class ProductsController < ApplicationController
     @producer = @product.producer
     authorize (@product)
     @product.update(params_product)
-    redirect_to producer_path(@producer)
+    redirect_to profile_path
   end
 
   def destroy

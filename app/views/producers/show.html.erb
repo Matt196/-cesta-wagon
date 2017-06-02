@@ -1,7 +1,12 @@
+<% content_for (:meta_title) do %>
+  <%= @producer.name %>
+<% end %>
+
 <div class="producer-image-in-producer-show" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
-        url('<%= producer_img_path(@producer) %>')">
+        url('<%= producer_lg_img_path(@producer) %>')">
   <img class="producer-avatar" src="<%= image_path "default-farmer-avatar.png" %>" />
 </div>
+
 
 <div class="container">
   <div class="row">

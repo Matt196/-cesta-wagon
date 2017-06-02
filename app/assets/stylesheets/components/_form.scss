@@ -9,7 +9,7 @@
 .cesta-form-header {
   background-color: $ch-red-medium-dark;
   border-radius: $border-radius-base $border-radius-base 0 0;
-  padding: 20px 50px;
+  padding: 20px 20px;
   h3 {
     margin: 0;
     color: white;
@@ -17,11 +17,11 @@
 }
 
 .cesta-form-body-headed {
-  padding: 10px 50px 50px 50px;
+  padding: 10px 20px 50px 20px;
 }
 
 .cesta-form-body-no-header {
-  padding: 50px;
+  padding: 50px 20px;
 }
 
 .social-btn {
