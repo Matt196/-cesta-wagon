@@ -4,8 +4,6 @@ class ProducersController < ApplicationController
   skip_after_action :verify_authorized, only: [:create, :new]
 
   def index
-    #rajouter si besoin centrage de la carte sur une position initiale avant les requetes via javascript. defaut = monde
-
     store_session
 
     if params[:latitude].blank? & (params[:location].blank? || params[:location] == "null")
