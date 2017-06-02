@@ -7,14 +7,34 @@
     </div>
     <div class="nabvar-right">
       <div class="navbar-links">
-        <% if user_signed_in? %>
-          <%= link_to 'Profile', profile_path %>
-          <%= link_to 'Sign-out', destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to 'Sign-in', new_user_session_path %>
-          <%= link_to 'Sign-up', new_user_registration_path %>
-        <% end %>
-        <%= link_to icon('shopping-cart'), '#' %>
+        <div class="navbar-desktop hidden-xs hidden-sm">
+          <% if user_signed_in? %>
+            <%= link_to 'Profile', profile_path %>
+            <%= link_to 'Sign-out', destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to 'Sign-in', new_user_session_path %>
+            <%= link_to 'Sign-up', new_user_registration_path %>
+          <% end %>
+        </div>
+        <div class="navbar-mobile hidden-md hidden-lg">
+          <div class="dropdown">
+            <div class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <%= icon('user') %>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+              <% if user_signed_in? %>
+                <li><%= link_to 'Profile', profile_path %></li>
+                <li><%= link_to 'Sign-out', destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to 'Sign-in', new_user_session_path %></li>
+                <li><%= link_to 'Sign-up', new_user_registration_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        <div class="navbar-basket-icon">
+          <%= link_to icon('shopping-cart'), '#' %>
+        </div>
       </div>
     </div>
   </div>

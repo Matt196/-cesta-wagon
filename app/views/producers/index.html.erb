@@ -126,7 +126,7 @@
 
             for (var i = 0; i < results.length; i++) {
               var element = results[i];
-              var duration = element.duration.text;
+              var duration = element.duration.text.replace(' minutes', 'min').replace(' heures ', 'h').replace(' heure ', 'h');
               $('.producer-card-location').eq(i).append($('<span>').text(duration));
             }
           }
