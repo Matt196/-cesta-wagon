@@ -13,11 +13,11 @@ gem 'redis'
 gem 'omniauth-facebook'
 gem "coffee-rails"
 gem 'faker'
+gem 'selectize-rails'
 
-# AMIN
+# ADMIN
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-
 
 # Geolocalisation
 gem 'geocoder'
