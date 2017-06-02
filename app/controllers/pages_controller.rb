@@ -5,5 +5,6 @@ class PagesController < ApplicationController
   end
 
   def guidelines
+    @producer = Producer.new
   end
 end

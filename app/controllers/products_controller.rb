@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
     authorize (@product)
 
     if @product.save
-      redirect_to producer_path(@producer), notice: "thanks to your new product"
+      redirect_to profile_path, notice: "thanks to your new product"
     else
       render :new
     end
@@ -42,13 +42,6 @@ class ProductsController < ApplicationController
     @product.update(params_product)
     redirect_to producer_path(@producer)
   end
-
-  # def destroy
-  #   @producer = @product.producer
-  #   authorize (@product)
-  #   @product.destroy
-  #   redirect_to producer_path(@producer)
-  # end
 
   def destroy
     @producer = @product.producer

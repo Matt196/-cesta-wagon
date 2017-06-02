@@ -2,12 +2,17 @@ class Producer < ApplicationRecord
 belongs_to :user
 has_many :products, dependent: :destroy
 has_many :producer_awards
+has_many :producer_reviews
 
 has_attachments :photos, maximum: 2
 
 # Geocoder
-geocoded_by :address
+geocoded_by :address_concatenated
 after_validation :geocode
+
+def address_concatenated
+  [address, city].compact.join(', ')
+end
 
 # Rows validations
 validates :name, presence: true

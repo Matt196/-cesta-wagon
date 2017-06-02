@@ -1,0 +1,7 @@
+<div id='<%= @producer_review.id %>' class='product'>
+  <ul class=list-inline product-controls hidden-sm hidden-xs'>
+    <li><%= render 'shared/producer_review', elem:@producer_review %></li>
+    <li><%= link_to icon('pencil'), edit_producer_review_path(@producer_review), remote: true %></li>
+    <li><%= link_to icon('trash'), producer_review_path(@producer_review), method: :delete, remote: true %></li>
+  </ul>
+</div>

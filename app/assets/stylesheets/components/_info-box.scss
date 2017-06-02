@@ -20,5 +20,28 @@
 }
 
 .info-box-group {
-  margin-bottom: 15;
+  margin-bottom: 15px;
+}
+
+.info-box-producer {
+  background-color: $ch-green-dark;
+  border-radius: $border-radius-base $border-radius-base 0 0;
+  padding: 15px;
+  h4 {
+    margin: 0;
+    color: white;
+  }
+}
+
+.info-box-producer-details {
+  background-color: white;
+  border-radius: $border-radius-base $border-radius-base 0 0;
+  padding: 15px 0 0 15px;
+}
+
+.product-info-box {
+  border-radius: $border-radius-base;
+  border: 1px solid $gray-lighter;
+  margin-top: 0px;
+  background-color: white;
 }
