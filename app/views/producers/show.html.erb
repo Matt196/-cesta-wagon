@@ -120,7 +120,7 @@
             <p> <%=  render "shared/producer_review", elem: elem %> </p>
           <% end %>
         <% else %>
-          <p>No reviews yet</p>
+          <p id="noreview">No reviews yet</p>
         <% end %>
      </div>
       <% if policy(@producer).edit? %>
