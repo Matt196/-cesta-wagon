@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
+  # Just to avoid waiting long time when an exception occurs
+  before_action :better_errors_hack, if: -> { Rails.env.development? }
 
   protect_from_forgery with: :exception
   before_action :authenticate_user!
@@ -37,6 +39,10 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action."
     redirect_to(root_path)
+  end
+
+  def better_errors_hack
+    request.env['puma.config'].options.user_options.delete :app
   end
 end
 

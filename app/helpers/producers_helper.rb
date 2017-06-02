@@ -1,6 +1,6 @@
 module ProducersHelper
   def display_producer_card(producer = nil)
-    @producer = producer
+    @producer = producer || Producer.first
     render partial: "shared/producer_card"
   end
 
