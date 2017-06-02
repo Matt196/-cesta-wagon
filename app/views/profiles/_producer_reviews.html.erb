@@ -4,10 +4,11 @@ Nous reprendrons dans un second temps la mise en page des reviews
  -->
 
 <% producer = current_user.producer %>
+<% @producer_reviews = producer.producer_reviews %>
 <div id="reviews" class="products-list">
   <% if producer.producer_reviews.present? %>
 
-    <% producer.producer_reviews.each do |review| %>
+    <% @producer_reviews.each do |review| %>
       <div id="<%= review.id %>" class="product">
         <ul class="list-inline product-controls hidden-sm hidden-xs">
           <li><%= render "shared/producer_review", elem:review %></li>

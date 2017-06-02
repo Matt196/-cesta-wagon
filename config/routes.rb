@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only:[:show] do
-    resources :basket_lines, only: [:show]
+    resource :basket_lines, only: [:update, :show]
   end
 
   resources :products, only:[:index, :show, :edit, :update, :destroy]

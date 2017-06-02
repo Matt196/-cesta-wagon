@@ -18,6 +18,7 @@
         <div class="info-box-producer-details">
           <p><%= @producer.description %></p>
           <p><%= @producer.address %> - <%= @producer.zipcode %> - <%= @producer.city %></p>
+          <p><%= @producer.user.email%></p>
           <% if @producer.phone.present? %>
             <p><%= icon('phone') %> <%= @producer.mobile_phone %></p>
           <% else %>
@@ -49,7 +50,7 @@
               <div class="product-image"><img class="product-image" src="<%= image_path ["chicon.jpg","biere.jpg"].sample %>" /></div>
               <div class="product-infos">
               <h4><%= @product ? product.name : 'Product name' %></h4>
-              <p><%= @product ? product.description : 'Product description' %></p>
+              <p><%= @product ? product.description[0...30] : 'Product description' %></p>
               <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
               <label for="qte">Qte:</label>
               <select id="qte">
@@ -72,6 +73,9 @@
             <div class="product-info-box info-box-content info-box-group product-card-mobile">
             <div class="producer-image-in-producer-show" style="background-image: url('<%= image_path ["chicon.jpg","biere.jpg"].sample %>')"></div>
               <div class="product-infos-mobile">
+              <% if product.description.length > 36 %>
+                    <% product.description = product.description[0..35] %>
+              <% end %>
               <h4><%= @product ? product.name : 'Product name' %></h4>
               <p><%= @product ? product.description : 'Product description' %></p>
               <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
@@ -105,23 +109,24 @@
   </div>
 </div>
 
- <div class="container guidelines-instructions">
+<!-- Attention, l'id=ajaxid sert à appeler ajax in rail pour l'affichage des reviews dans la page show. cela passe pas producer#show puis producer_reviews/create.js.erb -->
+
+ <div class="container ">
   <div class="row">
     <di class="col-xs-12">
-      <div id='ajaxid' class="instructions">
-
-      <% if @producer_reviews.present? %>
-        <% @producer_reviews.each do |elem| %>
-        <p> <%=  render "shared/producer_review", elem: elem %> </p>
-       <% end %>
-      <% else %>
-        <p> vous n'avez pas de reviews </p>
-      <% end %>
+      <div id='ajaxid' class="product-info-box info-box-content info-box-group">
+        <% if @producer_reviews.present? %>
+          <% @producer_reviews.each do |elem| %>
+            <p> <%=  render "shared/producer_review", elem: elem %> </p>
+          <% end %>
+        <% else %>
+          <p>No reviews yet</p>
+        <% end %>
      </div>
       <% if policy(@producer).edit? %>
-      <div class="instructions">
-       <%= render 'shared/form_reviews.html' %>
-      </div>
+        <div class="product-info-box info-box-content info-box-group">
+          <%= render 'shared/form_reviews.html' %>
+        </div>
      <% end %>
     </div>
   </div>
