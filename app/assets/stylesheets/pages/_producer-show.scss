@@ -105,3 +105,28 @@
     }
   }
 }
+
+.review-top {
+  display: flex;
+  justify-content: space-between;
+  .user-details {
+    margin-left: 10px;
+  }
+  .marks {
+    margin-right: 10px;
+  }
+}
+.review-bottom {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.line {
+  text-align: center;
+  #linereview {
+    height: 0px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+}

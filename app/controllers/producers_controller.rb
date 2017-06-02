@@ -27,8 +27,8 @@ class ProducersController < ApplicationController
   end
 
   def show
-    authorize (@producer)
-    @product = Product.where(producer_id:@producer)
+    authorize(@producer)
+    @product = Product.where(producer: @producer)
 
 # Initialization reviews
     @producer_review = ProducerReview.new
