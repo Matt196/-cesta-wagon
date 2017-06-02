@@ -10,13 +10,13 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "vendor/index";
+@import "vendor/*";
 
 // Your CSS
-@import "layout/index";
-@import "components/index";
-@import "pages/index";
-@import "animations/index";
+@import "layout/*";
+@import "components/*";
+@import "pages/*";
+@import "animations/*";
 @import "pages/producer-show";
 
 @import "selectize";

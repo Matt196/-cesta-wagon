@@ -29,6 +29,10 @@ class ProducersController < ApplicationController
   def show
     authorize (@producer)
     @product = Product.where(producer_id:@producer)
+
+# Initialization reviews
+    @producer_review = ProducerReview.new
+    @producer_reviews = @producer.producer_reviews.sort_by {|elem| elem.create_user}[0..3]
   end
 
   #-- METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
@@ -84,6 +88,13 @@ class ProducersController < ApplicationController
       :company_email,
       :category,
       photos: [])
+  end
+
+  def params_producer_review
+    params.require(:producer_review).permit(
+      :content,
+      :mark
+    )
   end
 
   def store_session
