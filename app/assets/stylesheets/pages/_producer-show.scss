@@ -1,6 +1,7 @@
 .producer-image-in-producer-show {
   height: 300px;
   background-size: cover;
+  background-position: center;
   border: 0 0 1 0 solid lighten($gray-base, 90%);
   position: relative;
 }
