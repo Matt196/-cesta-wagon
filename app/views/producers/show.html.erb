@@ -45,7 +45,7 @@
 </div>
 
 
-<!-- XXXXXXXXXXXXXXXXXXXXXX--TRAVAIL CLEMENT--XXXXXXXXXXXXXXXXXXXXXX
+<!-- XXXXXXXXXXXXXXXXXXXXXXTRAVAIL CLEMENTXXXXXXXXXXXXXXXXXXXXXX
  -->
 
 <!-- Attention, l'id=ajaxid sert à appeler ajax in rail pour l'affichage des reviews dans la page show. cela passe pas producer#show puis producer_reviews/create.js.erb -->
@@ -55,10 +55,8 @@
     <di class="col-xs-12">
      <div id='ajaxid' class="instructions">
       <% @producer_reviews.each do |elem| %>
-      <%=  render "shared/producer_review", elem: elem %>
+      <p> <%=  render "shared/producer_review", elem: elem %> </p>
 
-<!-- <i class="fa fa-star-o" aria-hidden="true"></i>
- -->
 
       <% end %>
     </div>
