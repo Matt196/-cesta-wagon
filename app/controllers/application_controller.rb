@@ -52,5 +52,10 @@ class ApplicationController < ActionController::Base
   def better_errors_hack
     request.env['puma.config'].options.user_options.delete :app
   end
+
+  def set_basket
+    @basket = Basket_line.new
+  end
+
 end
 

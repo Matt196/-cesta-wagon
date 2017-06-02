@@ -4,6 +4,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook]
 
   has_one :producer
+  has_one :basket_line
   has_many :producer_reviews
 
   validates :first_name, presence: true
