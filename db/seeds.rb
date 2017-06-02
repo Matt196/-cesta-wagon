@@ -35,6 +35,8 @@ scrapper.scrap.each do |data|
     name: data[:medaille],
     year: year
   )
+
+  sleep(3)
 end
 
 # --------------ADD 3 products to PRODUCER without PHOTOS--------------------

@@ -45,18 +45,27 @@
   align-items: center;
   a, i {
     color: $gray-dark;
-    padding: 0 20px;
     &:hover, &:focus {
       color: $gray-light;
       text-decoration: none;
     }
   }
-  a {
-    border-right: 1px solid $gray-light;
-  }
-  a:last-child {
-    border-right: none;
+  a > i.fa.fa-shopping-cart {
+    padding: 0;
   }
 }
+
+.navbar-desktop {
+  a {
+    border-right: 1px solid $gray-light;
+    padding: 0 20px;
+  }
+}
+
+.navbar-basket-icon {
+  padding-left: 20px;
+}
+
+
 
 

@@ -26,6 +26,7 @@ class Scrapper::ConcoursAgricoleScrapper
 
   HOST = "http://www.concours-agricole.com/produits_palmares_rech.aspx"
 
+
   def initialize(attributes)
     @year = attributes[:year]
   end
@@ -46,7 +47,7 @@ class Scrapper::ConcoursAgricoleScrapper
         city: city_for(elem),
         address: @right_data_result[1],
         name: @right_data_result[0],
-        category: @left_data_result[0],
+        category: to_authorized_category(@left_data_result[0]),
         description: @left_data_result.join(" ")
       }
 
@@ -99,6 +100,16 @@ class Scrapper::ConcoursAgricoleScrapper
 
   def data
     BODY.merge({ "ctl00$ctl00$CPH$CPH$DDL_ANNEES" => @year.to_s })
+  end
+
+  def to_authorized_category(scrapped_category)
+    clean_category = "Spécialités locales"
+    AUTHORIZED_CATEGORIES.each do |category, content|
+      content[:keywords].each do |keyword|
+        clean_category = category if scrapped_category.downcase.include? keyword
+      end
+    end
+    clean_category
   end
 end
 
