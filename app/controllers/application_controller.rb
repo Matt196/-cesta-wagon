@@ -28,6 +28,14 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  def current_user
+    super || Guest.new
+  end
+
+  def user_signed_in?
+    current_user.is_a?(User)
+  end
+
   private
 
   def skip_pundit?

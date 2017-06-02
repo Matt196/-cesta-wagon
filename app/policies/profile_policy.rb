@@ -1,4 +1,4 @@
-class ProductPolicy < ApplicationPolicy
+class ProfilePolicy < ApplicationPolicy
 
   def show?
     true
