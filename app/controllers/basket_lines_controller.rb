@@ -11,6 +11,8 @@ class BasketLinesController < ApplicationController
   end
 
   def create
+
+    # en cours de contruction par clément, ce n'est pas fini. cela ne marche donc pas encore. Merci
     @basket.create(
       user: current_user
       product: Product.find(params[:product_id])
