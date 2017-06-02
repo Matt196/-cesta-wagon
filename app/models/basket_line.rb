@@ -1,0 +1,2 @@
+class BasketLine < ApplicationRecord
+end
