@@ -105,11 +105,10 @@
   </div>
 </div>
 
- <div class="container guidelines-instructions">
+<div class="container guidelines-instructions">
   <div class="row">
     <di class="col-xs-12">
       <div id='ajaxid' class="instructions">
-
       <% if @producer_reviews.present? %>
         <% @producer_reviews.each do |elem| %>
         <p> <%=  render "shared/producer_review", elem: elem %> </p>
