@@ -6,7 +6,17 @@
   position: relative;
 }
 
-.producer-avatar {
+
+.producer-avatar-desktop {
+  width: 200px;
+  position: absolute;
+  bottom: -100px;
+  left: calc(50% - 100px);
+  border-radius: 50%;
+  border: 5px solid rgba(251,251,251, 1);
+}
+
+.producer-avatar-mobile {
   width: 150px;
   position: absolute;
   bottom: -75px;
@@ -16,7 +26,7 @@
 }
 
 .producer-details {
-  margin-top: 85px;
+  margin-top: 105px;
   background-color: white;
 }
 
@@ -100,6 +110,14 @@
   }
   h4 {
     margin-top: 0;
+  }
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    margin-right: 10px;
   }
   .award-lg {
     position: absolute;

@@ -4,6 +4,7 @@ class Producer < ApplicationRecord
   has_many :producer_awards
   has_many :producer_reviews
 
+  has_attachment  :avatar
   has_attachments :photos, maximum: 2
 
   # Geocoder

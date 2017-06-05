@@ -56,6 +56,10 @@ Producer.all.each do |elem|
   end
 end
 
+Product.all.each do |product|
+  ProductAward.new(name: ["gold", "silver", "bronze"].sample, year:"2017", product: product)
+end
+
 # --------------ADD main photo to PRODUCER --------------------
 # Producer.all.each do |producer|
 #   if AUTHORIZED_CATEGORIES.key?(producer.category) # useful for partial seeds
