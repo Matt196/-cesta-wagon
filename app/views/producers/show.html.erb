@@ -59,64 +59,49 @@
   <div class="row">
         <% @product.each_with_index do |product, index| %>
 
-        <!-- PRODUCT CARD FOR DESKTOP -->
-          <div class="hidden-xs hidden-sm col-md-6 col-lg-6" >
-            <div class="product-info-box info-box-content info-box-group product-card">
-              <% unless product.photos.blank? %>
-                <img class="product-image" src="<%= cl_image_path product.photos.first.path %>" />
-              <% else %>
-                <img class="product-image" src="<%= image_path "default_product.jpg" %>" />
-              <% end %>
+    <!-- PRODUCT CARD FOR DESKTOP -->
+      <div class="hidden-xs hidden-sm col-md-6 col-lg-6" >
+        <div class="product-info-box info-box-content info-box-group product-card">
+          <% unless product.photos.blank? %>
+            <img class="product-image" src="<%= cl_image_path product.photos.first.path %>" />
+          <% else %>
+            <img class="product-image" src="<%= image_path "default_product.jpg" %>" />
+          <% end %>
 
-              <div class="product-infos">
-
-                <h4><%= @product ? product.name : 'Product name' %></h4>
-                <p><%= @product ? product.description : 'Product description' %></p>
-                <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
-                <label for="qte" class="label-qte">Qte:</label>
-                <select id="qte">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="2">3</option>
-                  <option value="2">4</option>
-                </select>
-                <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
-                <%= link_to "#" do %>
-                  <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
-                <% end %>
-
-              </div>
-            </div>
+          <div class="product-infos">
+            <h4><%= @product ? product.name : 'Product name' %></h4>
+            <p><%= @product ? product.description : 'Product description' %></p>
+            <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
+            <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
+            <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
+            <%= link_to "#" do %>
+              <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
+            <% end %>
           </div>
+        </div>
+      </div>
 
-          <!-- PRODUCT CARD FOR MOBILE -->
-          <div class="col-xs-12 col-sm-12 hidden-md hidden-lg" >
-            <div class="product-info-box info-box-content info-box-group product-card-mobile">
-              <% unless product.photos.blank? %>
-                <img class="product-image-mobile" src="<%= cl_image_path product.photos.first.path %>" />
-              <% else %>
-                <img class="product-image-mobile" src="<%= image_path "default_product.jpg" %>" />
-              <% end %>
-              <div class="product-infos-mobile">
-                <h4><%= @product ? product.name : 'Product name' %></h4>
-                <p><%= @product ? product.description : 'Product description' %></p>
-                <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
-                <label for="qte" class="all-qte">Qte:</label>
-                <select id="qte">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="2">3</option>
-                  <option value="2">4</option>
-                </select>
-                <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
-                <%= link_to "#" do %>
-                  <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
-                <% end %>
-              </div>
-            </div>
+      <!-- PRODUCT CARD FOR MOBILE -->
+      <div class="col-xs-12 col-sm-12 hidden-md hidden-lg" >
+        <div class="product-info-box info-box-content info-box-group product-card-mobile">
+          <% unless product.photos.blank? %>
+            <img class="product-image-mobile" src="<%= cl_image_path product.photos.first.path %>" />
+          <% else %>
+            <img class="product-image-mobile" src="<%= image_path "default_product.jpg" %>" />
+          <% end %>
+          <div class="product-infos-mobile">
+            <h4><%= @product ? product.name : 'Product name' %></h4>
+            <p><%= @product ? product.description : 'Product description' %></p>
+            <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
+            <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
+            <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
+            <%= link_to "#" do %>
+              <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
+            <% end %>
           </div>
-
-        <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 

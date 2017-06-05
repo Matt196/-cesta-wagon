@@ -33,6 +33,8 @@ class ProducersController < ApplicationController
     @producer_review = ProducerReview.new
     @producer_reviews = @producer.producer_reviews.sort_by {|elem| elem.create_user}[0..3]
 
+    @basket = BasketLine.new()
+
     # Build the array of products medals in text format, to be processed by html in view
     @medal = check_medals(@product)
   end
