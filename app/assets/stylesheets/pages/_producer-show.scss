@@ -48,24 +48,35 @@
   .product-infos{
     flex-grow: 1;
     margin-left: 20px;
+    .label-qte {
+      margin-bottom: 17px;
+    }
   }
   .product-image {
-    margin: 2px;
+    margin: 10px;
   }
   h4 {
-    margin-top: 0;
+    margin-top: 30px;
+  }
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    margin-right: 10px;
   }
   .award-lg {
     width: 50px;
     position: absolute;
-    right: 10px;
+    right: 5px;
     top: 5px;
   }
   .add-basket {
     position: absolute;
-    font-size: 25px;
+    bottom: 11px;
     right: 10px;
-    bottom: 5px;
+    font-size: 16px;
     &:hover {
       text-decoration: none;
     }
@@ -98,9 +109,9 @@
   }
   .add-basket {
     position: absolute;
-    bottom: 5px;
+    bottom: 11px;
     right: 10px;
-    font-size: 25px;
+    font-size: 16px;
     &:hover {
       text-decoration: none;
     }
@@ -129,5 +140,15 @@
     margin: 0;
     padding: 0;
     text-align: center;
+  }
+}
+
+.producer-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    margin: 0;
+
   }
 }
