@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   end
 
-  resource :basket_lines, only: [:show, :new, :create]
+  resources :basket_lines, only: [:show, :new, :create, :edit, :update, :destroy]
 
   resources :products, only:[:index, :show, :edit, :update, :destroy]
 

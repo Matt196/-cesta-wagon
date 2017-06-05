@@ -43,6 +43,21 @@ Panier
                       </td>
                     </tr>
                   </table>
+
+<!--                   XX-->
+
+<%= simple_form_for (elem.product) do |f| %>
+  <%= f.input :name %>
+
+  <%= f.button :submit %>
+
+<% end %>
+
+<%= link_to "Supprimer", basket_lines_path, method: :delete %>
+
+
+<!--                   XX-->
+
                 </div>
               </div>
             </div>
