@@ -19,5 +19,7 @@ class BasketLinesController < ApplicationController
 
   def show
     @basket = BasketLine.where(user_id: current_user.id)
+    @basket = @basket.sort_by { |elem| elem.product.producer.name }
+    @producers = @basket.uniq{|elem| elem.product.producer.name}
   end
 end
