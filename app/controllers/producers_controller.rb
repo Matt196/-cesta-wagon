@@ -29,9 +29,12 @@ class ProducersController < ApplicationController
     authorize(@producer)
     @product = Product.where(producer: @producer)
 
-# Initialization reviews
+    # Initialization reviews
     @producer_review = ProducerReview.new
     @producer_reviews = @producer.producer_reviews.sort_by {|elem| elem.create_user}[0..3]
+
+    # Build the array of products medals in text format, to be processed by html in view
+    @medal = check_medals(@product)
   end
 
   #-- METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
@@ -86,6 +89,7 @@ class ProducersController < ApplicationController
       :mobile_phone,
       :company_email,
       :category,
+      :avatar,
       photos: [])
   end
 
@@ -102,5 +106,29 @@ class ProducersController < ApplicationController
     elsif params[:location].present?
       @location = params[:location]
     end
+  end
+
+  def check_medals(products)
+    #This method needs the medal files names in assets/images to remain unchanged
+    medal =[]
+    products.each do |product|
+      if product.product_awards.present?
+        if product.product_awards.name.include? "gold"
+          image = "gold_medal.png"
+          hidden = ""
+        elsif product.product_awards.name.include? "silver"
+          award = "silver_medal.png"
+          hidden = ""
+        else
+          award = "bronze_medal.png"
+          hidden = ""
+        end
+      else
+        award = "no-medal.png"
+        hidden = "hidden"
+      end
+      medal << [award, hidden]
+    end
+    medal
   end
 end

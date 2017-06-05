@@ -41,6 +41,11 @@
           <div id="form-producer-step-4" class="form-producer-step hidden">
             <div class="text-stripped">
               <hr>
+              <p>Add your avatar picture</p>
+            </div>
+            <%= f.input :avatar, as: :attachinary %>
+            <div class="text-stripped">
+              <hr>
               <p>Add your best picture(s)</p>
             </div>
             <%= f.input(
@@ -51,7 +56,6 @@
             label:"Upload photos",
             multiple: true
             ) %>
-
             <div class="form-actions">
               <%= f.button :submit, "Register as producer", class: "btn btn-primary btn-main-login" %>
             </div>
