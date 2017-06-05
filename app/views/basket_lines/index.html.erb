@@ -16,7 +16,7 @@ Panier
         <% if producer.product.producer.name == elem.product.producer.name %>
           <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2" >
-              <div class="product-info-box info-box-content info-box-group product-card">
+              <div id="ajax<%= elem.id %>" class="product-info-box info-box-content info-box-group product-card">
                 <div class="product-image"><img class="product-image" src="<%= image_path ["chicon.jpg","biere.jpg"].sample %>" />
                 </div>
                 <div class="product-infos">
@@ -24,17 +24,6 @@ Panier
                   </h4>
                   <table>
                     <tr>
-                      <td>
-                        <label for="qte">
-                          Qte:
-                        </label>
-                        <select id="qte">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="2">3</option>
-                            <option value="2">4</option>
-                        </select>
-                      </td>
                       <td>
                         <%= @basket ? "Prix: #{elem.product.price} €" : 'Product price' %>
                       </td>
@@ -46,14 +35,10 @@ Panier
 
 <!--                   XX-->
 
-<%= simple_form_for (elem.product) do |f| %>
-  <%= f.input :name %>
+<%= render 'basket_lines/form_basket_line', basket: elem, product_id: elem.product_id %>
 
-  <%= f.button :submit %>
 
-<% end %>
-
-<%= link_to "Supprimer", basket_lines_path, method: :delete %>
+<%= link_to "Supprimer", basket_line_path(elem.id), method: :delete, remote:true %>
 
 
 <!--                   XX-->

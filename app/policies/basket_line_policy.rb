@@ -1,9 +1,9 @@
 class BasketLinePolicy < ApplicationPolicy
-
-
-
-  def show?
-    true
+  def index?
+    test = record.map do |elem|
+      elem.user_id == user.id
+    end
+    test.any?
   end
 
   def new?
@@ -14,16 +14,11 @@ class BasketLinePolicy < ApplicationPolicy
     new?
   end
 
-  def edit?
-    true
-  end
-
   def update?
-    edit?
+    user.id == record.user_id
   end
 
   def destroy?
-  true
+    user.id == record.user_id
   end
-
 end

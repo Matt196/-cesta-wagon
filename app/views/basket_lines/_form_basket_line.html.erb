@@ -1,0 +1,7 @@
+
+
+<%= simple_form_for basket, remote:true do |f| %>
+  <%= f.input :qte, label: :true %>
+  <%= f.input :product_id, as: :hidden, input_html: { value: product_id } %>
+  <%= f.button :submit %>
+<% end %>
