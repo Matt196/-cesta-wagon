@@ -25,7 +25,7 @@ Panier
                   <table>
                     <tr>
                       <td>
-                        <%= @basket ? "Prix: #{elem.product.price} €" : 'Product price' %>
+                        <%= @basket ? "Prix: #{elem.product.price * elem.qte} €" : 'Product price' %>
                       </td>
                       <td>
                         TOTAL
@@ -33,15 +33,9 @@ Panier
                     </tr>
                   </table>
 
-<!--                   XX-->
-
 <%= render 'basket_lines/form_basket_line', basket: elem, product_id: elem.product_id %>
 
-
 <%= link_to "Supprimer", basket_line_path(elem.id), method: :delete, remote:true %>
-
-
-<!--                   XX-->
 
                 </div>
               </div>

@@ -52,7 +52,9 @@
               <h4><%= @product ? product.name : 'Product name' %></h4>
               <p><%= @product ? product.description[0...30] : 'Product description' %></p>
               <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
+
               <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
+
               <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
               <%= link_to basket_lines_path(@basket), class: "add-basket" do %>
                 <%= icon('plus')%>
