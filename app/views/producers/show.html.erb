@@ -19,11 +19,17 @@
           <p><%= @producer.description %></p>
           <p><%= @producer.address %> - <%= @producer.zipcode %> - <%= @producer.city %></p>
           <p><%= @producer.user.email%></p>
-          <% if @producer.phone.present? %>
-            <p><%= icon('phone') %> <%= @producer.mobile_phone %></p>
-          <% else %>
-            <p><%= icon('phone') %><%= @producer.phone %></p>
-          <% end  %>
+          <div class="producer-actions">
+            <% if @producer.mobile_phone.present? %>
+              <p><%= icon('phone') %> <%= @producer.mobile_phone %></p>
+            <% else %>
+              <p><%= icon('phone') %> <%= @producer.phone %></p>
+            <% end  %>
+            <% itinerary_url = "https://www.google.fr/maps/dir/"+session[:location]+"/"+@producer.latitude.to_s+",+"+@producer.longitude.to_s %>
+            <%= link_to itinerary_url , target: "_blank" do %>
+              <button class="btn btn-primary">Y aller ! <%= icon('car') %></button>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -50,15 +56,14 @@
               <div class="product-image"><img class="product-image" src="<%= image_path ["chicon.jpg","biere.jpg"].sample %>" /></div>
               <div class="product-infos">
               <h4><%= @product ? product.name : 'Product name' %></h4>
-              <p><%= @product ? product.description[0...30] : 'Product description' %></p>
+              <p><%= @product ? product.description : 'Product description' %></p>
               <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
 
               <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
 
               <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
-              <%= link_to basket_lines_path(@basket), class: "add-basket" do %>
-                <%= icon('plus')%>
-                <%= icon('shopping-cart')%>
+              <%= link_to "#" do %>
+                <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
               <% end %>
               </div>
             </div>
@@ -69,23 +74,13 @@
             <div class="product-info-box info-box-content info-box-group product-card-mobile">
             <div class="producer-image-in-producer-show" style="background-image: url('<%= image_path ["chicon.jpg","biere.jpg"].sample %>')"></div>
               <div class="product-infos-mobile">
-              <% if product.description.length > 36 %>
-                    <% product.description = product.description[0..35] %>
-              <% end %>
               <h4><%= @product ? product.name : 'Product name' %></h4>
               <p><%= @product ? product.description : 'Product description' %></p>
               <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
-              <label for="qte">Qte:</label>
-              <select id="qte">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="2">3</option>
-                <option value="2">4</option>
-              </select>
+              <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
               <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
-              <%= link_to new_basket_line_path(product.id), class: "add-basket" do %>
-                <%= icon('plus')%>
-                <%= icon('shopping-cart')%>
+              <%= link_to "#" do %>
+                <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
               <% end %>
               </div>
             </div>
@@ -116,7 +111,7 @@
             <p> <%=  render "shared/producer_review", elem: elem %> </p>
           <% end %>
         <% else %>
-          <p>No reviews yet</p>
+          <p id="noreview">No reviews yet</p>
         <% end %>
      </div>
       <% if policy(@producer).edit? %>

@@ -15,8 +15,7 @@ class ProducersController < ApplicationController
       session[:location] = params[:location]
     else
       @producers = Producer.near("#{params[:latitude]}, #{params[:longitude]}", 1000).limit(10)
-      session[:latitude] = params[:latitude]
-      session[:longitude] = params[:longitude]
+      session[:location] = "#{params[:latitude]}, #{params[:longitude]}"
       # Geocoder : by default, objects are ordered by distance.
     end
 
