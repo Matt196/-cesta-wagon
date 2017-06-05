@@ -32,6 +32,8 @@ class ProducersController < ApplicationController
 # Initialization reviews
     @producer_review = ProducerReview.new
     @producer_reviews = @producer.producer_reviews.sort_by {|elem| elem.create_user}[0..3]
+
+    @basket = BasketLine.new()
   end
 
   #-- METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#

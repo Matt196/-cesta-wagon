@@ -55,20 +55,16 @@
             <div class="product-info-box info-box-content info-box-group product-card">
               <div class="product-image"><img class="product-image" src="<%= image_path ["chicon.jpg","biere.jpg"].sample %>" /></div>
               <div class="product-infos">
-                <h4><%= @product ? product.name : 'Product name' %></h4>
-                <p><%= @product ? product.description : 'Product description' %></p>
-                <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
-                <label for="qte" class="label-qte">Qte:</label>
-                <select id="qte">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="2">3</option>
-                  <option value="2">4</option>
-                </select>
-                <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
-                <%= link_to "#" do %>
-                  <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
-                <% end %>
+              <h4><%= @product ? product.name : 'Product name' %></h4>
+              <p><%= @product ? product.description : 'Product description' %></p>
+              <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
+
+              <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
+
+              <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
+              <%= link_to "#" do %>
+                <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
+              <% end %>
               </div>
             </div>
           </div>
@@ -78,20 +74,14 @@
             <div class="product-info-box info-box-content info-box-group product-card-mobile">
             <div class="producer-image-in-producer-show" style="background-image: url('<%= image_path ["chicon.jpg","biere.jpg"].sample %>')"></div>
               <div class="product-infos-mobile">
-                <h4><%= @product ? product.name : 'Product name' %></h4>
-                <p><%= @product ? product.description : 'Product description' %></p>
-                <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
-                <label for="qte" class="all-qte">Qte:</label>
-                <select id="qte">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="2">3</option>
-                  <option value="2">4</option>
-                </select>
-                <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
-                <%= link_to "#" do %>
-                  <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
-                <% end %>
+              <h4><%= @product ? product.name : 'Product name' %></h4>
+              <p><%= @product ? product.description : 'Product description' %></p>
+              <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
+              <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
+              <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
+              <%= link_to "#" do %>
+                <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
+              <% end %>
               </div>
             </div>
           </div>
