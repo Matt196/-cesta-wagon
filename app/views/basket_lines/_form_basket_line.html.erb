@@ -1,28 +1,14 @@
-
-
 <%= simple_form_for basket, remote:true do |f| %>
-  <%= f.input :qte, label: :true, include_blank: false, collection:[1,2,3,4,5], input_html: { class: "w", "data-qte": product_id  } %>
-  <%= f.input :product_id, as: :hidden, input_html: { value: product_id}%>
+
   <% if params[:action] != "index" %>
+    <%= f.input :qte, label: :true, include_blank: false, collection:[1,2,3,4,5], input_html: { class: "select-size", "data-id": basket.id  } %>
+    <%= f.input :product_id, as: :hidden, input_html: { value: product_id}%>
     <%= button_to basket_lines_path, {class: 'btn btn-primary add-basket'}, {remote: true} do %>
       <%= icon('plus') %> Ajouter au panier
     <% end %>
+  <% else %>
+    <%= f.input :qte, label: :true, include_blank: false, collection:[1,2,3,4,5], input_html: { class: "select-price select-size", "data-id": basket.id  } %>
+    <%= f.input :product_id, as: :hidden, input_html: { value: product_id}%>
   <% end %>
 <% end %>
-
-
-
-<style>
-
-  .w{
-    width: 50px;
-  }
-</style>
-
-
-
-
-
-
-
 

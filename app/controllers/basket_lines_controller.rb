@@ -32,7 +32,7 @@ class BasketLinesController < ApplicationController
 
   private
     def params_basket
-      params.require(:basket_line).permit(:qte, :product_id)
+      params.require(:basket_line).permit(:qte, :product_id, :id)
     end
 
     def id_basket
