@@ -31,7 +31,6 @@ class BasketLinesController < ApplicationController
   def destroy
     authorize(@basket)
     @basket.destroy
->>>>>>> master
   end
 
   private
