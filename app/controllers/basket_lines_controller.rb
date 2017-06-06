@@ -12,6 +12,8 @@ class BasketLinesController < ApplicationController
     authorize(@basket)
     @basket = @basket.sort_by { |elem| elem.product.producer.name }
     @producers = @basket.uniq{|elem| elem.product.producer.name}
+    @products = @basket.map {|basketline| basketline.product}
+    @medal = Medal.new(@products).check_medals
   end
 
   def create

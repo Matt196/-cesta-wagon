@@ -12,13 +12,12 @@ Panier
             <hr class="line">
           </div>
         </div>
-      <% @basket.each do |elem| %>
+      <% @basket.each_with_index do |elem, index| %>
         <% if producer.product.producer.name == elem.product.producer.name %>
           <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2" >
               <div id="ajax<%= elem.id %>" class="product-info-box info-box-content info-box-group product-card">
-                <div class="product-image"><img class="product-image" src="<%= image_path ["chicon.jpg","biere.jpg"].sample %>" />
-                </div>
+                <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
                 <div class="product-infos">
                   <h4><%= @basket ? elem.product.name : 'Product name' %>
                   </h4>
@@ -46,9 +45,10 @@ Panier
       <div class="col-xs-12 col-sm-8 col-sm-offset-2" >
         <div class="product-info-box info-box-content info-box-group product-card">
           <div class="product-infos">
-            <div class=" pull-right btn btn-primary">
-              préparer ma commande
-            </div>
+              <form action="/order" method="get" class=" pull-right btn btn-primary">
+                <input type="hidden" name="producer" value="<%= producer.id%>">
+                <input type="submit" value="Préparer ma commande">
+              </form>
           </div>
         </div>
       </div>

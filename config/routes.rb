@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :basket_lines, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
+  get 'order', to: 'orders#validate_basket_per_producer'
+
   resources :products, only:[:index, :show, :edit, :update, :destroy]
 
   resources :producer_reviews, only:[:index, :show, :edit, :update, :destroy]

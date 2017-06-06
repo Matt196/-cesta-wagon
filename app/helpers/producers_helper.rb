@@ -1,6 +1,7 @@
 module ProducersHelper
   def display_producer_card(producer = nil)
     @producer = producer || Producer.first
+    @medals_sorted = Medal.new(@producer.products).single_medals_for_producer_card(@producer)
     render partial: "shared/producer_card"
   end
 

@@ -1,0 +1,23 @@
+Bonjour <%= @producer.name %>,
+
+  Vous venez de recevoir une demande de préparation de commande via Cesta. Voici le contenu :
+  <% total = 0 %>
+  <% @basket.each do |basket_line| %>
+
+    <%= basket_line.product.name %> - <%= basket_line.product.description[0..50] %>
+    Prix unitaire: <%= basket_line.product.price %> € - Qté:<%= basket_line.qte %>
+    Total pour cet article: <%= basket_line.product.price * basket_line.qte %> €
+
+    ------------------------------------------------------------------------------
+    <% total += basket_line.product.price * basket_line.qte %>
+  <% end %>
+
+  Total: <%= total %> €
+
+  Cette demande vous a été envoyée par <%= @user.first_name %> <%= @user.last_name %>, email: <%= @user.last_name %>, qui viendra la récupérer chez vous.
+
+  Cordialement
+
+  Cesta
+
+
