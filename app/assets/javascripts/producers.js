@@ -9,6 +9,7 @@ $(function() {
 
 function reloadProductList(event) {
   event.preventDefault();
+  $('#list-loader').removeClass('hidden');
   var uriParameters = $(this).serialize();
   history.pushState({}, {}, '?' + uriParameters);
   var url = "/producers?" + uriParameters;

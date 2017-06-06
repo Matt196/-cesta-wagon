@@ -11,7 +11,7 @@
           <div class="location-filter filter">
             <h5>A proximité de </h5>
             <div class="filter-body">
-              <input type="text" name="location" placeholder="Ex : Auvergne">
+              <input type="text" name="query_location" placeholder="Ex : Auvergne">
               <input type="submit" class="btn btn-primary" value="OK">
             </div>
           </div>
@@ -37,14 +37,10 @@
     </div>
 
 
-
-
-
-
-
-
-
     <div class="col-xs-12 col-md-9" id="producer-list">
+      <div id="list-loader" class="hidden">
+        <%= image_tag('loader', class: 'loader') %>
+      </div>
       <div class="row">
         <% @producers.each do |producer| %>
           <%= display_producer_card(producer) %>
@@ -54,5 +50,4 @@
   </div>
 </div>
 
-
-TO DO : AJOUTER RENDER USER LOCATION APRES AJOUT DES FILTRES
+<%= render 'find_user_location' %>

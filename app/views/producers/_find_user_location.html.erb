@@ -1,0 +1,71 @@
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+
+      // CALCULATE USER POSITION ON FIRST TIME DISPLAY
+
+      <% if @first_index_impression.blank? %>
+
+        var options = {
+          enableHighAccuracy: true, // position calculation accuracy
+          timeout: 5000, // request timeout delay
+          maximumAge: 0 // maximum age of cache position
+        };
+
+        // if user share position
+        function success(pos) {
+          document.cookie="geolocalized = true";
+          var latitude = pos.coords.latitude
+          var longitude = pos.coords.longitude
+          console.log('<%= producers_path %>?latitude='+latitude+'&longitude='+longitude)
+          window.location.href = '<%= producers_path %>?latitude='+latitude+'&longitude='+longitude;
+        };
+
+        // if not
+        function error(error) {
+          document.cookie="geolocalized = true";
+          console.warn(`ERROR(${error.code}): ${error.message}`);
+        };
+
+        // check GPS coordinates and trigger previous functions
+        navigator.geolocation.getCurrentPosition(success, error, options);
+      <% end %>
+
+      //CALCULATE DRIVING TIME TO PRODUCERS
+
+
+      // Puts producer coords in an array of string for Googlemaps Distance Matrix API :
+      <% destinations_producers = @producers.map do |producer| %>
+       <% "#{producer.latitude}, #{producer.longitude}" %>
+      <% end %>
+
+      // Puts user coords in an array of string for Googlemaps Distance Matrix API (if lat/lon unavailable, use location) :
+      <% origin_ruby = ["#{@session[:location]}"] %>
+
+      // REQUEST TO GOOGLE API with origin, destinations and options, DOM modified in callback function
+      var service = new google.maps.DistanceMatrixService();
+      service.getDistanceMatrix(
+        {
+          origins: <%= raw origin_ruby %>,
+          destinations: <%= raw destinations_producers %>,
+          travelMode: 'DRIVING',
+          avoidHighways: false,
+          avoidTolls: false,
+        }, callback);
+
+      function callback(response, status) {
+        if (status == 'OK') {
+          var origin = response.originAddresses[0];
+          var destinations = response.destinationAddresses;
+          var results = response.rows[0].elements;
+
+          for (var i = 0; i < results.length; i++) {
+            var element = results[i];
+            var duration = element.duration.text.replace(' minutes', 'min').replace(' heures ', 'h').replace(' heure ', 'h');
+            $('.producer-card-location').eq(i).append($('<span>').text(duration));
+          }
+        }
+      }
+    });
+  </script>
+<% end %>
