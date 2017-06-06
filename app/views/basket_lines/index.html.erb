@@ -24,7 +24,7 @@ Panier
                   </h4>
                   <table>
                     <tr>
-                      <td id="price">
+                      <td data-price = <%= elem.id %> >
                         <%= @basket ? "Prix: #{elem.product.price * elem.qte} €" : 'Product price' %>
                       </td>
                       <td>
