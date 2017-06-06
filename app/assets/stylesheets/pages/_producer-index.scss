@@ -1,0 +1,69 @@
+#producer-list {
+  position: relative;
+}
+
+#list-loader {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  bottom: 10px;
+  left: 15px;
+  background-color: white;
+  z-index: 1;
+  opacity: 0.8;
+  text-align: center;
+  img.loader {
+    margin-top: 25vh;
+    max-width: 90%;
+  }
+}
+
+#producer-filters {
+  background-color: white;
+  margin-top: 10px;
+  border: 1px solid $gray-lighter;
+  border-radius: $border-radius-base;
+  h4 {
+    color: $gray-light;
+    margin-bottom: 20px;
+  }
+}
+
+.filter {
+  margin-bottom: 15px;
+  h5 {
+    border-bottom: 1px solid $gray-lighter;
+    padding-bottom: 5px;
+  }
+}
+
+.filter-body {
+  input {
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+  label {
+    display: flex;
+    font-weight: lighter;
+  }
+}
+
+.location-filter {
+  .filter-body {
+    display: flex;
+    .btn {
+      margin: 0;
+      padding: 5px;
+    }
+  }
+  input {
+    margin-left: 10px;
+    border-radius: 2px;
+    border: 1px solid lightgrey;
+    padding: 5px 0px 5px 5px;
+    &::placeholder {
+      font-weight: lighter;
+    }
+  }
+}
+
