@@ -7,4 +7,5 @@
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
 //= require selectize
+//= require form
 //= require_tree .
