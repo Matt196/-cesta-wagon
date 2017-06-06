@@ -5,25 +5,37 @@ class ProducersController < ApplicationController
 
   def index
     store_session
+    results = ProducerFilter.new(params).filter
+    @producers = results[:producers]
+    @categories = results[:categories]
 
-    if params[:latitude].blank? & (params[:location].blank? || params[:location] == "null")
-      request.ip == "127.0.0.1" ? ip = "80.214.144.229" : ip = request.ip
-      @producers = Producer.near(ip, 1000).limit(10)
-      session[:location] = Geocoder.search(ip)[0].data["city"]
-    elsif params[:latitude].blank?
-      @producers = Producer.near(params[:location], 1000).limit(10)
-      session[:location] = params[:location]
-    else
-      @producers = Producer.near("#{params[:latitude]}, #{params[:longitude]}", 1000).limit(10)
-      session[:latitude] = params[:latitude]
-      session[:longitude] = params[:longitude]
-      # Geocoder : by default, objects are ordered by distance.
-    end
+    # Pseudo code for filter & sorter features
+    # Sort list of products by user query
+      # Input = list of products
+      # Output = sorted list of product
 
-    @hash = Gmaps4rails.build_markers(@producers) do |producer, marker|
-      marker.lat producer.latitude
-      marker.lng producer.longitude
-    end
+
+# CODE DE GUILLAUME A REACTIVER APRES AJOUT DES FILTRES
+    # if params[:latitude].blank? & (params[:location].blank? || params[:location] == "null")
+    #   request.ip == "127.0.0.1" ? ip = "80.214.144.229" : ip = request.ip
+    #   @producers = Producer.near(ip, 1000).limit(10)
+    #   session[:location] = Geocoder.search(ip)[0].data["city"]
+    # elsif params[:latitude].blank?
+    #   @producers = Producer.near(params[:location], 1000).limit(10)
+    #   session[:location] = params[:location]
+    # else
+    #   @producers = Producer.near("#{params[:latitude]}, #{params[:longitude]}", 1000).limit(10)
+    #   session[:latitude] = params[:latitude]
+    #   session[:longitude] = params[:longitude]
+    #   # Geocoder : by default, objects are ordered by distance.
+    # end
+# CODE DE GUILLAUME A REACTIVER APRES AJOUT DES FILTRS
+
+
+    # @hash = Gmaps4rails.build_markers(@producers) do |producer, marker|
+    #   marker.lat producer.latitude
+    #   marker.lng producer.longitude
+    # end
   end
 
   def show

@@ -1,3 +1,23 @@
+// Recharge la page producers avec les bons filtres
+$(function() {
+  $('#producer-filters form').on('change', reloadProductList);
+  $('#producer-filters form').on('submit', reloadProductList);
+  window.onpopstate = function(event) {
+    console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+  };
+});
+
+function reloadProductList(event) {
+  event.preventDefault();
+  var uriParameters = $(this).serialize();
+  history.pushState({}, {}, '?' + uriParameters);
+  var url = "/producers?" + uriParameters;
+  $.get(url, function(data) {
+    var $html = $(data).find('#producer-list');
+    $('#producer-list').html($html.html());
+  })
+}
+
 
 // à factoriser avec l'ajout de data-id dans le markup
 

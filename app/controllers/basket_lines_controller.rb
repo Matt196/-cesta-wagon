@@ -12,7 +12,7 @@ class BasketLinesController < ApplicationController
 
   def create
     @basket.create(
-      user: current_user
+      user: current_user,
       product: Product.find(params[:product_id])
     )
   end
