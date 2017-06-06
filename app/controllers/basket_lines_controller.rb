@@ -11,7 +11,8 @@ class BasketLinesController < ApplicationController
     @basket = BasketLine.where(user_id: current_user.id)
     authorize(@basket)
     @basket = @basket.sort_by { |elem| elem.product.producer.name }
-    @producers = @basket.uniq{|elem| elem.product.producer.name}
+
+    @producers = @basket.map{|elem| elem.product.producer}.uniq
     @products = @basket.map {|basketline| basketline.product}
     @medal = Medal.new(@products).check_medals
   end
@@ -34,7 +35,7 @@ class BasketLinesController < ApplicationController
 
   private
     def params_basket
-      params.require(:basket_line).permit(:qte, :product_id)
+      params.require(:basket_line).permit(:qte, :product_id, :id)
     end
 
     def id_basket

@@ -1,2 +1,18 @@
 
+
+
+
+
 $("#ajax<%= @basket.id %>").remove()
+listenselect();
+total();
+
+if($(".producer-group[data-id]").size() == 0){
+  $(".container.guidelines-instructions").append("<div class='row'> <div class='col-xs-12 text-center'> <br> Votre pannier est vide, retrouver tous nos produits </div> </div>");
+  $(".col-xs-12.text-center").append("<div></br> <%= j link_to 'cliquez-ici', root_path, class:'btn btn-primary add-basket' %> </div>");
+}
+
+
+
+
+

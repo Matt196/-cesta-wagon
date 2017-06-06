@@ -71,7 +71,7 @@
           <div class="product-infos">
             <h4><%= @product ? product.name : 'Product name' %></h4>
             <p><%= @product ? product.description : 'Product description' %></p>
-            <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
+            <p data-id = <%= product.id %> ><%= @product ? "Prix: #{product.price} € / unité" : 'Product price' %></p>
             <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
             <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
           </div>
@@ -89,7 +89,7 @@
           <div class="product-infos-mobile">
             <h4><%= @product ? product.name : 'Product name' %></h4>
             <p><%= @product ? product.description : 'Product description' %></p>
-            <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
+            <p data-id = <%= product.id %> ><%= @product ? "Prix: #{product.price} € / unité" : 'Product price' %></p>
             <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
             <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
           </div>
@@ -98,6 +98,8 @@
     <% end %>
   </div>
 </div>
+
+
 
 <!-- Separator -->
 <div class="container">
