@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  after_create :set_basket
+  # after_create :set_basket
 
   def index
   end

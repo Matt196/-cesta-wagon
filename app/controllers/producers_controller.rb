@@ -4,25 +4,12 @@ class ProducersController < ApplicationController
   skip_after_action :verify_authorized, only: [:create, :new]
 
   def index
-    store_session
-
-    if params[:latitude].blank? & (params[:location].blank? || params[:location] == "null")
-      request.ip == "127.0.0.1" ? ip = "80.214.144.229" : ip = request.ip
-      @producers = Producer.near(ip, 1000).limit(10)
-      session[:location] = Geocoder.search(ip)[0].data["city"]
-    elsif params[:latitude].blank?
-      @producers = Producer.near(params[:location], 1000).limit(10)
-      session[:location] = params[:location]
-    else
-      @producers = Producer.near("#{params[:latitude]}, #{params[:longitude]}", 1000).limit(10)
-      session[:location] = "#{params[:latitude]}, #{params[:longitude]}"
-      # Geocoder : by default, objects are ordered by distance.
-    end
-
-    @hash = Gmaps4rails.build_markers(@producers) do |producer, marker|
-      marker.lat producer.latitude
-      marker.lng producer.longitude
-    end
+    @first_index_impression = cookies["geolocalized"]
+    user_location = set_user_location
+    results = ProducerFilter.new(params, session).filter(user_location)
+    @producers = results[:producers]
+    @categories = results[:categories]
+    @session = session
   end
 
   def show
@@ -39,7 +26,6 @@ class ProducersController < ApplicationController
     @medal = Medal.new(@product).check_medals
   end
 
-  #-- METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
   def new
     @producer = Producer.new
   end
@@ -55,7 +41,7 @@ class ProducersController < ApplicationController
       render :new
     end
   end
-  #-- FIN : METHODES NEW ET CREATE POUR FACILITER LE DEBUGG, A SUPPRIMER QUAND MODEL PRODUCER TERMINE --#
+
   def edit
     authorize(@producer)
   end
@@ -95,18 +81,21 @@ class ProducersController < ApplicationController
       photos: [])
   end
 
+  def set_user_location
+    if cookies["geolocalized"]
+      user_location = session[:location]
+    elsif params[:latitude].blank?
+      request.ip == "127.0.0.1" ? ip = "80.214.144.229" : ip = request.ip
+      user_location = Geocoder.search(ip)[0].data["city"]
+    else
+      user_location = "#{params[:latitude]},#{params[:longitude]}"
+    end
+  end
+
   def params_producer_review
     params.require(:producer_review).permit(
       :content,
       :mark
     )
-  end
-
-  def store_session
-    if session[:location].present?
-      @location = session[:location]
-    elsif params[:location].present?
-      @location = params[:location]
-    end
   end
 end
