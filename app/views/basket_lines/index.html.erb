@@ -1,42 +1,34 @@
+
 <% content_for (:meta_title) do %>
 Panier
 <% end %>
 <div class="container guidelines-instructions">
-  <div class="row">
     <!-- TODO : ici on peut probablement refactoriser en utilisant la méthode reduce dans le controller-->
-    <% @producers.each do |producer| %>
-        <div class="row">
+  <% @producers.each do |producer| %>
+    <div class="row producer-group" data-id="<%= producer.id %>">
+        <div class="row producer" data-id="<%= producer.id %>">
           <div class="col-xs-12 col-sm-8 col-sm-offset-2 product-separator">
             <hr class="line">
-            <h1> <%= producer.product.producer.name %> </h1>
+            <h1> <%= producer.name %> </h1>
             <hr class="line">
           </div>
         </div>
-      <% @basket.each do |elem| %>
-        <% if producer.product.producer.name == elem.product.producer.name %>
+
+      <% @basket.each_with_index do |elem, index| %>
+        <% if producer.name == elem.product.producer.name %>
           <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2" >
               <div id="ajax<%= elem.id %>" class="product-info-box info-box-content info-box-group product-card">
-                <div class="product-image"><img class="product-image" src="<%= image_path ["chicon.jpg","biere.jpg"].sample %>" />
-                </div>
+                <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
                 <div class="product-infos">
                   <h4><%= @basket ? elem.product.name : 'Product name' %>
                   </h4>
-                  <table>
-                    <tr>
-                      <td id="price">
-                        <%= @basket ? "Prix: #{elem.product.price * elem.qte} €" : 'Product price' %>
-                      </td>
-                      <td>
-                        TOTAL
-                      </td>
-                    </tr>
-                  </table>
-
-<%= render 'basket_lines/form_basket_line', basket: elem, product_id: elem.product_id %>
-
-<%= link_to "Supprimer", basket_line_path(elem.id), method: :delete, remote:true %>
-
+                  <%= render 'basket_lines/form_basket_line', basket: elem, product_id: elem.product_id %>
+                  <ul class="list-inline">
+                    <li> <%= link_to "Supprimer", basket_line_path(elem.id), method: :delete, remote:true %> </li>
+                    <li data-id="<%= elem.id %>" data-producerid="<%= producer.id %>" class="basket-line-price"> <%= @basket ? "#{elem.product.price * elem.qte}" : 'Product price' %> </li>
+                    <li>€</li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -46,12 +38,17 @@ Panier
       <div class="col-xs-12 col-sm-8 col-sm-offset-2" >
         <div class="product-info-box info-box-content info-box-group product-card">
           <div class="product-infos">
-            <div class=" pull-right btn btn-primary">
-              préparer ma commande
-            </div>
+            <ul class="list-inline">
+              <li class="total" data-id="<%= producer.id %>" ></li>
+              <li>€</li>
+            </ul>
+            <form action="/order" method="get" class=" pull-right btn btn-primary">
+              <input type="hidden" name="producer" value="<%= producer.id%>">
+              <input type="submit" value="Préparer ma commande">
+            </form>
           </div>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

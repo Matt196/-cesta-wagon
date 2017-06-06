@@ -23,7 +23,7 @@ class ProducersController < ApplicationController
     @basket = BasketLine.new()
 
     # Build the array of products medals in text format, to be processed by html in view
-    @medal = check_medals(@product)
+    @medal = Medal.new(@product).check_medals
   end
 
   def new
@@ -97,30 +97,5 @@ class ProducersController < ApplicationController
       :content,
       :mark
     )
-  end
-
-
-  def check_medals(products)
-    #This method needs the medal files names in assets/images to remain unchanged
-    medal =[]
-    products.each do |product|
-      if product.product_awards.present?
-        if product.product_awards.name.include? "gold"
-          image = "gold_medal.png"
-          hidden = ""
-        elsif product.product_awards.name.include? "silver"
-          award = "silver_medal.png"
-          hidden = ""
-        else
-          award = "bronze_medal.png"
-          hidden = ""
-        end
-      else
-        award = "no-medal.png"
-        hidden = "hidden"
-      end
-      medal << [award, hidden]
-    end
-    medal
   end
 end

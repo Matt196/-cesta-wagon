@@ -1,8 +1,5 @@
-var qte = $('.form-control.cesta-input.select.optional.w').val();
-var price = 10
-var toto = qte * price
+$(".basket-line-price[data-id='<%= @basket.id %>']").text('<%= @basket.qte * @basket.product.price %>');
+$(document).trigger('price-changed');
 
 
 
-
-$('#price').empty().append( toto )
