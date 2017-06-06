@@ -2,12 +2,19 @@
   <%= @producer.name %>
 <% end %>
 
+<!-- Poducer large image banner and avatar -->
 <div class="producer-image-in-producer-show" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
         url('<%= producer_lg_img_path(@producer) %>')">
-  <img class="producer-avatar" src="<%= image_path "default-farmer-avatar.png" %>" />
+    <% if @producer.avatar? %>
+      <img class="producer-avatar-desktop hidden-xs hidden-sm" src="<%= cl_image_path(@producer.avatar.path)%>" />
+      <img class="producer-avatar-mobile hidden-md hidden-lg" src="<%= cl_image_path(@producer.avatar.path)%>" />
+    <% else %>
+      <img class="producer-avatar-desktop hidden-xs hidden-sm" src="<%= image_path "default-farmer-avatar.png" %>" />
+      <img class="producer-avatar-mobile hidden-md hidden-lg" src="<%= image_path "default-farmer-avatar.png" %>" />
+    <% end %>
 </div>
 
-
+<!-- Producer detailed infos  -->
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -19,17 +26,24 @@
           <p><%= @producer.description %></p>
           <p><%= @producer.address %> - <%= @producer.zipcode %> - <%= @producer.city %></p>
           <p><%= @producer.user.email%></p>
-          <% if @producer.phone.present? %>
-            <p><%= icon('phone') %> <%= @producer.mobile_phone %></p>
-          <% else %>
-            <p><%= icon('phone') %><%= @producer.phone %></p>
-          <% end  %>
+          <div class="producer-actions">
+            <% if @producer.mobile_phone.present? %>
+              <p><%= icon('phone') %> <%= @producer.mobile_phone %></p>
+            <% else %>
+              <p><%= icon('phone') %> <%= @producer.phone %></p>
+            <% end  %>
+            <% itinerary_url = "https://www.google.fr/maps/dir/"+session[:location]+"/"+@producer.latitude.to_s+",+"+@producer.longitude.to_s %>
+            <%= link_to itinerary_url , target: "_blank" do %>
+              <button class="btn btn-primary">Y aller ! <%= icon('car') %></button>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Separator -->
 <div class="container">
   <div class="row">
     <div class="col-xs-12 product-separator">
@@ -40,65 +54,58 @@
   </div>
 </div>
 
+<!-- PRODUCTS CARDS -->
 <div class="container guidelines-instructions">
   <div class="row">
-        <% @product.each do |product| %>
+        <% @product.each_with_index do |product, index| %>
 
-        <!-- PRODUCT CARD FOR DESKTOP -->
-          <div class="hidden-xs hidden-sm col-md-6 col-lg-6" >
-            <div class="product-info-box info-box-content info-box-group product-card">
-              <div class="product-image"><img class="product-image" src="<%= image_path ["chicon.jpg","biere.jpg"].sample %>" /></div>
-              <div class="product-infos">
-              <h4><%= @product ? product.name : 'Product name' %></h4>
-              <p><%= @product ? product.description[0...30] : 'Product description' %></p>
-              <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
-              <label for="qte">Qte:</label>
-              <select id="qte">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="2">3</option>
-                <option value="2">4</option>
-              </select>
-              <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
-              <%= link_to "#", class: "add-basket" do %>
-                <%= icon('plus')%>
-                <%= icon('shopping-cart')%>
-              <% end %>
-              </div>
-            </div>
+    <!-- PRODUCT CARD FOR DESKTOP -->
+      <div class="hidden-xs hidden-sm col-md-6 col-lg-6" >
+        <div class="product-info-box info-box-content info-box-group product-card">
+          <% unless product.photos.blank? %>
+            <img class="product-image" src="<%= cl_image_path product.photos.first.path %>" />
+          <% else %>
+            <img class="product-image" src="<%= image_path "default_product.jpg" %>" />
+          <% end %>
+
+          <div class="product-infos">
+            <h4><%= @product ? product.name : 'Product name' %></h4>
+            <p><%= @product ? product.description : 'Product description' %></p>
+            <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
+            <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
+            <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
+            <%= link_to "#" do %>
+              <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
+            <% end %>
           </div>
+        </div>
+      </div>
 
-          <!-- PRODUCT CARD FOR MOBILE -->
-          <div class="col-xs-12 col-sm-12 hidden-md hidden-lg" >
-            <div class="product-info-box info-box-content info-box-group product-card-mobile">
-            <div class="producer-image-in-producer-show" style="background-image: url('<%= image_path ["chicon.jpg","biere.jpg"].sample %>')"></div>
-              <div class="product-infos-mobile">
-              <% if product.description.length > 36 %>
-                    <% product.description = product.description[0..35] %>
-              <% end %>
-              <h4><%= @product ? product.name : 'Product name' %></h4>
-              <p><%= @product ? product.description : 'Product description' %></p>
-              <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
-              <label for="qte">Qte:</label>
-              <select id="qte">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="2">3</option>
-                <option value="2">4</option>
-              </select>
-              <img class="award-lg" src="<%= image_path 'gold_medal.png' %>" />
-              <%= link_to "#", class: "add-basket" do %>
-                <%= icon('plus')%>
-                <%= icon('shopping-cart')%>
-              <% end %>
-              </div>
-            </div>
+      <!-- PRODUCT CARD FOR MOBILE -->
+      <div class="col-xs-12 col-sm-12 hidden-md hidden-lg" >
+        <div class="product-info-box info-box-content info-box-group product-card-mobile">
+          <% unless product.photos.blank? %>
+            <img class="product-image-mobile" src="<%= cl_image_path product.photos.first.path %>" />
+          <% else %>
+            <img class="product-image-mobile" src="<%= image_path "default_product.jpg" %>" />
+          <% end %>
+          <div class="product-infos-mobile">
+            <h4><%= @product ? product.name : 'Product name' %></h4>
+            <p><%= @product ? product.description : 'Product description' %></p>
+            <p><%= @product ? "Prix: #{product.price} €" : 'Product price' %></p>
+            <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
+            <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
+            <%= link_to "#" do %>
+              <button class="btn btn-primary add-basket"><%= icon('plus')%> Ajouter au panier</button>
+            <% end %>
           </div>
-
-        <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
+<!-- Separator -->
 <div class="container">
   <div class="row">
     <div class="col-xs-12 product-separator">
@@ -120,7 +127,7 @@
             <p> <%=  render "shared/producer_review", elem: elem %> </p>
           <% end %>
         <% else %>
-          <p>No reviews yet</p>
+          <p id="noreview">No reviews yet</p>
         <% end %>
      </div>
       <% if policy(@producer).edit? %>

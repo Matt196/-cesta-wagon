@@ -1,8 +1,10 @@
 
 ProducerAward.destroy_all
+ProducerReview.destroy_all
+Product.destroy_all
 Producer.destroy_all
 User.destroy_all
-Product.destroy_all
+
 
 # --------------SCRAPER PRODUCER without PHOTOS--------------------
 
@@ -36,7 +38,7 @@ scrapper.scrap.each do |data|
     year: year
   )
 
-  sleep(3)
+  # sleep(3)
 end
 
 # --------------ADD 3 products to PRODUCER without PHOTOS--------------------
@@ -54,10 +56,14 @@ Producer.all.each do |elem|
   end
 end
 
-# --------------ADD main photo to PRODUCER --------------------
-Producer.all.each do |producer|
-  if AUTHORIZED_CATEGORIES.key?(producer.category) # useful for partial seeds
-    urls = [AUTHORIZED_CATEGORIES[producer.category][:cat_pic_url]]
-    producer.photo_urls = urls
-  end
+Product.all.each do |product|
+  ProductAward.new(name: ["gold", "silver", "bronze"].sample, year:"2017", product: product)
 end
+
+# --------------ADD main photo to PRODUCER --------------------
+# Producer.all.each do |producer|
+#   if AUTHORIZED_CATEGORIES.key?(producer.category) # useful for partial seeds
+#     urls = [AUTHORIZED_CATEGORIES[producer.category][:cat_pic_url]]
+#     producer.photo_urls = urls
+#   end
+# end

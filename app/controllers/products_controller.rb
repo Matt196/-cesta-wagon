@@ -12,7 +12,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -26,7 +25,7 @@ class ProductsController < ApplicationController
     authorize (@product)
 
     if @product.save
-      redirect_to profile_path, notice: "thanks to your new product"
+      redirect_to profile_path, notice: "Product added to your profile"
     else
       render :new
     end

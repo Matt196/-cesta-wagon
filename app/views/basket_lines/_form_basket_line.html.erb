@@ -1,0 +1,29 @@
+
+
+<%= simple_form_for basket, remote:true do |f| %>
+  <%= f.input :qte, label: :true, include_blank: false, collection:[1,2,3,4,5], input_html: { class: "w" } %>
+  <%= f.input :product_id, as: :hidden, input_html: { value: product_id}%>
+
+  <% if params[:action] != "index" %>
+    <button type="submit" class="btn btn-primary add-basket">
+      <%= icon('plus') %> Ajouter au panier
+    </button>
+  <% end %>
+<% end %>
+
+
+
+<style>
+
+  .w{
+    width: 50px;
+  }
+</style>
+
+
+
+
+
+
+
+
