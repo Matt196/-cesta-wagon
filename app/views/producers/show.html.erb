@@ -62,14 +62,9 @@
     <!-- PRODUCT CARD FOR DESKTOP -->
       <div class="hidden-xs hidden-sm col-md-6 col-lg-6" >
         <div class="product-info-box info-box-content info-box-group product-card">
-          <% unless product.photos.blank? %>
-            <img class="product-image" src="<%= cl_image_path product.photos.first.path %>" />
-          <% else %>
-            <img class="product-image" src="<%= image_path "default_product.jpg" %>" />
-          <% end %>
-
+          <img class="product-image" src="<%= product_img_path(product) %>" />
           <div class="product-infos">
-            <h4><%= @product ? product.name : 'Product name' %></h4>
+            <h4><%= @product ? product.name.capitalize : 'Product name' %></h4>
             <p><%= @product ? product.description : 'Product description' %></p>
             <p data-id = <%= product.id %> ><%= @product ? "Prix: #{product.price} € / unité" : 'Product price' %></p>
             <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
@@ -81,13 +76,9 @@
       <!-- PRODUCT CARD FOR MOBILE -->
       <div class="col-xs-12 col-sm-12 hidden-md hidden-lg" >
         <div class="product-info-box info-box-content info-box-group product-card-mobile">
-          <% unless product.photos.blank? %>
-            <img class="product-image-mobile" src="<%= cl_image_path product.photos.first.path %>" />
-          <% else %>
-            <img class="product-image-mobile" src="<%= image_path "default_product.jpg" %>" />
-          <% end %>
+          <img class="product-image-mobile" src="<%= product_img_path(product) %>"/>
           <div class="product-infos-mobile">
-            <h4><%= @product ? product.name : 'Product name' %></h4>
+            <h4><%= @product ? product.name.capitalize : 'Product name' %></h4>
             <p><%= @product ? product.description : 'Product description' %></p>
             <p data-id = <%= product.id %> ><%= @product ? "Prix: #{product.price} € / unité" : 'Product price' %></p>
             <%= render 'basket_lines/form_basket_line', basket: @basket, product_id: product.id %>
