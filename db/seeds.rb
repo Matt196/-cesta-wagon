@@ -1,4 +1,5 @@
 
+BasketLine.destroy_all
 ProducerAward.destroy_all
 ProducerReview.destroy_all
 Product.destroy_all
@@ -67,7 +68,7 @@ Product.all.each do |product|
   puts product.product_awards.first.name
 end
 
---------------ADD main photo to PRODUCER --------------------
+# --------------ADD main photo to PRODUCER --------------------
 Producer.all.each do |producer|
   if AUTHORIZED_CATEGORIES.key?(producer.category) # useful for partial seeds
     urls = [AUTHORIZED_CATEGORIES[producer.category][:cat_pic_url]]
