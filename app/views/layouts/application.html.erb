@@ -35,8 +35,9 @@
     <% end %>
 
     <%= render 'shared/navbar' %>
-
-    <%= yield %>
+    <div class="min-height-page">
+      <%= yield %>
+    </div>
     <%= render 'shared/footer' %>
 
     <!-- Geocode start-->

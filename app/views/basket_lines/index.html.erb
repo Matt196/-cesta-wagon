@@ -18,37 +18,38 @@ Panier
         <% if producer.name == elem.product.producer.name %>
           <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2" >
-              <div id="ajax<%= elem.id %>" class="product-info-box info-box-content info-box-group product-card">
-                <img class="award-lg <%= @medal[index][1]%>" src="<%= image_path @medal[index][0] %>" />
-                <div class="product-infos">
-                  <h4><%= @basket ? elem.product.name : 'Product name' %>
-                  </h4>
-                  <%= render 'basket_lines/form_basket_line', basket: elem, product_id: elem.product_id %>
+              <div id="ajax<%= elem.id %>" class="product-info-box product-card product-order">
+                  <img class="product-image" src="<%= product_img_path(elem.product) %>" />
+                  <h4 class="order"><%= @basket ? elem.product.name.capitalize : 'Product name' %></h4>
+                  <div class="order-qte">
+                    <span>Qté</span>
+                    <%= render 'basket_lines/form_basket_line', basket: elem, product_id: elem.product_id %>
+                  </div>
                   <ul class="list-inline">
-                    <li> <%= link_to "Supprimer", basket_line_path(elem.id), method: :delete, remote:true %> </li>
                     <li data-id="<%= elem.id %>" data-producerid="<%= producer.id %>" class="basket-line-price"> <%= @basket ? "#{elem.product.price * elem.qte}" : 'Product price' %> </li>
                     <li>€</li>
+                    <li> <%= link_to "Supprimer", basket_line_path(elem.id), method: :delete, remote:true %> </li>
                   </ul>
-                </div>
               </div>
             </div>
           </div>
         <% end %>
       <% end %>
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2" >
-        <div class="product-info-box info-box-content info-box-group product-card">
-          <div class="product-infos">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 order-container" >
+        <div class="product-info-box order-box">
             <ul class="list-inline">
+              <li>Total pour <%=producer.name %> :</li>
               <li class="total" data-id="<%= producer.id %>" ></li>
-              <li>€</li>
+              <li class="euro">€</li>
             </ul>
-            <form action="/order" method="get" class=" pull-right btn btn-primary">
+            <form action="/order" method="get">
               <input type="hidden" name="producer" value="<%= producer.id%>">
-              <input type="submit" value="Préparer ma commande">
+              <button type="submit" class="pull-right btn btn-primary order">
+                <i class="fa fa-envelope"></i> Préparer ma commande
+              </button>
             </form>
           </div>
         </div>
-      </div>
     </div>
   <% end %>
 </div>
