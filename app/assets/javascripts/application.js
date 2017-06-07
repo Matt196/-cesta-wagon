@@ -9,3 +9,8 @@
 //= require selectize
 //= require form
 //= require_tree .
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
