@@ -1,7 +1,9 @@
 module ProductsHelper
-  def product_img_path(product)
-    if product.photos?
+  def product_img_path(product = nil)
+    if product && product.photos?
       cl_image_path product.photos.first.path
+    elsif product && PRODUCT_IMAGES_PATH[product.name].present?
+      image_path("#{PRODUCT_IMAGES_PATH[product.name]}")
     else
       image_path('default_product.jpg')
     end

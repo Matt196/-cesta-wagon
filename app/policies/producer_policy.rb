@@ -1,7 +1,11 @@
 class ProducerPolicy < ApplicationPolicy
 
   def edit?
-    user.is_a?(User)
+    user.is_a?(User) &&
+    user.producer.present? ? record.id != user.producer.id : true &&
+    validate_uniqueness_review if user.is_a?(User)
+
+
   end
 
   def update?
@@ -11,6 +15,21 @@ class ProducerPolicy < ApplicationPolicy
   def destroy?
     user == record.user || user.admin?
   end
+
+
+  def validate_uniqueness_review
+    if record.producer_reviews.present?
+      tt = record.producer_reviews.map do |elem|
+        elem.user_id
+      end
+      !tt.uniq.include?(user.id)
+    else
+      true
+    end
+  end
+
+
+
 
   class Scope < Scope
     def resolve

@@ -1,0 +1,20 @@
+
+<% if @basket.errors.messages.present? %>
+
+  $(".alert").remove()
+  $("[data-flash]").before("<div class='alert'>gg</div>")
+  $("[data-flash='<%= @basket.product_id %>']").prev().remove()
+  $("[data-flash='<%= @basket.product_id %>']").before("<%= j render 'shared/flash', elem: @basket.errors.messages[:product_id][0] %>")
+
+
+<% else %>
+
+  $(".alert").remove()
+
+
+
+<% end %>
+
+
+
+

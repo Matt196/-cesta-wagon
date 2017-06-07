@@ -1,3 +1,11 @@
-$('#ajaxid').prepend('<p> <%= j render "shared/producer_review", elem: @producer_review %> </p>');
 
+<% if @producer_review.errors.messages.present? %>
+
+<% else %>
+$('#ajaxid').prepend('<p> <%= j render "shared/producer_review", elem: @producer_review %> </p>');
 $('#noreview').remove()
+$('#form-review').remove()
+<% end %>
+
+
+
