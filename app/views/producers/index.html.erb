@@ -2,12 +2,13 @@
   Cesta Producteurs
 <% end %>
 
-<div class="container page-content">
+<div class="container">
   <div class="hidden-md hidden-lg">
     <button class="btn btn-primary" style="width: 100%">
       FILTRER
     </button>
   </div>
+
   <div class="row">
     <div class="hidden-xs hidden-sm col-md-3" id="producer-filters">
       <div class="producer-filters-content">
@@ -46,7 +47,7 @@
       <div id="list-loader" class="hidden">
         <%= image_tag('loader', class: 'loader') %>
       </div>
-      <div class="row" id='cards' data-location=<%=@session[:location] %>>
+      <div class="row" id='cards' data-location="<%= @session[:location] %>">
         <% @producers.each do |producer| %>
           <%= display_producer_card(producer) %>
         <% end %>
@@ -55,6 +56,14 @@
   </div>
 </div>
 
-<div id="mobile-filter" class="hidden-md hidden-lg">
-
+<div id="mobile-filter-container" class="hidden-md hidden-lg slideInUp animated">
+  <div id="mobile-filter-title">
+    Titre des filtres
+  </div>
+  <div id="mobile-filter-body">
+    Contenu des filtres
+  </div>
+  <div id="mobile-filter-footer">
+    Footer des filtres
+  </div>
 </div>
