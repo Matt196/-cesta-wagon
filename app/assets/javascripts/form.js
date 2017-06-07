@@ -1,7 +1,26 @@
+
+
+// function close(){
+//   $('.close').on('click', function(){
+//     $('[data-flash]').prev().remove();
+//   });
+// };
+
+
 $(document).ready(function() {
   listenselect();
   total();
 });
+
+$(document).ready(function(){
+    // $('body').on('click',function(event){
+    //     close();
+    // });
+  $('body').on('click', '.close', function() {
+    $('[data-flash]').prev().remove();
+  });
+});
+
 
 
 $(document).on("price-changed",function() {
@@ -36,3 +55,6 @@ function total(){
     }
   });
 };
+
+
+
