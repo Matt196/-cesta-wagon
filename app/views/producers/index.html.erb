@@ -46,7 +46,7 @@
       <div id="list-loader" class="hidden">
         <%= image_tag('loader', class: 'loader') %>
       </div>
-      <div class="row">
+      <div class="row" id='cards' data-location=<%=@session[:location] %>>
         <% @producers.each do |producer| %>
           <%= display_producer_card(producer) %>
         <% end %>

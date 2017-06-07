@@ -16,8 +16,44 @@ function reloadProductList(event) {
   $.get(url, function(data) {
     var $html = $(data).find('#producer-list');
     $('#producer-list').html($html.html());
-  })
+  });
 }
+
+function displayDistanceFromUserLocation() {
+  var userLocation = $('#cards').data('location');
+  var producersLocation = [];
+  $.each($('.producer-card'), function(index, value) {
+    producersLocation.push($(this).data('latitude') + ', ' + $(this).data('longitude'));
+  });
+  getDistanceFromGmapAPI(userLocation, producersLocation);
+}
+
+function getDistanceFromGmapAPI(userLocation, producersLocation) {
+  var service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [userLocation],
+      destinations: producersLocation,
+      travelMode: 'DRIVING',
+      avoidHighways: false,
+      avoidTolls: false,
+    }, callback);
+}
+
+function callback(response, status) {
+  if (status == 'OK') {
+    var origin = response.originAddresses[0];
+    var destinations = response.destinationAddresses;
+    var results = response.rows[0].elements;
+
+    for (var i = 0; i < results.length; i++) {
+      var element = results[i];
+      var duration = element.duration.text.replace(' minutes', 'min').replace(' heures ', 'h').replace(' heure ', 'h');
+      $('.producer-card-location').eq(i).append($('<span>').text(duration));
+    }
+  }
+}
+
 
 
 // à factoriser avec l'ajout de data-id dans le markup

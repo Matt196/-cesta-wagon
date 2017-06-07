@@ -1,5 +1,5 @@
 <div class="col-xs-12 col-sm-6" >
-  <div class="producer-card">
+  <div class="producer-card" data-latitude=<%= @producer.latitude %> data-longitude=<%= @producer.longitude %>>
     <%= link_to producer_path(@producer) do %>
       <div class="producer-card-img" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
         url('<%= producer_img_path(@producer) %>')">
