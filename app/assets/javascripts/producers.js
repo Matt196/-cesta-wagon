@@ -1,11 +1,16 @@
 // Recharge la page producers avec les bons filtres
 $(function() {
-  $('#producer-filters form').on('change', reloadProductList);
   $('#producer-filters form').on('submit', reloadProductList);
+  $('#producer-filters [type="checkbox"], #producer-filters [type="radio"]').on('change', function() {
+    $(this).closest('form').submit();
+  });
+  // $('#producer-filters form').on('', reloadProductList);
   window.onpopstate = function(event) {
     console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
   };
 });
+
+$(document).on('ready ajaxComplete', displayDistanceFromUserLocation);
 
 function reloadProductList(event) {
   event.preventDefault();
@@ -13,7 +18,7 @@ function reloadProductList(event) {
   var uriParameters = $(this).serialize();
   history.pushState({}, {}, '?' + uriParameters);
   var url = "/producers?" + uriParameters;
-  $.get(url, function(data) {
+  request = $.get(url, function(data) {
     var $html = $(data).find('#producer-list');
     $('#producer-list').html($html.html());
   });
