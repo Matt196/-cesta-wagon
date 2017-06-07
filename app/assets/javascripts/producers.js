@@ -16,7 +16,7 @@ function reloadProductList(event) {
   event.preventDefault();
   $('#list-loader').removeClass('hidden');
   var uriParameters = $(this).serialize();
-  history.pushState({}, {}, '?' + uriParameters);
+  history.pushState({}, {}, '?' + uriParameters); // met à jour l'url avec les paramètres de la recherche
   var url = "/producers?" + uriParameters;
   request = $.get(url, function(data) {
     var $html = $(data).find('#producer-list');

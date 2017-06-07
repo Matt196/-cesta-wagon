@@ -1,45 +1,46 @@
 
-# ProducerAward.destroy_all
-# ProducerReview.destroy_all
-# Product.destroy_all
-# Producer.destroy_all
-# User.destroy_all
+ProducerAward.destroy_all
+ProducerReview.destroy_all
+Product.destroy_all
+Producer.destroy_all
+User.destroy_all
 
 
-# # --------------SCRAPER PRODUCER without PHOTOS--------------------
+# --------------SCRAPER PRODUCER without PHOTOS--------------------
 
-# year = 2016
-# scrapper = Scrapper::ConcoursAgricoleScrapper.new(year: year.to_s)
-# scrapper.scrap.each do |data|
+year = 2016
+scrapper = Scrapper::ConcoursAgricoleScrapper.new(year: year.to_s)
+scrapper.scrap.each do |data|
 
-#   user = User.create(
-#     email: data[:company_email],
-#     first_name: data[:name],
-#     last_name: data[:zipcode],
-#     password: "password"
-#   )
+  user = User.create(
+    email: data[:company_email],
+    first_name: data[:name],
+    last_name: data[:zipcode],
+    password: "password"
+  )
 
 
-#   producer = Producer.create(
-#     name: data[:name],
-#     address: data[:address],
-#     zipcode: data[:zipcode],
-#     city: data[:city],
-#     description: data[:description],
-#     phone: data[:phone],
-#     company_email: data[:company_email],
-#     category: data[:category],
-#     user: user
-#   )
+  producer = Producer.create(
+    name: data[:name],
+    address: data[:address],
+    zipcode: data[:zipcode],
+    city: data[:city],
+    description: data[:description],
+    phone: data[:phone],
+    company_email: data[:company_email],
+    category: data[:category],
+    user: user
+  )
 
-#   ProducerAward.create(
-#     producer: producer,
-#     name: data[:medaille],
-#     year: year
-#   )
+  ProducerAward.create(
+    producer: producer,
+    name: data[:medaille],
+    year: year
+  )
 
-#   # sleep(3)
-# end
+  sleep(3)
+end
+
 
 # # --------------SCRAPER PRODUCER without PHOTOS--------------------
 
@@ -66,13 +67,13 @@ Product.all.each do |product|
   puts product.product_awards.first.name
 end
 
-# --------------ADD main photo to PRODUCER --------------------
-# Producer.all.each do |producer|
-#   if AUTHORIZED_CATEGORIES.key?(producer.category) # useful for partial seeds
-#     urls = [AUTHORIZED_CATEGORIES[producer.category][:cat_pic_url]]
-#     producer.photo_urls = urls
-#   end
-# end
+--------------ADD main photo to PRODUCER --------------------
+Producer.all.each do |producer|
+  if AUTHORIZED_CATEGORIES.key?(producer.category) # useful for partial seeds
+    urls = [AUTHORIZED_CATEGORIES[producer.category][:cat_pic_url]]
+    producer.photo_urls = urls
+  end
+end
 
 # --------------ADD 3 random rewiew to PRODUCER ----------------
 nice_user = User.create(
