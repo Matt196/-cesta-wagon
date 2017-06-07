@@ -4,7 +4,7 @@
 
 <div class="container page-content">
   <div class="hidden-md hidden-lg">
-    <button class="btn btn-primary" style="width: 100%">
+    <button id="mobile-filter-show" class="btn btn-primary" style="width: 100%">
       FILTRER
     </button>
   </div>
@@ -56,14 +56,41 @@
   </div>
 </div>
 
-<div id="mobile-filter-container" class="hidden-md hidden-lg slideInUp animated">
+<div id="mobile-filter-container" class="hidden-md hidden-lg">
   <div id="mobile-filter-title">
     Titre des filtres
   </div>
   <div id="mobile-filter-body">
-    Contenu des filtres
+    <form action="/producers" method='get'>
+      <div class="location-filter filter">
+        <h5>A proximité de </h5>
+        <div class="filter-body">
+          <input type="text" name="query_location" placeholder="Ex : Auvergne">
+          <input type="submit" class="btn btn-primary" value="OK">
+        </div>
+      </div>
+      <div class="category-filter filter">
+        <h5>Categories</h5>
+        <div class="filter-body">
+          <% @categories.each do |category| %>
+            <label><input type="checkbox" name="categories[]" value="<%= category %>"><%= category %></label>
+          <% end %>
+        </div>
+      </div>
+      <div class="mark-filter filter">
+        <h5>Notes moyennes</h5>
+        <div class="filter-body">
+           <label><input type="radio" name="mark" value="5">5</label>
+          <% [4, 3, 2, 1].each do |mark| %>
+            <label><input type="radio" name="mark" value=<%= mark %>><%= mark %> et +</label>
+          <% end %>
+        </div>
+      </div>
+    </form>
   </div>
   <div id="mobile-filter-footer">
-    Footer des filtres
+    <button id="mobile-filter-hide" class="btn btn-primary" style="width: 100%">
+      ACTIVER LES FILTRES
+    </button>
   </div>
 </div>
