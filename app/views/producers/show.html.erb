@@ -1,5 +1,5 @@
 <% content_for (:meta_title) do %>
-  <%= @producer.name %>
+  Cesta.top - Retrouvez tous les producteurs locaux autour de vous - <%= @producer.name %>
 <% end %>
 
 <!-- Poducer large image banner and avatar -->
@@ -15,6 +15,7 @@
 </div>
 
 <!-- Producer detailed infos  -->
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -61,7 +62,7 @@
 
     <!-- PRODUCT CARD FOR DESKTOP -->
       <div class="hidden-xs hidden-sm col-md-6 col-lg-6" >
-        <div class="product-info-box info-box-content info-box-group product-card">
+        <div class="product-info-box info-box-content info-box-group product-card" data-flash="<%= product.id %>">
           <% unless product.photos.blank? %>
             <img class="product-image" src="<%= cl_image_path product.photos.first.path %>" />
           <% else %>
@@ -127,7 +128,7 @@
         <% end %>
      </div>
       <% if policy(@producer).edit? %>
-        <div class="product-info-box info-box-content info-box-group">
+        <div id="form-review" class="product-info-box info-box-content info-box-group">
           <%= render 'shared/form_reviews.html' %>
         </div>
      <% end %>
