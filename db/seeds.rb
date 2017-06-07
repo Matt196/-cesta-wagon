@@ -1,7 +1,7 @@
 
-ProducerAward.destroy_all
+# ProducerAward.destroy_all
 # ProducerReview.destroy_all
-Product.destroy_all
+# Product.destroy_all
 # Producer.destroy_all
 # User.destroy_all
 
@@ -41,9 +41,7 @@ Product.destroy_all
 #   # sleep(3)
 # end
 
-# --------------ADD 3 products to PRODUCER without PHOTOS--------------------
-# url = "http://lorempixel.com/800/600/city/"
-
+# # --------------SCRAPER PRODUCER without PHOTOS--------------------
 
 Producer.all.each do |producer|
   rand(1..4).times do
@@ -75,3 +73,56 @@ end
 #     producer.photo_urls = urls
 #   end
 # end
+
+# --------------ADD 3 random rewiew to PRODUCER ----------------
+nice_user = User.create(
+  email: "nice_user1@cesta.top",
+  first_name: 'Brice',
+  last_name: 'De Nice',
+  password: "password"
+)
+
+avg_user = User.create(
+  email: "avg_user1@cesta.top",
+  first_name: 'Jean',
+  last_name: 'Dupont',
+  password: "password"
+)
+
+bad_user = User.create(
+  email: "nice_user1@cesta.top",
+  first_name: 'Docteur',
+  last_name: 'House',
+  password: "password"
+)
+
+users = [nice_user, avg_user, bad_user]
+
+reviews = [
+  {
+    content: "Super producteur local. Les spécialités sont faites maison par la grand-mère du patron. Expérience incroyable.",
+    mark: 5
+  },
+  {
+    content: "Certains produits sont bons, d'autres produits ne sont pas bons. Le producteur est parfois sympa, parfois non.",
+    mark: 3
+  },
+  {
+    content:   "Une expérience intéressante qui m'a un peu laissé sur ma faim. Et un peu nostalgique de la cuisine de ma grand mère",
+    mark: 1
+  }
+]
+
+Producer.all.each do |prod|
+  users.each do |user|
+    random_review = reviews.sample
+    ProducerReview.create(
+      user: user,
+      producer: prod,
+      content: random_review[:content],
+      mark: random_review[:mark]
+    )
+  end
+end
+
+

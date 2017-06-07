@@ -1,11 +1,16 @@
 // Recharge la page producers avec les bons filtres
 $(function() {
-  $('#producer-filters form').on('change', reloadProductList);
   $('#producer-filters form').on('submit', reloadProductList);
+  $('#producer-filters [type="checkbox"], #producer-filters [type="radio"]').on('change', function() {
+    $(this).closest('form').submit();
+  });
+  // $('#producer-filters form').on('', reloadProductList);
   window.onpopstate = function(event) {
     console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
   };
 });
+
+$(document).on('ready ajaxComplete', displayDistanceFromUserLocation);
 
 function reloadProductList(event) {
   event.preventDefault();
@@ -13,11 +18,47 @@ function reloadProductList(event) {
   var uriParameters = $(this).serialize();
   history.pushState({}, {}, '?' + uriParameters);
   var url = "/producers?" + uriParameters;
-  $.get(url, function(data) {
+  request = $.get(url, function(data) {
     var $html = $(data).find('#producer-list');
     $('#producer-list').html($html.html());
-  })
+  });
 }
+
+function displayDistanceFromUserLocation() {
+  var userLocation = $('#cards').data('location');
+  var producersLocation = [];
+  $.each($('.producer-card'), function(index, value) {
+    producersLocation.push($(this).data('latitude') + ', ' + $(this).data('longitude'));
+  });
+  getDistanceFromGmapAPI(userLocation, producersLocation);
+}
+
+function getDistanceFromGmapAPI(userLocation, producersLocation) {
+  var service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [userLocation],
+      destinations: producersLocation,
+      travelMode: 'DRIVING',
+      avoidHighways: false,
+      avoidTolls: false,
+    }, callback);
+}
+
+function callback(response, status) {
+  if (status == 'OK') {
+    var origin = response.originAddresses[0];
+    var destinations = response.destinationAddresses;
+    var results = response.rows[0].elements;
+
+    for (var i = 0; i < results.length; i++) {
+      var element = results[i];
+      var duration = element.duration.text.replace(' minutes', 'min').replace(' heures ', 'h').replace(' heure ', 'h');
+      $('.producer-card-location').eq(i).append($('<span>').text(duration));
+    }
+  }
+}
+
 
 
 // à factoriser avec l'ajout de data-id dans le markup
