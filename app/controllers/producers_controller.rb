@@ -3,6 +3,8 @@ class ProducersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   skip_after_action :verify_authorized, only: [:create, :new]
 
+
+
   def index
     @first_index_impression = cookies["geolocalized"]
     user_location = set_user_location
@@ -18,8 +20,7 @@ class ProducersController < ApplicationController
 
     # Initialization reviews
     @producer_review = ProducerReview.new
-    @producer_reviews = @producer.producer_reviews.sort_by {|elem| elem.create_user}[0..3]
-
+    @producer_reviews = @producer.producer_reviews.order('created_at ASC')[0..3]
     @basket = BasketLine.new()
 
     # Build the array of products medals in text format, to be processed by html in view

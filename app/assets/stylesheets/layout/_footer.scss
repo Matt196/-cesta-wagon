@@ -1,5 +1,25 @@
 footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   background-color: $gray-dark;
-  height: 500px;
-  margin-top: 50px;
+  height: 100px;
+
+  .fa-home{
+    color: $ch-green-medium-pale;
+    font-size: 30px;
+    margin-right: 20px;
+  }
+
+  .fa-envelope{
+    color: $ch-green-medium-pale;
+    font-size: 27px;
+    margin-right: 20px;
+  }
+
+  h4 {
+    color: $ch-green-medium-pale;
+    margin-left: 20px;
+  }
 }

@@ -14,8 +14,8 @@
           <hr>
           <div class="info-box-group">
             <h5>Vous</h5>
-            <p><span class="light-text">First name:</span> <%= current_user.first_name %></p>
-            <p><span class="light-text">Last name:</span> <%= current_user.last_name %></p>
+            <p><span class="light-text">First name:</span> <%= current_user.first_name.capitalize %></p>
+            <p><span class="light-text">Last name:</span> <%= current_user.last_name.capitalize %></p>
           </div>
           <hr>
           <%= link_to 'Edit infos', edit_user_registration_path, class: "btn btn-primary" %>
@@ -32,7 +32,15 @@
         </div>
         <div class="info-box-content">
           <% if current_user.producer_reviews.present? %>
-            <!-- To complete after review implementation  -->
+            <% current_user.producer_reviews.each do |review| %>
+                <div class="row">
+                  <di class="col-xs-12">
+                    <div id='ajaxid' class="product-info-box info-box-content info-box-group">
+                          <p> <%=  render "shared/producer_review", elem: review %> </p>
+                   </div>
+                </div>
+              </div>
+            <% end %>
           <% else %>
             <p>Vous n'avez pas encore écrit d'avis</p>
             <%= link_to producers_path, class: "discret-link" do %>

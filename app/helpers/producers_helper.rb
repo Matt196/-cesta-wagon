@@ -10,7 +10,7 @@ module ProducersHelper
   def producer_img_path(producer = nil)
     if producer &&  producer.photos?
       cl_image_path producer.photos.first.path, height: 180, crop: :fill
-    elsif producer && AUTHORIZED_CATEGORIES[producer.category]
+    elsif producer && AUTHORIZED_CATEGORIES[producer.category].present?
       image_path("category/#{AUTHORIZED_CATEGORIES[producer.category][:cat_pic]}")
     else
       image_path('producer-card-image.jpg')
@@ -20,7 +20,7 @@ module ProducersHelper
   def producer_lg_img_path(producer = nil)
     if producer &&  producer.photos?
       cl_image_path producer.photos.first.path
-    elsif producer && AUTHORIZED_CATEGORIES[producer.category]
+    elsif producer && AUTHORIZED_CATEGORIES[producer.category].present?
       image_path("category/#{AUTHORIZED_CATEGORIES[producer.category][:cat_pic]}")
     else
       image_path('producer-card-image.jpg')
