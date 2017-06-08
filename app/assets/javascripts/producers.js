@@ -4,10 +4,10 @@ $(function() {
   $('#producer-filters [type="checkbox"], #producer-filters [type="radio"]').on('change', function() {
     $(this).closest('form').submit();
   });
-  // $('#producer-filters form').on('', reloadProductList);
-  window.onpopstate = function(event) {
-    console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-  };
+  $('#mobile-filter-body form').on('submit', reloadProductList);
+  $('#mobile-filter-body [type="checkbox"], #mobile-filter-body [type="radio"]').on('change', function() {
+    $(this).closest('form').submit();
+  });
 });
 
 $(document).on('ready ajaxComplete', displayDistanceFromUserLocation);

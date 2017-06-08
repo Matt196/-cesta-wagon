@@ -4,10 +4,11 @@
 
 <div class="container page-content">
   <div class="hidden-md hidden-lg">
-    <button class="btn btn-primary" style="width: 100%">
+    <button id="mobile-filter-show" class="btn btn-primary" style="width: 100%">
       FILTRER
     </button>
   </div>
+
   <div class="row">
     <div class="hidden-xs hidden-sm col-md-3" id="producer-filters">
       <div class="producer-filters-content">
@@ -46,11 +47,50 @@
       <div id="list-loader" class="hidden">
         <%= image_tag('loader', class: 'loader') %>
       </div>
-      <div class="row" id='cards' data-location=<%=@session[:location] %>>
+      <div class="row" id='cards' data-location="<%= @session[:location] %>">
         <% @producers.each do |producer| %>
           <%= display_producer_card(producer) %>
         <% end %>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="mobile-filter-container" class="hidden-md hidden-lg">
+  <div id="mobile-filter-title">
+    Titre des filtres
+  </div>
+  <div id="mobile-filter-body">
+    <form action="/producers" method='get'>
+      <div class="location-filter filter">
+        <h5>A proximité de </h5>
+        <div class="filter-body">
+          <input type="text" name="query_location" placeholder="Ex : Auvergne">
+          <input type="submit" class="btn btn-primary" value="OK">
+        </div>
+      </div>
+      <div class="category-filter filter">
+        <h5>Categories</h5>
+        <div class="filter-body">
+          <% @categories.each do |category| %>
+            <label><input type="checkbox" name="categories[]" value="<%= category %>"><%= category %></label>
+          <% end %>
+        </div>
+      </div>
+      <div class="mark-filter filter">
+        <h5>Notes moyennes</h5>
+        <div class="filter-body">
+           <label><input type="radio" name="mark" value="5">5</label>
+          <% [4, 3, 2, 1].each do |mark| %>
+            <label><input type="radio" name="mark" value=<%= mark %>><%= mark %> et +</label>
+          <% end %>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="mobile-filter-footer">
+    <button id="mobile-filter-hide" class="btn btn-primary" style="width: 100%">
+      AFFICHER LES PRODUITS
+    </button>
   </div>
 </div>
