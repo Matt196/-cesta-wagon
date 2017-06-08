@@ -3,6 +3,7 @@ class BasketLinePolicy < ApplicationPolicy
     test = record.map do |elem|
       elem.user_id == user.id
     end
+
     test.any?
   end
 
