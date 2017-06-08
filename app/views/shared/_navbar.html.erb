@@ -34,8 +34,6 @@
         </div>
 
 
-<!-- TODO : voir si on affiche ou pas le panier dans la nav lorsqu'on est sur la page panier. -->
-
       <% if params[:controller] != 'basket_lines' %>
         <div class="navbar-basket-icon">
           <%= link_to icon('shopping-cart'), basket_lines_path %>
