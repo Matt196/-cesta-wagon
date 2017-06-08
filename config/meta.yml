@@ -3,5 +3,5 @@
 meta_product_name: "Product Name"
 meta_title: "Cesta.top - Les meilleurs producteurs autour de vous"
 meta_description: "Cesta.top - Retrouvez les meilleurs producteurs primés autour de vous ou sur votre lieu de vacances"
-meta_image: "home-banner.jpg"                       # should exist in `app/assets/images/`
-twitter_account: "@product_twitter_account"   # required for Twitter Cards
+meta_image: "app/assets/images/home-banner.jpg" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"     # required for Twitter Cards
