@@ -8,7 +8,7 @@ class ProducerPolicy < ApplicationPolicy
 
   def edit?
     user.is_a?(User) &&
-    record.id == user.producer.id if user.producer.present?
+    record == user.producer if user.producer.present?
   end
 
   def update?

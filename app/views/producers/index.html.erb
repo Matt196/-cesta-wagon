@@ -3,11 +3,6 @@
 <% end %>
 
 <div class="container page-content">
-  <div class="hidden-md hidden-lg">
-    <button id="mobile-filter-show" class="btn btn-primary" style="width: 100%">
-      FILTRER
-    </button>
-  </div>
 
   <div class="row">
     <div class="hidden-xs hidden-sm col-md-3" id="producer-filters">
@@ -48,6 +43,11 @@
         <%= image_tag('loader', class: 'loader') %>
       </div>
       <div class="row" id='cards' data-location="<%= @session[:location] %>">
+        <div class="col-xs-12">
+          <div class="product-list-title">
+            <h4><span class="title-light">Autour de </span><%= @session[:location].capitalize %></h4>
+          </div>
+        </div>
         <% @producers.each do |producer| %>
           <%= display_producer_card(producer) %>
         <% end %>
@@ -58,7 +58,7 @@
 
 <div id="mobile-filter-container" class="hidden-md hidden-lg">
   <div id="mobile-filter-title">
-    Titre des filtres
+    <h4>Affiner votre recherche</h4>
   </div>
   <div id="mobile-filter-body">
     <form action="/producers" method='get'>
@@ -93,4 +93,8 @@
       AFFICHER LES PRODUITS
     </button>
   </div>
+</div>
+
+<div id="mobile-filter-show hidden-md hidden-lg">
+  <%= icon('filter') %>
 </div>
