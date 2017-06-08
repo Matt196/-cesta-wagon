@@ -1,6 +1,8 @@
-<% content_for (:meta_title) do %>
-  Cesta.top - Retrouvez tous les producteurs locaux autour de vous - <%= @producer.name %>
-<% end %>
+
+<% content_for :meta_title, @producer.name %>
+<% content_for :meta_description, @producer.description %>
+
+
 
 <!-- Poducer large image banner and avatar -->
 <div class="producer-image-in-producer-show" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
