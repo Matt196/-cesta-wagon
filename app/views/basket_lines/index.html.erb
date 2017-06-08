@@ -11,7 +11,7 @@
 
 
             <%= link_to producer_path(producer), class:'title-producer-basket' do %>
-              <h2 class="text-center"> <%= producer.name %> </h2>
+              <h1 class="text-center"> <%= producer.name %> </h1>
             <% end %>
             <hr class="line">
           </div>
@@ -56,3 +56,13 @@
     </div>
   <% end %>
 </div>
+
+<% if @basket.blank? %>
+  <div class="container" style="text-align: center">
+    <div class="row">
+      <div style="height: 15px; width: 100%"></div>
+      <div class='col-xs-12 text-center' style="margin-bottom: 15px"> Votre panier est vide, retrouvez tous nos produits </div>
+      <div> <%= link_to 'cliquez-ici', producers_path, class:'btn btn-primary add-basket' %> </div>
+    </div>
+  </div>
+<% end %>

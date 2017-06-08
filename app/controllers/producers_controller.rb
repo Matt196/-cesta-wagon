@@ -11,6 +11,7 @@ class ProducersController < ApplicationController
     @producers = results[:producers]
     @categories = results[:categories]
     @session = session
+    @session[:location] = @session[:location] || 'Lyon'
   end
 
   def show

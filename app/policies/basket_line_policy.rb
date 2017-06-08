@@ -1,10 +1,11 @@
 class BasketLinePolicy < ApplicationPolicy
   def index?
-    test = record.map do |elem|
-      elem.user_id == user.id
-    end
+    # test = record.map do |elem|
+    #   elem.user_id == user.id
+    # end
 
-    test.any?
+    # test.any?
+    true
   end
 
   def new?

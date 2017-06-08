@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
 
         basketline.destroy
       end
-      flash[:notice] = "Votre commande est en cour de préparation chez #{@producer.name}"
+      flash[:notice] = "Votre commande est en cours de préparation chez #{@producer.name}"
 
       redirect_to basket_lines_path
     end
