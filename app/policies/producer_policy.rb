@@ -1,11 +1,7 @@
 class ProducerPolicy < ApplicationPolicy
 
   def edit?
-    user.is_a?(User) &&
-    user.producer.present? ? record.id != user.producer.id : true &&
-    validate_uniqueness_review if user.is_a?(User)
-
-
+    record == user.producer
   end
 
   def update?

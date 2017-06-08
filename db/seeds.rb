@@ -1,15 +1,15 @@
 
-BasketLine.destroy_all
-ProducerAward.destroy_all
-ProducerReview.destroy_all
-Product.destroy_all
-Producer.destroy_all
-User.destroy_all
+# BasketLine.destroy_all
+# ProducerAward.destroy_all
+# ProducerReview.destroy_all
+# Product.destroy_all
+# Producer.destroy_all
+# User.destroy_all
 
 
 # --------------SCRAPER PRODUCER without PHOTOS--------------------
 
-year = 2016
+year = 2014
 scrapper = Scrapper::ConcoursAgricoleScrapper.new(year: year.to_s)
 scrapper.scrap.each do |data|
 
@@ -78,21 +78,21 @@ end
 
 # --------------ADD 3 random rewiew to PRODUCER ----------------
 nice_user = User.create(
-  email: "nice_user1@cesta.top",
+  email: "nice_user3@cesta.top",
   first_name: 'Brice',
   last_name: 'De Nice',
   password: "password"
 )
 
 avg_user = User.create(
-  email: "avg_user1@cesta.top",
+  email: "avg_user3@cesta.top",
   first_name: 'Jean',
   last_name: 'Dupont',
   password: "password"
 )
 
 bad_user = User.create(
-  email: "bad_user1@cesta.top",
+  email: "bad_user3@cesta.top",
   first_name: 'Docteur',
   last_name: 'House',
   password: "password"

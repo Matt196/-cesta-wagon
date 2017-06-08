@@ -6,6 +6,17 @@
   position: relative;
 }
 
+.product-list-title {
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid $gray-lighter;
+  border-radius: $border-radius-base;
+  padding: 0 10px;
+  h4 {
+    color: $gray-light;
+  }
+}
+
 #list-loader {
   position: absolute;
   top: 10px;
