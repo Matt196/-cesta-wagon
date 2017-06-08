@@ -4,6 +4,7 @@ class Producer < ApplicationRecord
   has_many :producer_awards, dependent: :destroy
   has_many :producer_reviews, dependent: :destroy
 
+
   has_attachment  :avatar
   has_attachments :photos, maximum: 2
 

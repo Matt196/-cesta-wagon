@@ -4,7 +4,6 @@ class ProducersController < ApplicationController
   skip_after_action :verify_authorized, only: [:create, :new]
 
 
-
   def index
     @first_index_impression = cookies["geolocalized"]
     user_location = set_user_location
@@ -57,7 +56,7 @@ class ProducersController < ApplicationController
   def destroy
     authorize (@producer)
     @producer.destroy
-    flash[:alert] = "Producteur supprimé de la bdd"
+    flash[:alert] = "Producteur supprimé"
     redirect_to producers_path
   end
 
@@ -86,7 +85,8 @@ class ProducersController < ApplicationController
     if cookies["geolocalized"]
       user_location = session[:location]
     elsif params[:latitude].blank?
-      request.ip == "127.0.0.1" ? ip = "80.214.144.229" : ip = request.ip
+      # request.ip == "127.0.0.1" ? ip = "80.214.223.186" : ip = request.ip
+      ip = "80.214.223.186"
       user_location = Geocoder.search(ip)[0].data["city"]
     else
       user_location = "#{params[:latitude]},#{params[:longitude]}"

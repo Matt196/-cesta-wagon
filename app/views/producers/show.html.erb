@@ -1,13 +1,15 @@
-<% content_for (:meta_title) do %>
-  Cesta.top - Retrouvez tous les producteurs locaux autour de vous - <%= @producer.name %>
-<% end %>
+
+<% content_for :meta_title, @producer.name %>
+<% content_for :meta_description, @producer.description %>
+
+
 
 <!-- Poducer large image banner and avatar -->
 <div class="producer-image-in-producer-show" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
         url('<%= producer_lg_img_path(@producer) %>')">
     <% if @producer.avatar? %>
-      <img class="producer-avatar-desktop hidden-xs hidden-sm" src="<%= cl_image_path(@producer.avatar.path)%>" />
-      <img class="producer-avatar-mobile hidden-md hidden-lg" src="<%= cl_image_path(@producer.avatar.path)%>" />
+      <%= cl_image_tag(@producer.avatar.path, width: 200, height: 200, crop: :thumb, gravity: :face, class: "producer-avatar-desktop hidden-xs hidden-sm") %>
+      <%= cl_image_tag(@producer.avatar.path, width: 200, height: 200, crop: :thumb, gravity: :face, class: "producer-avatar-mobile hidden-md hidden-lg") %>
     <% else %>
       <img class="producer-avatar-desktop hidden-xs hidden-sm" src="<%= image_path "default-farmer-avatar.png" %>" />
       <img class="producer-avatar-mobile hidden-md hidden-lg" src="<%= image_path "default-farmer-avatar.png" %>" />
@@ -91,8 +93,6 @@
   </div>
 </div>
 
-
-
 <!-- Separator -->
 <div class="container">
   <div class="row">
@@ -118,7 +118,7 @@
           <p id="noreview">No reviews yet</p>
         <% end %>
      </div>
-      <% if policy(@producer).edit? %>
+      <% if policy(@producer).form_acces? %>
         <div id="form-review" class="product-info-box info-box-content info-box-group">
           <%= render 'shared/form_reviews.html' %>
         </div>
