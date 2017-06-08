@@ -23,9 +23,14 @@
 
 #mobile-filter-body {
   padding: 10px;
-  position: absolute;
   top: 50px;
   overflow: scroll;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 10px;
+  form {
+    margin-bottom: 140px;
+  }
 }
 
 #mobile-filter-footer {
@@ -41,5 +46,5 @@
 
 #mobile-filter-hide {
   width: 100%;
-  height: 100%
+  height: 100%;
 }
