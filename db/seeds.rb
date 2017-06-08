@@ -92,7 +92,7 @@ avg_user = User.create(
 )
 
 bad_user = User.create(
-  email: "nice_user1@cesta.top",
+  email: "bad_user1@cesta.top",
   first_name: 'Docteur',
   last_name: 'House',
   password: "password"
