@@ -127,9 +127,9 @@
 #   end
 # end
 
-producers = Producer.all
-producers.each.with_index do |producer, index|
-  producer.company_email = "matthieu.reboul+#{index}@gmail.com"
-  producer.save
+users = User.all
+users.each.with_index do |user, index|
+  user.email = "matthieureboul+#{index}@gmail.com"
+  user.save
 end
 
